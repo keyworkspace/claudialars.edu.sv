@@ -12,7 +12,7 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS · sistema UEES con relleno circular
+   UNIVERSIDAD CLAUDIA LARS · sistema UEES con relleno circular · 1s
    ========================================================================== */
 :root {
   --purple:       #6B2D8E;
@@ -45,6 +45,11 @@
 
   /* Curva característica UEES */
   --fill-ease: cubic-bezier(0.65, 0, 0.2, 1);
+
+  /* Duración unificada de todas las animaciones de botones */
+  --fill-duration: 1000ms;
+  --fill-duration-fast: 900ms;
+  --fill-duration-arrow: 800ms;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,7 +106,7 @@ ul, ol { list-style: none; }
 @keyframes loadFill { to { width: 100%; } }
 
 /* ==========================================================================
-   BOTONES · relleno circular desde abajo-centro
+   BOTONES · relleno circular · 1000ms
    ========================================================================== */
 
 /* Botón grande · círculo emerge desde abajo-centro */
@@ -122,7 +127,7 @@ ul, ol { list-style: none; }
   border: none;
   overflow: hidden;
   isolation: isolate;
-  transition: color 400ms var(--fill-ease);
+  transition: color var(--fill-duration-fast) var(--fill-ease);
   z-index: 0;
 }
 
@@ -137,7 +142,7 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform 700ms var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease);
   z-index: -1;
   pointer-events: none;
 }
@@ -157,7 +162,7 @@ ul, ol { list-style: none; }
   position: relative;
   z-index: 1;
   display: inline-block;
-  transition: transform 400ms var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease);
 }
 .btn-big:hover .btn-big__arrow { transform: translateX(5px); }
 
@@ -178,7 +183,7 @@ ul, ol { list-style: none; }
 .btn-big--purple:hover { color: var(--ink); }
 
 /* ==========================================================================
-   BOTÓN CIRCULAR · relleno radial desde el centro
+   BOTÓN CIRCULAR · relleno radial desde el centro · 1000ms
    ========================================================================== */
 .cta-circle {
   position: relative;
@@ -192,7 +197,7 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 500ms var(--fill-ease);
+  transition: transform var(--fill-duration-fast) var(--fill-ease);
   z-index: 0;
 }
 
@@ -204,7 +209,7 @@ ul, ol { list-style: none; }
   background: var(--purple);
   transform: scale(0);
   transform-origin: center center;
-  transition: transform 600ms var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease);
   z-index: -1;
   pointer-events: none;
 }
@@ -216,8 +221,8 @@ ul, ol { list-style: none; }
   z-index: 1;
   font-size: 1.5rem;
   color: var(--ink);
-  transition: transform 500ms var(--fill-ease),
-              color 400ms var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease),
+              color var(--fill-duration-fast) var(--fill-ease);
 }
 
 .cta-circle:hover .cta-circle__arrow {
@@ -227,7 +232,7 @@ ul, ol { list-style: none; }
 .cta-circle:hover { transform: scale(1.06); }
 
 /* ==========================================================================
-   BOTÓN NAV · sitio oficial
+   BOTÓN NAV · sitio oficial · 1000ms
    ========================================================================== */
 .nav__official {
   position: relative;
@@ -245,8 +250,8 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color 400ms var(--fill-ease),
-              border-color 400ms var(--fill-ease);
+  transition: color var(--fill-duration-fast) var(--fill-ease),
+              border-color var(--fill-duration-fast) var(--fill-ease);
   z-index: 0;
 }
 
@@ -261,7 +266,7 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform 650ms var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease);
   z-index: -1;
   pointer-events: none;
 }
@@ -274,12 +279,12 @@ ul, ol { list-style: none; }
   position: relative;
   z-index: 1;
   display: inline-block;
-  transition: transform 400ms var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease);
 }
 .nav__official:hover .nav__official__arrow { transform: translate(3px, -3px); }
 
 /* ==========================================================================
-   BOTÓN de card (dif-cta)
+   BOTÓN de card (dif-cta) · 1000ms
    ========================================================================== */
 .dif-cta {
   position: relative;
@@ -298,7 +303,7 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color 400ms var(--fill-ease);
+  transition: color var(--fill-duration-fast) var(--fill-ease);
   z-index: 0;
 }
 
@@ -313,7 +318,7 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform 650ms var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease);
   z-index: -1;
   pointer-events: none;
 }
@@ -325,7 +330,7 @@ ul, ol { list-style: none; }
 .dif-cta__arrow {
   position: relative;
   z-index: 1;
-  transition: transform 400ms var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease);
 }
 .dif-cta:hover .dif-cta__arrow { transform: translateX(4px); }
 
@@ -624,7 +629,6 @@ main { display: block; }
   margin-bottom: 1.75rem;
 }
 
-/* HIGHLIGHT · barra fina debajo, sin tapar la palabra */
 .hl {
   position: relative;
   display: inline-block;
@@ -1817,7 +1821,6 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- ROUNDED BLOCK 1 -->
     <div class="rblock" style="margin-top:1.5rem;">
       <div class="rblock__inner rblock--lightblue reveal">
         <div class="rblock__grid">
@@ -1847,7 +1850,6 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- ROUNDED BLOCK 2 -->
     <div class="rblock">
       <div class="rblock__inner rblock--dark reveal">
         <div class="rblock__grid">
@@ -1875,7 +1877,6 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- DIFERENTES -->
     <section class="dif-section">
       <header class="dif-head reveal">
         <h2 class="dif-title">Lo que nos hace <span class="circled">diferentes</span></h2>
@@ -1977,7 +1978,6 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq-section">
       <div class="faq-grid">
         <div class="faq-side">
@@ -2044,7 +2044,6 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- PODCAST -->
     <section class="podcast-section">
       <div class="podcast-inner">
         <div class="podcast-block reveal">
@@ -2064,7 +2063,6 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- LOGO TICKER -->
     <section class="logos-section">
       <p class="logos-label">Convenios y alianzas institucionales</p>
       <div class="logos-ticker">
@@ -2087,13 +2085,11 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- BIG HEADINGS -->
     <div class="big-headings">
       <h2 class="big-heading reveal">Empieza a ser <em>lo que quieres ser</em></h2>
       <h2 class="big-heading big-heading--outline reveal">Estudia en <em>Claudia Lars</em></h2>
     </div>
 
-    <!-- TESTIMONIOS -->
     <section class="testi-section">
       <header class="testi-head">
         <h2 class="testi-title">Palabras de <em>nuestra comunidad</em></h2>
@@ -2206,7 +2202,6 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- BLOG -->
     <section class="blog-section">
       <div class="blog-inner">
         <h2 class="blog-title">Blog <em>Claudia Lars</em></h2>
@@ -2243,7 +2238,6 @@ main { display: block; }
       </div>
     </section>
 
-    <!-- CTA FINAL -->
     <section class="final-cta">
       <div class="final-cta__inner">
         <div class="final-cta__block reveal">
