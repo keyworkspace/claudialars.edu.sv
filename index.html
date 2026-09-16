@@ -1,270 +1,782 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claudia Lars</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-    body { background: #f7f5f2; color: #2b2b2b; line-height: 1.6; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claudia Lars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F4;
+    --paper: #FFFFFF;
+    --ink: #1A0F1E;
+    --plum: #2D1B3D;
+    --violet: #5C3A7E;
+    --lilac: #A98BC0;
+    --blush: #E8D7E4;
+    --gold: #B8925A;
+    --muted: #6B5B70;
+    --line: #E8E1E4;
 
-    header {
-      background: #4a2c5e; color: white; padding: 1rem 2rem;
-      display: flex; justify-content: space-between; align-items: center;
-      position: sticky; top: 0; z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    .logo {
-      font-weight: 700; font-size: 1.45rem; letter-spacing: -0.5px;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .logo .dot { color: #d4a5c9; }
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
 
-    nav button {
-      background: none; border: none; color: #d9c8e0; margin-left: 0.8rem;
-      cursor: pointer; font-size: 0.95rem; padding: 0.5rem 0.8rem;
-      border-radius: 6px; transition: all 0.2s;
-    }
-    nav button:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    nav button.active { color: #fff; background: #6b3d85; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    main { max-width: 1050px; margin: 2rem auto; padding: 0 1rem; }
-    section { display: none; animation: fade 0.3s; }
-    section.active { display: block; }
-    @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  html { scroll-behavior: smooth; }
 
-    .hero {
-      background: linear-gradient(135deg, #4a2c5e 0%, #6b3d85 60%, #8b5a9e 100%);
-      color: white; padding: 4rem 2rem 3.5rem; border-radius: 22px;
-      text-align: center; margin-bottom: 2rem;
-      position: relative; overflow: hidden;
-    }
-    .hero::after {
-      content: '❦'; position: absolute; font-size: 16rem; opacity: 0.05;
-      right: -2rem; top: -4rem; color: white; pointer-events: none;
-    }
-    .hero .eyebrow {
-      font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
-      opacity: 0.65; margin-bottom: 1.2rem;
-    }
-    .hero .brandmark {
-      font-size: 3.4rem; font-weight: 800; letter-spacing: -2px;
-      line-height: 1; margin-bottom: 0.4rem;
-    }
-    .hero .brandmark .dot { color: #d4a5c9; }
-    .hero .tagline {
-      font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
-      font-style: italic;
-    }
-    .btn {
-      background: #d4a5c9; color: #4a2c5e; border: none; padding: 0.85rem 2rem;
-      border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: bold;
-      transition: all 0.2s;
-    }
-    .btn:hover { background: #e6c2dd; transform: translateY(-2px); }
-    .btn-outline {
-      background: transparent; color: white; border: 2px solid rgba(255,255,255,0.7);
-      padding: 0.75rem 1.8rem; border-radius: 30px; cursor: pointer;
-      font-weight: bold; margin-left: 0.8rem; transition: all 0.2s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .card {
-      background: white; border-radius: 16px; padding: 1.6rem;
-      box-shadow: 0 4px 14px rgba(74,44,94,0.07);
-      border-top: 4px solid #d4a5c9;
-    }
-    .card h3 { margin-bottom: 0.6rem; color: #4a2c5e; font-size: 1.15rem; }
-    .card p { color: #555; font-size: 0.95rem; }
+  /* ============ HEADER ============ */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 247, 244, 0.85);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 0.7rem;
+    text-decoration: none; color: var(--ink);
+  }
+  .brand .mark { width: 26px; height: 26px; color: var(--violet); }
+  .brand .name {
+    font-family: var(--serif);
+    font-size: 1.5rem; font-weight: 500;
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .brand .dot { color: var(--violet); }
 
-    h2.section-title { color: #4a2c5e; margin-bottom: 1.5rem; font-size: 1.7rem; }
+  nav { display: flex; align-items: center; gap: 0.3rem; }
+  nav button {
+    background: none; border: none;
+    font-family: var(--sans); font-size: 0.875rem; font-weight: 500;
+    color: var(--muted); cursor: pointer;
+    padding: 0.5rem 0.9rem; border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+  nav button:hover { color: var(--ink); background: var(--blush); }
+  nav button.active { color: var(--violet); background: var(--blush); }
 
-    .quote {
-      background: white; border-left: 5px solid #8b5a9e; padding: 1.5rem 2rem;
-      border-radius: 12px; margin-bottom: 2rem; font-style: italic; color: #4a4a4a;
-      box-shadow: 0 4px 14px rgba(74,44,94,0.06);
-    }
-    .quote .author {
-      display: block; margin-top: 0.8rem; font-style: normal;
-      font-weight: bold; color: #4a2c5e; font-size: 0.9rem;
-    }
+  .header-cta {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .status {
+    display: flex; align-items: center; gap: 0.4rem;
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--muted); letter-spacing: 0.02em;
+  }
+  .status::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: #5B9B6E; box-shadow: 0 0 0 3px rgba(91,155,110,0.15);
+  }
+  .btn-primary {
+    background: var(--plum); color: white;
+    border: none; padding: 0.6rem 1.2rem;
+    border-radius: 100px; font-family: var(--sans);
+    font-size: 0.85rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s ease;
+  }
+  .btn-primary:hover { background: var(--violet); transform: translateY(-1px); }
 
-    .aula { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 14px rgba(74,44,94,0.07); }
-    .video-placeholder {
-      background: linear-gradient(135deg, #4a2c5e, #8b5a9e); color: rgba(255,255,255,0.7);
-      height: 220px; border-radius: 12px; display: flex; align-items: center;
-      justify-content: center; font-size: 3rem; margin-bottom: 1.2rem;
-    }
-    .progress { background: #eee; height: 8px; border-radius: 4px; overflow: hidden; margin: 1rem 0; }
-    .progress-bar { background: #8b5a9e; height: 100%; width: 35%; }
+  /* ============ MAIN ============ */
+  main { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-    form { display: flex; flex-direction: column; gap: 1rem; max-width: 420px; }
-    input, select {
-      padding: 0.85rem; border: 1px solid #d5c9dc; border-radius: 10px;
-      font-size: 1rem; font-family: inherit; background: white;
-    }
-    input:focus, select:focus { outline: 2px solid #8b5a9e; border-color: transparent; }
+  section { display: none; }
+  section.active { display: block; animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
 
-    .info-box {
-      background: #f0e9f4; border-radius: 12px; padding: 1.2rem 1.5rem;
-      margin-top: 1.5rem; font-size: 0.92rem; color: #4a2c5e;
-    }
-    .info-box strong { display: block; margin-bottom: 0.3rem; }
+  .mono-label {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+  }
 
-    footer {
-      text-align: center; padding: 2.5rem 1rem; color: #888;
-      font-size: 0.85rem; border-top: 1px solid #e5dfe8; margin-top: 3rem;
-    }
-    footer .brand { color: #4a2c5e; font-weight: 700; font-size: 0.95rem; }
-    footer .legal { font-size: 0.78rem; color: #aaa; margin-top: 0.5rem; }
+  .section-head {
+    display: flex; align-items: baseline; gap: 1rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.5rem; margin-bottom: 3rem;
+  }
+  .section-num {
+    font-family: var(--mono); font-size: 0.75rem;
+    color: var(--lilac); letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400; letter-spacing: -0.02em;
+    line-height: 1.1; color: var(--ink);
+  }
 
-    @media (max-width: 640px) {
-      header { flex-direction: column; gap: 0.8rem; padding: 1rem; }
-      nav button { margin-left: 0; margin: 0 0.2rem; font-size: 0.85rem; }
-      .hero .brandmark { font-size: 2.4rem; }
-      .btn-outline { margin-left: 0; margin-top: 0.8rem; }
-    }
-  </style>
+  /* ============ HERO ============ */
+  .hero {
+    position: relative;
+    padding: 5rem 0 6rem;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; }
+
+  .hero .mono-label { margin-bottom: 2.5rem; }
+
+  .hero-mark {
+    width: 84px; height: 84px;
+    color: var(--violet);
+    margin: 0 auto 1.5rem;
+    display: block;
+    opacity: 0;
+    animation: markIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+  @keyframes markIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .wordmark {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .wordmark .dot { color: var(--violet); }
+
+  .hero .tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-style: italic; font-weight: 300;
+    color: var(--violet);
+    margin-bottom: 2rem;
+  }
+  .hero .lead {
+    max-width: 560px; margin: 0 auto 2.5rem;
+    font-size: 1.05rem; color: var(--muted);
+    line-height: 1.7;
+  }
+  .cta-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 0.9rem 1.8rem; border-radius: 100px;
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
+    cursor: pointer; transition: all 0.25s ease;
+    border: 1px solid transparent;
+  }
+  .btn-solid { background: var(--plum); color: white; }
+  .btn-solid:hover { background: var(--violet); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(92,58,126,0.25); }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--violet); color: var(--violet); }
+
+  /* ============ PILLARS ============ */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    margin-top: 3rem;
+  }
+  .pillar {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--line);
+    text-align: left;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar-num {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--lilac); letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+  .pillar h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 500;
+    margin-bottom: 0.5rem; color: var(--ink);
+  }
+  .pillar p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* ============ MANIFIESTO ============ */
+  .manifesto { padding: 5rem 0; }
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .manifesto-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 400; font-style: italic;
+    line-height: 1.35; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .manifesto-quote .dot { color: var(--violet); }
+  .manifesto-quote .attr {
+    display: block; margin-top: 1.5rem;
+    font-family: var(--mono); font-size: 0.7rem;
+    font-style: normal; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .manifesto-body p {
+    font-size: 1.05rem; color: var(--ink);
+    line-height: 1.75; margin-bottom: 1.3rem;
+  }
+  .manifesto-body p:last-child { margin-bottom: 0; }
+  .manifesto-body strong { font-weight: 600; color: var(--violet); }
+
+  /* ============ CARRERAS ============ */
+  .carreras { padding: 5rem 0; }
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .career {
+    background: var(--paper);
+    padding: 2rem;
+    transition: background 0.25s ease;
+    position: relative;
+  }
+  .career:hover { background: #FDFBF9; }
+  .career-num {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--lilac); letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .career h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem; font-weight: 500;
+    color: var(--ink); margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .career p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .career-tag {
+    display: inline-block; margin-top: 1.2rem;
+    font-family: var(--mono); font-size: 0.65rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--violet); padding: 0.25rem 0.6rem;
+    background: var(--blush); border-radius: 100px;
+  }
+
+  /* ============ AULA ============ */
+  .aula-section { padding: 5rem 0; }
+  .aula-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .aula-header {
+    padding: 2rem 2.5rem;
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .aula-header h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem; font-weight: 500;
+    letter-spacing: -0.01em; margin-bottom: 0.3rem;
+  }
+  .aula-meta {
+    font-family: var(--mono); font-size: 0.75rem;
+    color: var(--muted); letter-spacing: 0.05em;
+  }
+  .aula-body { padding: 2.5rem; }
+  .video-frame {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, var(--plum), var(--violet));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .video-frame::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .play-btn {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(10px);
+    position: relative; z-index: 1;
+    transition: transform 0.25s ease;
+    cursor: pointer;
+  }
+  .play-btn:hover { transform: scale(1.05); }
+  .play-btn::after {
+    content: ''; width: 0; height: 0;
+    border-left: 18px solid white;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    margin-left: 4px;
+  }
+  .lesson-title {
+    font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .lesson-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .progress-track {
+    height: 4px; background: var(--blush);
+    border-radius: 100px; overflow: hidden;
+    margin-bottom: 0.6rem;
+  }
+  .progress-fill {
+    height: 100%; width: 35%;
+    background: var(--violet); border-radius: 100px;
+  }
+  .progress-label {
+    font-family: var(--mono); font-size: 0.7rem;
+    color: var(--muted); letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ============ ADMISIÓN ============ */
+  .admision { padding: 5rem 0; }
+  .admision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .admision-info h3 {
+    font-family: var(--serif);
+    font-size: 2rem; font-weight: 400;
+    letter-spacing: -0.02em; margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .admision-info p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+  .info-item {
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .info-item .k {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .info-item .v { font-size: 0.95rem; color: var(--ink); }
+
+  form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .field { display: flex; flex-direction: column; gap: 0.5rem; }
+  .field label {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .field input, .field select {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: var(--sans); font-size: 0.95rem;
+    background: var(--paper); color: var(--ink);
+    transition: all 0.2s ease;
+    appearance: none;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5B70' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .field input:focus, .field select:focus {
+    outline: none; border-color: var(--violet);
+    box-shadow: 0 0 0 3px rgba(92,58,126,0.1);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--plum); color: rgba(255,255,255,0.75);
+    margin-top: 6rem;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 4rem 2rem 2rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+  .footer-brand .mark { width: 32px; height: 32px; color: var(--blush); }
+  .footer-brand .name {
+    font-family: var(--serif); font-size: 1.8rem;
+    font-weight: 400; color: white; letter-spacing: -0.02em;
+  }
+  .footer-brand .dot { color: var(--blush); }
+  .footer-tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.1rem; color: var(--blush);
+    margin-bottom: 1.5rem;
+  }
+  .footer-desc { font-size: 0.9rem; line-height: 1.7; max-width: 360px; }
+
+  .footer-col h4 {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--lilac); margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col a {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.2s ease;
+  }
+  .footer-col a:hover { color: white; }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem; gap: 1rem; flex-wrap: wrap;
+  }
+  .footer-bottom .legal {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.05em; color: rgba(255,255,255,0.4);
+  }
+  .footer-bottom .ver {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.05em; color: var(--lilac);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .manifesto-grid, .admision-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 720px) {
+    .header-inner { padding: 0.9rem 1.2rem; gap: 1rem; }
+    nav { display: none; }
+    main { padding: 0 1.2rem; }
+    .hero { padding: 3rem 0 4rem; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--line); }
+    .pillar:last-child { border-bottom: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .aula-header, .aula-body { padding: 1.5rem; }
+    .footer-inner { padding: 3rem 1.2rem 1.5rem; }
+  }
+</style>
 </head>
 <body>
 
+  <!-- ============ SVG SYMBOL (marca) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="cl-mark" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22.5" stroke="currentColor" stroke-width="0.75" opacity="0.35" fill="none"/>
+      <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none">
+        <path d="M24 39 V 9"/>
+        <path d="M24 33.5 C 19 33, 15.5 34.5, 14 36.5"/>
+        <path d="M24 27.5 C 29 27, 32.5 28.5, 34 30.5"/>
+        <path d="M24 21.5 C 19 21, 15.5 22.5, 14 24.5"/>
+        <path d="M24 15.5 C 29 15, 32.5 16.5, 34 18.5"/>
+      </g>
+      <circle cx="24" cy="9" r="1.6" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
   <header>
-    <div class="logo">Claudia Lars<span class="dot">.</span></div>
-    <nav>
-      <button onclick="show(event,'inicio')" class="active">Inicio</button>
-      <button onclick="show(event,'oferta')">Carreras</button>
-      <button onclick="show(event,'aula')">Aula</button>
-      <button onclick="show(event,'admision')">Admisión</button>
-    </nav>
+    <div class="header-inner">
+      <a class="brand" href="#" onclick="show(event,'inicio');return false;">
+        <svg class="mark"><use href="#cl-mark"/></svg>
+        <span class="name">Claudia Lars<span class="dot">.</span></span>
+      </a>
+      <nav>
+        <button onclick="show(event,'inicio')" class="active">Inicio</button>
+        <button onclick="show(event,'manifiesto')">Manifiesto</button>
+        <button onclick="show(event,'carreras')">Carreras</button>
+        <button onclick="show(event,'aula')">Aula</button>
+        <button onclick="show(event,'admision')">Admisión</button>
+      </nav>
+      <div class="header-cta">
+        <span class="status">Admisiones abiertas</span>
+        <button class="btn-primary" onclick="show(event,'admision')">Postular</button>
+      </div>
+    </div>
   </header>
 
   <main>
 
-    <!-- INICIO -->
+    <!-- ============ INICIO ============ -->
     <section id="inicio" class="active">
       <div class="hero">
-        <div class="eyebrow">Educación superior</div>
-        <div class="brandmark">Claudia Lars<span class="dot">.</span></div>
-        <p class="tagline">La universidad de Morazán.</p>
-        <button class="btn" onclick="show(event,'admision')">Solicitar admisión</button>
-        <button class="btn-outline" onclick="show(event,'oferta')">Ver carreras</button>
-      </div>
-
-      <div class="quote">
-        "La poesía es el testimonio más puro de la dignidad humana."
-        <span class="author">Claudia Lars · poetisa salvadoreña (1899-1974)</span>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>🏠 Cerca de casa</h3>
-          <p>Estudia en Morazán. Sin viajes de más de una hora, sin gastos de alquiler fuera del departamento.</p>
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+          <div class="mono-label">Est. 2026 · Morazán · El Salvador</div>
+          <svg class="hero-mark"><use href="#cl-mark"/></svg>
+          <h1 class="wordmark">Claudia Lars<span class="dot">.</span></h1>
+          <p class="tagline">Poesía, ciencia y tecnología.</p>
+          <p class="lead">Una universidad nueva para el oriente del país. Formación rigurosa, arraigo local y una apuesta por el talento que no debería tener que migrar.</p>
+          <div class="cta-row">
+            <button class="btn btn-solid" onclick="show(event,'admision')">Solicitar admisión</button>
+            <button class="btn btn-ghost" onclick="show(event,'manifiesto')">Conocer el proyecto</button>
+          </div>
         </div>
-        <div class="card">
-          <h3>📚 Formación integral</h3>
-          <p>Programas académicos con enfoque humanístico, científico y técnico al servicio de la región.</p>
-        </div>
-        <div class="card">
-          <h3>🌱 Compromiso local</h3>
-          <p>Proyectos de proyección social vinculados al desarrollo de Morazán y la zona oriental.</p>
+
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <h3>Cercanía</h3>
+            <p>Estudia en Morazán. Sin viajes de más de una hora, sin alquileres fuera del departamento.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <h3>Rigor</h3>
+            <p>Formación exigente, con docentes calificados y programas académicos de alta calidad.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <h3>Tecnología</h3>
+            <p>Aula digital, recursos modernos y formación en las herramientas del futuro.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">04</div>
+            <h3>Raíz</h3>
+            <p>Identidad morazanense y compromiso con el desarrollo de toda la región oriental.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- OFERTA -->
-    <section id="oferta">
-      <h2 class="section-title">Carreras</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>💻 Desarrollo de Software</h3>
+    <!-- ============ MANIFIESTO ============ -->
+    <section id="manifiesto" class="manifesto">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Manifiesto</h2>
+      </div>
+      <div class="manifesto-grid">
+        <div class="manifesto-quote">
+          "La poesía es el testimonio más puro de la dignidad humana.<span class="dot">.</span>"
+          <span class="attr">Claudia Lars · 1899–1974</span>
+        </div>
+        <div class="manifesto-body">
+          <p><strong>Claudia Lars no es solo un nombre.</strong> Es una forma de mirar el mundo: con atención, con dignidad, con belleza. Es la poeta que le puso voz a la tierra salvadoreña y que sigue siendo, décadas después, una de las figuras más importantes de la lírica centroamericana.</p>
+          <p>Nacimos en Morazán porque creemos que <strong>el talento no debería tener que migrar.</strong> Que un estudiante de Yamabal, de Guatajiagua o de Cacaopera merece la misma educación que uno de la capital, sin sacrificar su tiempo, su dinero ni su arraigo.</p>
+          <p>Y elegimos su nombre porque su obra representa lo que queremos ser: <strong>profunda, arraigada, universal.</strong> Poesía, sí. Pero también ciencia, tecnología y pensamiento crítico. Una universidad del siglo XXI con raíces en la tierra.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARRERAS ============ -->
+    <section id="carreras" class="carreras">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Carreras</h2>
+      </div>
+      <div class="career-grid">
+        <div class="career">
+          <div class="career-num">01</div>
+          <h3>Desarrollo de Software</h3>
           <p>Programación, bases de datos, desarrollo web y soluciones digitales para la región.</p>
+          <span class="career-tag">Ingeniería</span>
         </div>
-        <div class="card">
-          <h3>🌾 Agronegocios</h3>
+        <div class="career">
+          <div class="career-num">02</div>
+          <h3>Agronegocios</h3>
           <p>Gestión sostenible de la producción agrícola y pecuaria, con enfoque en mercados locales.</p>
+          <span class="career-tag">Ciencias agrarias</span>
         </div>
-        <div class="card">
-          <h3>📖 Letras y Comunicación</h3>
+        <div class="career">
+          <div class="career-num">03</div>
+          <h3>Letras y Comunicación</h3>
           <p>Lenguaje, literatura y comunicación, honrando el legado de Claudia Lars.</p>
+          <span class="career-tag">Humanidades</span>
         </div>
-        <div class="card">
-          <h3>🏥 Enfermería</h3>
+        <div class="career">
+          <div class="career-num">04</div>
+          <h3>Enfermería</h3>
           <p>Profesionales de la salud para atender las necesidades de Morazán y la zona oriental.</p>
+          <span class="career-tag">Ciencias de la salud</span>
         </div>
-        <div class="card">
-          <h3>📈 Administración de Empresas</h3>
+        <div class="career">
+          <div class="career-num">05</div>
+          <h3>Administración de Empresas</h3>
           <p>Líderes para el emprendimiento y la gestión de organizaciones locales.</p>
+          <span class="career-tag">Ciencias económicas</span>
         </div>
-        <div class="card">
-          <h3>🎓 Turismo Rural</h3>
+        <div class="career">
+          <div class="career-num">06</div>
+          <h3>Turismo Rural</h3>
           <p>Aprovechamiento sostenible del patrimonio natural y cultural de la región.</p>
+          <span class="career-tag">Técnico superior</span>
         </div>
       </div>
     </section>
 
-    <!-- AULA -->
-    <section id="aula">
-      <h2 class="section-title">Aula virtual · Demo</h2>
-      <div class="aula">
-        <h3>Literatura Centroamericana I</h3>
-        <p style="color:#666; font-size:0.9rem; margin-bottom:1rem;">Docente: Dra. María Elena Portillo · Semana 1</p>
-        <div class="video-placeholder">▶</div>
-        <p><strong>Clase 1: Claudia Lars y la poesía de la tierra.</strong></p>
-        <p style="margin-top:0.5rem; color:#555;">
-          En esta sesión analizamos la obra de Claudia Lars, su vínculo con la naturaleza
-          y su papel como una de las voces más importantes de la lírica centroamericana del siglo XX.
-        </p>
-        <div class="progress"><div class="progress-bar"></div></div>
-        <p style="font-size:0.85rem; color:#888;">Progreso del curso: 35%</p>
-        <br>
-        <button class="btn" onclick="alert('¡Quiz completado! (simulado)')">Hacer quiz</button>
-        <button class="btn-outline" style="color:#4a2c5e; border-color:#4a2c5e;" onclick="alert('Foro abierto (simulado)')">Ir al foro</button>
+    <!-- ============ AULA ============ -->
+    <section id="aula" class="aula-section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Aula digital</h2>
+      </div>
+      <div class="aula-card">
+        <div class="aula-header">
+          <div>
+            <h3>Literatura Centroamericana I</h3>
+            <div class="aula-meta">Docente · Dra. María Elena Portillo</div>
+          </div>
+          <div class="aula-meta">Semana 01 / 16</div>
+        </div>
+        <div class="aula-body">
+          <div class="video-frame">
+            <div class="play-btn"></div>
+          </div>
+          <h4 class="lesson-title">Clase 1 · Claudia Lars y la poesía de la tierra</h4>
+          <p class="lesson-desc">En esta sesión analizamos la obra de Claudia Lars, su vínculo con la naturaleza y su papel como una de las voces más importantes de la lírica centroamericana del siglo XX.</p>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+          <div class="progress-label">Progreso del curso · 35%</div>
+          <button class="btn btn-solid" onclick="alert('Quiz completado (simulado)')">Hacer quiz</button>
+          <button class="btn btn-ghost" onclick="alert('Foro abierto (simulado)')" style="margin-left:0.6rem;">Ir al foro</button>
+        </div>
       </div>
     </section>
 
-    <!-- ADMISIÓN -->
-    <section id="admision">
-      <h2 class="section-title">Solicitud de admisión</h2>
-      <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada, ' + this.nombre.value + '! Te contactaremos pronto. (simulado)');">
-        <input name="nombre" placeholder="Nombre completo" required>
-        <input name="email" type="email" placeholder="Correo electrónico" required>
-        <input name="telefono" type="tel" placeholder="Teléfono (opcional)">
-        <select name="municipio" required>
-          <option value="">Municipio de residencia</option>
-          <option>Yamabal</option>
-          <option>Guatajiagua</option>
-          <option>Jocoro</option>
-          <option>Sociedad</option>
-          <option>Cacaopera</option>
-          <option>Corinto</option>
-          <option>Otro municipio de Morazán</option>
-          <option>Otro departamento</option>
-        </select>
-        <select name="carrera" required>
-          <option value="">Carrera de interés</option>
-          <option>Desarrollo de Software</option>
-          <option>Agronegocios</option>
-          <option>Letras y Comunicación</option>
-          <option>Enfermería</option>
-          <option>Administración de Empresas</option>
-          <option>Turismo Rural</option>
-        </select>
-        <button class="btn" type="submit">Enviar solicitud</button>
-      </form>
-
-      <div class="info-box">
-        <strong>📧 Contacto:</strong> admision@claudialars.edu.sv (demo)<br>
-        <strong>🕐 Atención:</strong> Lunes a viernes, 8:00 a.m. · 4:00 p.m.
+    <!-- ============ ADMISIÓN ============ -->
+    <section id="admision" class="admision">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Admisión</h2>
+      </div>
+      <div class="admision-grid">
+        <div class="admision-info">
+          <h3>Tu lugar en Morazán.</h3>
+          <p>Completa el formulario y nuestro equipo te contactará para acompañarte en el proceso de admisión.</p>
+          <div class="info-item">
+            <span class="k">Correo</span>
+            <span class="v">admision@claudialars.edu.sv</span>
+          </div>
+          <div class="info-item">
+            <span class="k">Atención</span>
+            <span class="v">Lunes a viernes · 8:00 a.m. · 4:00 p.m.</span>
+          </div>
+          <div class="info-item">
+            <span class="k">Sede</span>
+            <span class="v">Morazán, El Salvador</span>
+          </div>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Solicitud enviada, ' + this.nombre.value + '. Te contactaremos pronto. (simulado)');">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" placeholder="tu@correo.com" required>
+            </div>
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" placeholder="+503 0000 0000">
+            </div>
+          </div>
+          <div class="field">
+            <label for="municipio">Municipio de residencia</label>
+            <select id="municipio" name="municipio" required>
+              <option value="">Selecciona tu municipio</option>
+              <option>Yamabal</option>
+              <option>Guatajiagua</option>
+              <option>Jocoro</option>
+              <option>Sociedad</option>
+              <option>Cacaopera</option>
+              <option>Corinto</option>
+              <option>Otro municipio de Morazán</option>
+              <option>Otro departamento</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="carrera">Carrera de interés</label>
+            <select id="carrera" name="carrera" required>
+              <option value="">Selecciona una carrera</option>
+              <option>Desarrollo de Software</option>
+              <option>Agronegocios</option>
+              <option>Letras y Comunicación</option>
+              <option>Enfermería</option>
+              <option>Administración de Empresas</option>
+              <option>Turismo Rural</option>
+            </select>
+          </div>
+          <button class="btn btn-solid" type="submit" style="margin-top:0.5rem;">Enviar solicitud</button>
+        </form>
       </div>
     </section>
 
   </main>
 
+  <!-- ============ FOOTER ============ -->
   <footer>
-    <div class="brand">Claudia Lars<span style="color:#d4a5c9;">.</span></div>
-    <div class="legal">
-      Nombre legal: Universidad Claudia Lars · Prototipo educativo · 2026
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">
+            <svg class="mark"><use href="#cl-mark"/></svg>
+            <span class="name">Claudia Lars<span class="dot">.</span></span>
+          </div>
+          <p class="footer-tagline">Poesía, ciencia y tecnología.</p>
+          <p class="footer-desc">Una universidad nueva para el oriente de El Salvador. Formación rigurosa, arraigo local y una apuesta por el talento que no debería tener que migrar.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Institución</h4>
+          <ul>
+            <li><a href="#" onclick="show(event,'manifiesto');return false;">Manifiesto</a></li>
+            <li><a href="#" onclick="show(event,'carreras');return false;">Carreras</a></li>
+            <li><a href="#" onclick="show(event,'aula');return false;">Aula digital</a></li>
+            <li><a href="#" onclick="show(event,'admision');return false;">Admisión</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:admision@claudialars.edu.sv">admision@claudialars.edu.sv</a></li>
+            <li><span style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Sede · Morazán, El Salvador</span></li>
+            <li><span style="color:rgba(255,255,255,0.7); font-size:0.9rem;">Lun–Vie · 8:00–16:00</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="legal">Nombre legal · Universidad Claudia Lars · 2026</div>
+        <div class="ver">Sistema académico · v0.1</div>
+      </div>
     </div>
   </footer>
 
@@ -273,7 +785,7 @@
       document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      if (event && event.target) event.target.classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
