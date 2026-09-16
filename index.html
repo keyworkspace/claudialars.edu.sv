@@ -12,7 +12,7 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS · sistema UEES con relleno circular · 1s
+   UNIVERSIDAD CLAUDIA LARS · sistema UEES · relleno circular · 2s
    ========================================================================== */
 :root {
   --purple:       #6B2D8E;
@@ -47,9 +47,9 @@
   --fill-ease: cubic-bezier(0.65, 0, 0.2, 1);
 
   /* Duración unificada de todas las animaciones de botones */
-  --fill-duration: 1000ms;
-  --fill-duration-fast: 900ms;
-  --fill-duration-arrow: 800ms;
+  --fill-duration: 2000ms;         /* relleno circular */
+  --fill-duration-color: 1600ms;   /* cambio de color del texto */
+  --fill-duration-arrow: 1400ms;   /* movimiento de flechas */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -106,10 +106,10 @@ ul, ol { list-style: none; }
 @keyframes loadFill { to { width: 100%; } }
 
 /* ==========================================================================
-   BOTONES · relleno circular · 1000ms
+   BOTONES · relleno circular · 2000ms
    ========================================================================== */
 
-/* Botón grande · círculo emerge desde abajo-centro */
+/* Botón grande */
 .btn-big {
   position: relative;
   display: inline-flex;
@@ -127,7 +127,7 @@ ul, ol { list-style: none; }
   border: none;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-fast) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease);
   z-index: 0;
 }
 
@@ -166,25 +166,15 @@ ul, ol { list-style: none; }
 }
 .btn-big:hover .btn-big__arrow { transform: translateX(5px); }
 
-/* Variante light */
-.btn-big--light {
-  background: white;
-  color: var(--ink);
-}
+.btn-big--light { background: white; color: var(--ink); }
 .btn-big--light::before { background: var(--yellow); }
 .btn-big--light:hover { color: var(--ink); }
 
-/* Variante purple */
-.btn-big--purple {
-  background: var(--purple);
-  color: white;
-}
+.btn-big--purple { background: var(--purple); color: white; }
 .btn-big--purple::before { background: var(--yellow); }
 .btn-big--purple:hover { color: var(--ink); }
 
-/* ==========================================================================
-   BOTÓN CIRCULAR · relleno radial desde el centro · 1000ms
-   ========================================================================== */
+/* Botón circular */
 .cta-circle {
   position: relative;
   width: 84px; height: 84px;
@@ -197,7 +187,7 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   overflow: hidden;
   isolation: isolate;
-  transition: transform var(--fill-duration-fast) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease);
   z-index: 0;
 }
 
@@ -222,7 +212,7 @@ ul, ol { list-style: none; }
   font-size: 1.5rem;
   color: var(--ink);
   transition: transform var(--fill-duration-arrow) var(--fill-ease),
-              color var(--fill-duration-fast) var(--fill-ease);
+              color var(--fill-duration-color) var(--fill-ease);
 }
 
 .cta-circle:hover .cta-circle__arrow {
@@ -231,9 +221,7 @@ ul, ol { list-style: none; }
 }
 .cta-circle:hover { transform: scale(1.06); }
 
-/* ==========================================================================
-   BOTÓN NAV · sitio oficial · 1000ms
-   ========================================================================== */
+/* Botón nav · sitio oficial */
 .nav__official {
   position: relative;
   display: inline-flex;
@@ -250,8 +238,8 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-fast) var(--fill-ease),
-              border-color var(--fill-duration-fast) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease),
+              border-color var(--fill-duration-color) var(--fill-ease);
   z-index: 0;
 }
 
@@ -283,9 +271,7 @@ ul, ol { list-style: none; }
 }
 .nav__official:hover .nav__official__arrow { transform: translate(3px, -3px); }
 
-/* ==========================================================================
-   BOTÓN de card (dif-cta) · 1000ms
-   ========================================================================== */
+/* Botón de card */
 .dif-cta {
   position: relative;
   display: inline-flex;
@@ -303,7 +289,7 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-fast) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease);
   z-index: 0;
 }
 
@@ -334,7 +320,6 @@ ul, ol { list-style: none; }
 }
 .dif-cta:hover .dif-cta__arrow { transform: translateX(4px); }
 
-/* Variantes sobre fondo oscuro */
 .dif-card--purple .dif-cta,
 .dif-card--deep .dif-cta {
   background: white;
@@ -1163,11 +1148,7 @@ main { display: block; }
 .testi-card:nth-child(6n+5) { background: var(--papaya); color: var(--ink); }
 .testi-card:nth-child(6n+6) { background: var(--purple-deep); color: white; }
 
-.testi-card__quote {
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 500;
-}
+.testi-card__quote { font-size: 1rem; line-height: 1.5; font-weight: 500; }
 .testi-card__quote strong { font-weight: 800; }
 .testi-card__stars { display: flex; gap: 0.2rem; color: var(--yellow); font-size: 0.85rem; }
 .testi-card:nth-child(6n+2) .testi-card__stars,
@@ -1750,9 +1731,7 @@ main { display: block; }
 
 <main>
 
-  <!-- ============================================================
-       INICIO
-       ============================================================ -->
+  <!-- INICIO -->
   <section class="page" id="inicio" data-active="true">
 
     <div class="hero">
@@ -2255,9 +2234,7 @@ main { display: block; }
 
   </section>
 
-  <!-- ============================================================
-       UNIVERSIDAD
-       ============================================================ -->
+  <!-- UNIVERSIDAD -->
   <section class="page" id="universidad">
     <div class="page-hero">
       <div class="wrap">
@@ -2387,9 +2364,7 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ============================================================
-       OFERTA
-       ============================================================ -->
+  <!-- OFERTA -->
   <section class="page" id="oferta">
     <div class="page-hero">
       <div class="wrap">
@@ -2518,9 +2493,7 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ============================================================
-       VIDA
-       ============================================================ -->
+  <!-- VIDA -->
   <section class="page" id="vida">
     <div class="page-hero">
       <div class="wrap">
@@ -2627,9 +2600,7 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ============================================================
-       INVESTIGACIÓN
-       ============================================================ -->
+  <!-- INVESTIGACIÓN -->
   <section class="page" id="investigacion">
     <div class="page-hero">
       <div class="wrap">
@@ -2721,9 +2692,7 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ============================================================
-       AULA
-       ============================================================ -->
+  <!-- AULA -->
   <section class="page" id="aula">
     <div class="page-hero">
       <div class="wrap">
@@ -2832,9 +2801,7 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ============================================================
-       ADMISIONES
-       ============================================================ -->
+  <!-- ADMISIONES -->
   <section class="page" id="admisiones">
     <div class="page-hero">
       <div class="wrap">
@@ -3061,14 +3028,12 @@ main { display: block; }
 (function () {
   'use strict';
 
-  /* LOADER */
   var loader = document.getElementById('loader');
   window.addEventListener('load', function () {
     setTimeout(function () { loader.setAttribute('data-hidden', 'true'); }, 800);
   });
   setTimeout(function () { loader.setAttribute('data-hidden', 'true'); }, 2200);
 
-  /* NAV */
   var SECTIONS = ['inicio', 'universidad', 'oferta', 'vida', 'investigacion', 'aula', 'admisiones'];
   var DEFAULT = 'inicio';
   var nav = document.getElementById('nav');
@@ -3111,7 +3076,6 @@ main { display: block; }
     nav.setAttribute('data-scrolled', window.scrollY > 30 ? 'true' : 'false');
   }, { passive: true });
 
-  /* MOBILE NAV */
   var menuToggle = document.getElementById('menuToggle');
   var mobileNav = document.getElementById('mobileNav');
   var mobileClose = document.getElementById('mobileClose');
@@ -3135,7 +3099,6 @@ main { display: block; }
   if (navOverlay) navOverlay.addEventListener('click', closeMobile);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMobile(); });
 
-  /* FAQ */
   document.querySelectorAll('.faq-trigger').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var item = btn.closest('.faq-item');
@@ -3144,7 +3107,6 @@ main { display: block; }
     });
   });
 
-  /* REVEAL */
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -3159,7 +3121,6 @@ main { display: block; }
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* FORM */
   var form = document.getElementById('admissionForm');
   if (form) {
     form.addEventListener('submit', function (e) {
@@ -3185,7 +3146,6 @@ main { display: block; }
     });
   }
 
-  /* INIT */
   var initial = (location.hash || '').replace(/^#/, '') || DEFAULT;
   if (SECTIONS.indexOf(initial) !== -1) show(initial, { updateHash: false });
 
