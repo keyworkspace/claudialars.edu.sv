@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claudia Lars</title>
-<meta name="description" content="Universidad Claudia Lars. Educación superior desde Morazán para el oriente de El Salvador. Poesía, ciencia y tecnología.">
+<meta name="description" content="Universidad Claudia Lars. Educación superior desde Morazán para el oriente de El Salvador.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,15 +12,9 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS
-   Sistema visual · editorial · institucional · salvadoreño · contemporáneo
+   UNIVERSIDAD CLAUDIA LARS · sistema visual
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. TOKENS
-   -------------------------------------------------------------------------- */
 :root {
-  /* Color · papel, tinta, tierra, vino, bosque, oro apagado */
   --paper:        #F2ECDF;
   --paper-deep:   #E8E0CE;
   --paper-warm:   #F7F3E8;
@@ -35,263 +29,110 @@
   --forest-soft:  #33483A;
   --gold:         #9A7E44;
   --gold-soft:    #B79B62;
-  --earth:        #7A6A50;
 
-  /* Tipografía */
   --display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
   --body:    'Spectral', Georgia, 'Times New Roman', serif;
   --ui:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  /* Medidas */
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --max: 1240px;
   --rule-hair: 1px;
-
-  /* Transiciones */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-/* --------------------------------------------------------------------------
-   2. RESET
-   -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--body);
-  font-size: 17px;
-  line-height: 1.65;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; overflow-x: hidden;
 }
-
 img, svg { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; color: inherit; }
 a { color: inherit; }
 
-/* --------------------------------------------------------------------------
-   3. FOCUS · ACCESIBILIDAD
-   -------------------------------------------------------------------------- */
 :focus { outline: none; }
-:focus-visible {
-  outline: 2px solid var(--wine);
-  outline-offset: 3px;
-}
+:focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; }
 
 .skip-link {
-  position: absolute;
-  top: -100px; left: 1rem;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.75rem 1rem;
-  font-family: var(--ui);
-  font-size: 0.85rem;
-  z-index: 200;
+  position: absolute; top: -100px; left: 1rem;
+  background: var(--ink); color: var(--paper);
+  padding: 0.75rem 1rem; font-family: var(--ui); font-size: 0.85rem; z-index: 200;
 }
 .skip-link:focus { top: 1rem; }
 
-.visually-hidden {
-  position: absolute !important;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0);
-  white-space: nowrap; border: 0;
-}
-
-/* --------------------------------------------------------------------------
-   4. TIPOGRAFÍA · JERARQUÍA
-   -------------------------------------------------------------------------- */
-.display {
-  font-family: var(--display);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-}
-
 .eyebrow {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute);
 }
 
-.rule {
-  border: none;
-  border-top: var(--rule-hair) solid var(--rule);
-}
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 
 /* --------------------------------------------------------------------------
-   5. LAYOUT
-   -------------------------------------------------------------------------- */
-.wrap {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
-
-main { display: block; }
-
-/* --------------------------------------------------------------------------
-   6. HEADER
+   HEADER
    -------------------------------------------------------------------------- */
 .site-header {
   border-bottom: var(--rule-hair) solid var(--rule);
-  background: var(--paper);
-  position: relative;
-  z-index: 50;
+  background: var(--paper); position: relative; z-index: 50;
 }
-
 .site-header__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1.4rem 0 1.2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; padding: 1.4rem 0 1.2rem;
 }
-
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  text-decoration: none;
-  color: var(--ink);
+  display: flex; align-items: center; gap: 0.85rem;
+  text-decoration: none; color: var(--ink);
 }
-.brand__mark {
-  width: 34px;
-  height: 34px;
-  color: var(--wine);
-  flex-shrink: 0;
-}
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
-.brand__name {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 1.15rem;
-  letter-spacing: 0.01em;
-}
+.brand__mark { width: 34px; height: 34px; color: var(--wine); flex-shrink: 0; }
+.brand__text { display: flex; flex-direction: column; line-height: 1.05; }
+.brand__name { font-family: var(--display); font-weight: 500; font-size: 1.15rem; letter-spacing: 0.01em; }
 .brand__sub {
-  font-family: var(--ui);
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-top: 0.15rem;
+  font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-mute); margin-top: 0.15rem;
 }
 
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
+.site-nav { display: flex; align-items: center; gap: 0.25rem; }
 .site-nav__link {
-  font-family: var(--ui);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--ink-soft);
-  text-decoration: none;
-  padding: 0.55rem 0.75rem;
-  border-bottom: 2px solid transparent;
+  font-family: var(--ui); font-size: 0.8rem; font-weight: 500;
+  letter-spacing: 0.02em; color: var(--ink-soft); text-decoration: none;
+  padding: 0.55rem 0.75rem; border-bottom: 2px solid transparent;
   transition: color 180ms var(--ease), border-color 180ms var(--ease);
-  background: none;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  cursor: pointer;
+  background: none; border-left: none; border-right: none; border-top: none; cursor: pointer;
 }
 .site-nav__link:hover { color: var(--wine); }
-.site-nav__link[aria-current="page"] {
-  color: var(--wine);
-  border-bottom-color: var(--wine);
-}
-
+.site-nav__link[aria-current="page"] { color: var(--wine); border-bottom-color: var(--wine); }
 .site-nav__cta {
-  font-family: var(--ui);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  background: var(--ink);
-  color: var(--paper);
-  text-decoration: none;
-  padding: 0.7rem 1.15rem;
-  border: 1px solid var(--ink);
-  cursor: pointer;
-  transition: background 180ms var(--ease), color 180ms var(--ease);
+  font-family: var(--ui); font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.04em; background: var(--ink); color: var(--paper);
+  text-decoration: none; padding: 0.7rem 1.15rem; border: 1px solid var(--ink);
+  cursor: pointer; transition: background 180ms var(--ease), color 180ms var(--ease);
   margin-left: 0.75rem;
 }
-.site-nav__cta:hover {
-  background: var(--wine);
-  border-color: var(--wine);
-  color: var(--paper);
-}
+.site-nav__cta:hover { background: var(--wine); border-color: var(--wine); color: var(--paper); }
 
-/* Menú móvil */
 .menu-toggle {
-  display: none;
-  background: none;
-  border: 1px solid var(--rule);
-  padding: 0.55rem 0.75rem;
-  cursor: pointer;
-  color: var(--ink);
-  font-family: var(--ui);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  display: none; background: none; border: 1px solid var(--rule);
+  padding: 0.55rem 0.75rem; cursor: pointer; color: var(--ink);
+  font-family: var(--ui); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
 }
 .menu-toggle:hover { border-color: var(--ink); }
 
-.mobile-panel {
-  display: none;
-  border-top: var(--rule-hair) solid var(--rule);
-  background: var(--paper-warm);
-}
+.mobile-panel { display: none; border-top: var(--rule-hair) solid var(--rule); background: var(--paper-warm); }
 .mobile-panel[data-open="true"] { display: block; }
-.mobile-panel__inner {
-  padding: 1.5rem var(--gutter) 2rem;
-  max-width: var(--max);
-  margin: 0 auto;
-}
+.mobile-panel__inner { padding: 1.5rem var(--gutter) 2rem; max-width: var(--max); margin: 0 auto; }
 .mobile-panel__link {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: none;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
-  padding: 1rem 0;
-  font-family: var(--display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  cursor: pointer;
+  display: block; width: 100%; text-align: left; background: none; border: none;
+  border-bottom: var(--rule-hair) solid var(--rule-soft); padding: 1rem 0;
+  font-family: var(--display); font-size: 1.35rem; font-weight: 500;
+  color: var(--ink); text-decoration: none; cursor: pointer;
 }
 .mobile-panel__link:hover { color: var(--wine); }
 .mobile-panel__cta {
-  display: inline-block;
-  margin-top: 1.5rem;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 0.85rem 1.3rem;
-  font-family: var(--ui);
-  font-size: 0.8rem;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
+  display: inline-block; margin-top: 1.5rem; background: var(--ink);
+  color: var(--paper); padding: 0.85rem 1.3rem;
+  font-family: var(--ui); font-size: 0.8rem; letter-spacing: 0.04em;
+  text-decoration: none; border: none; cursor: pointer;
 }
 
 @media (max-width: 960px) {
@@ -300,192 +141,98 @@ main { display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   7. SECCIONES · OCULTAR / MOSTRAR
+   PÁGINAS
    -------------------------------------------------------------------------- */
 .page { display: none; }
 .page[data-active="true"] { display: block; }
 
 /* --------------------------------------------------------------------------
-   8. HERO EDITORIAL
+   HERO
    -------------------------------------------------------------------------- */
 .hero {
   padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 5rem);
   border-bottom: var(--rule-hair) solid var(--rule);
-  position: relative;
 }
-
 .hero__meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-  padding-bottom: 1rem;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1rem; padding-bottom: 1rem;
   border-bottom: var(--rule-hair) solid var(--rule-soft);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-  flex-wrap: wrap;
+  margin-bottom: clamp(2rem, 4vw, 3rem); flex-wrap: wrap;
 }
-
 .hero__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 5rem); align-items: start;
 }
-
 .hero__title {
   font-family: var(--display);
   font-size: clamp(2.5rem, 6vw, 4.8rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.02;
-  color: var(--ink);
-  margin-bottom: 1.75rem;
+  font-weight: 400; letter-spacing: -0.02em; line-height: 1.02;
+  color: var(--ink); margin-bottom: 1.75rem;
 }
-.hero__title em {
-  font-style: italic;
-  color: var(--wine);
-  font-weight: 400;
-}
-
+.hero__title em { font-style: italic; color: var(--wine); font-weight: 400; }
 .hero__lead {
-  font-size: 1.12rem;
-  line-height: 1.7;
-  color: var(--ink-soft);
-  max-width: 46ch;
-  margin-bottom: 2rem;
+  font-size: 1.12rem; line-height: 1.7; color: var(--ink-soft);
+  max-width: 46ch; margin-bottom: 2rem;
 }
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--ui);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 0.85rem 1.35rem;
-  text-decoration: none;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-  cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--ui); font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.04em; padding: 0.85rem 1.35rem;
+  text-decoration: none; border: 1px solid var(--ink);
+  background: var(--ink); color: var(--paper); cursor: pointer;
   transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
 }
 .btn:hover { background: var(--wine); border-color: var(--wine); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
-}
-.btn--ghost:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-
-/* Bloque visual del hero (foto / composición) */
-.hero__visual {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
+.hero__visual { display: flex; flex-direction: column; gap: 0.75rem; }
 
 .photo-frame {
-  position: relative;
-  background: var(--paper-deep);
+  position: relative; background: var(--paper-deep);
   border: var(--rule-hair) solid var(--rule);
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden; aspect-ratio: 4 / 5;
+  display: flex; align-items: center; justify-content: center;
 }
 .photo-frame--wide { aspect-ratio: 16 / 10; }
 .photo-frame--square { aspect-ratio: 1 / 1; }
 .photo-frame--tall { aspect-ratio: 3 / 5; }
-
-/* Marcador de foto: no es una imagen rota, es un placeholder editorial intencional */
 .photo-frame__inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1.5rem;
-  text-align: center;
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; padding: 1.5rem; text-align: center;
   background:
-    repeating-linear-gradient(
-      135deg,
-      transparent 0 14px,
-      rgba(107, 42, 38, 0.045) 14px 15px
-    ),
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(107,42,38,0.045) 14px 15px),
     linear-gradient(180deg, var(--paper-warm), var(--paper-deep));
 }
-.photo-frame__icon {
-  width: 30px;
-  height: 30px;
-  color: var(--wine);
-  opacity: 0.55;
-}
+.photo-frame__icon { width: 30px; height: 30px; color: var(--wine); opacity: 0.55; }
 .photo-frame__label {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.66rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute);
 }
 .photo-frame__caption {
-  font-family: var(--body);
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--ink-mute);
-  margin-top: 0.25rem;
+  font-family: var(--body); font-style: italic; font-size: 0.85rem;
+  color: var(--ink-mute); margin-top: 0.25rem;
 }
-
 .photo-frame__figcap {
-  font-family: var(--body);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--ink-mute);
-  padding-top: 0.4rem;
+  font-family: var(--body); font-style: italic; font-size: 0.9rem;
+  color: var(--ink-mute); padding-top: 0.4rem;
   border-top: var(--rule-hair) solid var(--rule-soft);
 }
-
-/* Dateline inferior del hero */
 .hero__dateline {
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  padding-top: 1.25rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem); padding-top: 1.25rem;
   border-top: var(--rule-hair) solid var(--rule-soft);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 2.5rem;
-  align-items: baseline;
+  display: flex; flex-wrap: wrap; gap: 0.5rem 2.5rem; align-items: baseline;
 }
 .hero__dateline span {
-  font-family: var(--ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-mute);
 }
 .hero__dateline strong {
-  font-family: var(--body);
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink-soft);
-  margin-right: 0.35rem;
+  font-family: var(--body); font-weight: 500; font-size: 0.95rem;
+  letter-spacing: 0; text-transform: none; color: var(--ink-soft); margin-right: 0.35rem;
 }
 
 @media (max-width: 880px) {
@@ -493,494 +240,529 @@ main { display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   9. BLOQUES DE SECCIÓN GENÉRICOS
+   BLOQUES
    -------------------------------------------------------------------------- */
-.block {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
-}
+.block { padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: var(--rule-hair) solid var(--rule-soft); }
 .block:last-child { border-bottom: none; }
-
 .block__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2rem;
-  padding-bottom: 1rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 2rem; padding-bottom: 1rem;
   border-bottom: var(--rule-hair) solid var(--rule);
-  margin-bottom: clamp(2rem, 4vw, 3.25rem);
-  flex-wrap: wrap;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem); flex-wrap: wrap;
 }
-
 .block__title {
-  font-family: var(--display);
-  font-weight: 400;
+  font-family: var(--display); font-weight: 400;
   font-size: clamp(1.9rem, 3.6vw, 3rem);
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  color: var(--ink);
-  max-width: 22ch;
+  letter-spacing: -0.015em; line-height: 1.05;
+  color: var(--ink); max-width: 22ch;
 }
 .block__title em { font-style: italic; color: var(--wine); }
-
 .block__kicker {
-  font-family: var(--ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.7rem;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-mute);
 }
 
 /* --------------------------------------------------------------------------
-   10. MANIFIESTO
+   MANIFIESTO
    -------------------------------------------------------------------------- */
 .manifesto {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(2rem, 5vw, 5rem); align-items: start;
 }
 .manifesto__lead {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: clamp(1.35rem, 2.4vw, 2rem);
-  line-height: 1.3;
-  color: var(--ink);
-  border-left: 2px solid var(--wine);
-  padding-left: 1.25rem;
+  font-family: var(--display); font-style: italic;
+  font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.3;
+  color: var(--ink); border-left: 2px solid var(--wine); padding-left: 1.25rem;
 }
-.manifesto__body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
+.manifesto__body { display: flex; flex-direction: column; gap: 1.25rem; }
 .manifesto__body p {
-  font-size: 1.02rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  max-width: 62ch;
+  font-size: 1.02rem; line-height: 1.75;
+  color: var(--ink-soft); max-width: 62ch;
 }
 .manifesto__body p strong { font-weight: 600; color: var(--ink); }
 
-@media (max-width: 820px) {
-  .manifesto { grid-template-columns: 1fr; }
-}
+@media (max-width: 820px) { .manifesto { grid-template-columns: 1fr; } }
 
 /* --------------------------------------------------------------------------
-   11. MORAZÁN · TERRITORIO
+   MAPA INTERACTIVO DE MORAZÁN
    -------------------------------------------------------------------------- */
 .territory {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
 }
 
-.territory__map {
-  position: relative;
+.map-panel {
   background: var(--paper-warm);
   border: var(--rule-hair) solid var(--rule);
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.map-panel__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1rem; padding-bottom: 0.75rem; margin-bottom: 1rem;
+  border-bottom: var(--rule-hair) solid var(--rule-soft);
+}
+.map-panel__title {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 500;
+  letter-spacing: -0.005em; color: var(--ink);
+}
+.map-panel__hint {
+  font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+
+.map-svg-wrap {
+  position: relative;
   aspect-ratio: 4 / 5;
-  display: flex;
-  flex-direction: column;
+  background: linear-gradient(180deg, var(--paper-warm), var(--paper-deep));
+  border: var(--rule-hair) solid var(--rule-soft);
 }
-.territory__map svg {
-  width: 100%;
-  height: auto;
-  flex: 1;
-  color: var(--forest);
+.map-svg-wrap svg { width: 100%; height: 100%; display: block; }
+
+.map-muni {
+  cursor: pointer;
+  fill: var(--forest);
+  fill-opacity: 0.18;
+  stroke: var(--forest);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  transition: fill-opacity 200ms var(--ease), fill 200ms var(--ease);
 }
-.territory__map-caption {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.map-muni:hover,
+.map-muni:focus-visible {
+  fill: var(--wine);
+  fill-opacity: 0.4;
+  outline: none;
+}
+.map-muni.is-active {
+  fill: var(--wine);
+  fill-opacity: 0.55;
+}
+.map-muni__label {
+  font-family: var(--body); font-size: 8px; font-style: italic;
+  fill: var(--ink); pointer-events: none; text-anchor: middle;
+  font-weight: 500;
+}
+.map-muni.is-active + .map-muni__label,
+.map-muni:hover + .map-muni__label { fill: var(--paper); }
+
+.map-marker {
+  fill: var(--wine);
+  pointer-events: none;
+}
+
+.map-info {
+  margin-top: 1rem; padding: 1rem 1.15rem;
+  background: var(--paper);
+  border-left: 3px solid var(--wine);
+  min-height: 88px;
+}
+.map-info__label {
+  font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 0.35rem;
+}
+.map-info__title {
+  font-family: var(--display); font-size: 1.35rem; font-weight: 500;
+  letter-spacing: -0.005em; color: var(--ink); line-height: 1.1;
+  margin-bottom: 0.35rem;
+}
+.map-info__text {
+  font-size: 0.9rem; line-height: 1.55; color: var(--ink-mute);
+}
+
+.map-info__empty {
+  font-family: var(--body); font-style: italic; font-size: 0.9rem;
   color: var(--ink-mute);
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+}
+
+/* Lista alternativa / mobile */
+.map-list {
+  display: none; margin-top: 1rem;
   border-top: var(--rule-hair) solid var(--rule-soft);
+}
+.map-list__item {
+  display: block; width: 100%; background: none; border: none;
+  border-bottom: var(--rule-hair) solid var(--rule-soft);
+  padding: 0.85rem 0; text-align: left;
+  font-family: var(--body); font-size: 0.95rem; color: var(--ink-soft);
+  cursor: pointer;
+}
+.map-list__item:hover,
+.map-list__item.is-active { color: var(--wine); }
+.map-list__item span {
+  font-family: var(--ui); font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-mute); float: right;
 }
 
 .territory__text p {
-  font-size: 1.02rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  margin-bottom: 1.15rem;
-  max-width: 58ch;
+  font-size: 1.02rem; line-height: 1.75;
+  color: var(--ink-soft); margin-bottom: 1.15rem; max-width: 58ch;
 }
 .territory__text p:last-child { margin-bottom: 0; }
 
-.territory__list {
-  list-style: none;
-  margin-top: 1.75rem;
-  border-top: var(--rule-hair) solid var(--rule-soft);
-}
-.territory__list li {
-  padding: 0.85rem 0;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: baseline;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
-.territory__list li span:first-child {
-  font-family: var(--body);
-}
-.territory__list li span:last-child {
-  font-family: var(--ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
 @media (max-width: 820px) {
   .territory { grid-template-columns: 1fr; }
+  .map-svg-wrap { display: none; }
+  .map-list { display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   12. OFERTA ACADÉMICA · CATÁLOGO
+   TABS (Universidad)
    -------------------------------------------------------------------------- */
-.catalog {
-  border-top: var(--rule-hair) solid var(--rule);
+.tabs { margin-top: 0.5rem; }
+.tabs__nav {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-bottom: var(--rule-hair) solid var(--rule);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
+.tabs__btn {
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0.85rem 1.25rem 0.85rem 0;
+  margin-right: 2rem;
+  font-family: var(--ui); font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-mute); cursor: pointer;
+  transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  white-space: nowrap;
+}
+.tabs__btn:hover { color: var(--ink); }
+.tabs__btn[aria-selected="true"] {
+  color: var(--wine); border-bottom-color: var(--wine);
+}
+.tabs__panel { display: none; }
+.tabs__panel[data-active="true"] { display: block; }
+
+/* --------------------------------------------------------------------------
+   CATÁLOGO CON FILTROS Y ACORDEÓN
+   -------------------------------------------------------------------------- */
+.catalog-toolbar {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  padding-bottom: 1.5rem; border-bottom: var(--rule-hair) solid var(--rule-soft);
+  margin-bottom: 0.5rem;
+}
+.catalog-toolbar__label {
+  font-family: var(--ui); font-size: 0.66rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-mute); margin-right: 0.75rem;
+}
+.filter-chip {
+  font-family: var(--ui); font-size: 0.72rem; letter-spacing: 0.04em;
+  padding: 0.45rem 0.85rem; border: 1px solid var(--rule);
+  background: transparent; color: var(--ink-soft); cursor: pointer;
+  transition: all 180ms var(--ease);
+}
+.filter-chip:hover { border-color: var(--ink); color: var(--ink); }
+.filter-chip[aria-pressed="true"] {
+  background: var(--ink); color: var(--paper); border-color: var(--ink);
+}
+
+.catalog { border-top: var(--rule-hair) solid var(--rule); }
+
+.catalog__item { border-bottom: var(--rule-hair) solid var(--rule-soft); }
+.catalog__item.is-hidden { display: none; }
 
 .catalog__row {
   display: grid;
-  grid-template-columns: 3.5rem minmax(0, 1.4fr) minmax(0, 1.6fr) 9rem;
-  gap: 1.5rem;
-  align-items: baseline;
-  padding: 1.75rem 0;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
+  grid-template-columns: 3.5rem minmax(0, 1.4fr) minmax(0, 1.6fr) 9rem 2rem;
+  gap: 1.5rem; align-items: baseline;
+  padding: 1.75rem 0; cursor: pointer;
+  background: none; border: none; width: 100%; text-align: left;
+  font-family: inherit; color: inherit;
   transition: background 180ms var(--ease);
 }
 .catalog__row:hover { background: var(--paper-warm); }
+.catalog__row:focus-visible { background: var(--paper-warm); outline: 2px solid var(--wine); outline-offset: -2px; }
 
 .catalog__num {
-  font-family: var(--ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  color: var(--gold);
+  font-family: var(--ui); font-size: 0.72rem;
+  letter-spacing: 0.14em; color: var(--gold);
 }
-
 .catalog__name {
   font-family: var(--display);
   font-size: clamp(1.3rem, 2vw, 1.65rem);
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.15;
-  color: var(--ink);
+  font-weight: 500; letter-spacing: -0.005em;
+  line-height: 1.15; color: var(--ink);
 }
-
 .catalog__desc {
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: var(--ink-mute);
-  max-width: 52ch;
+  font-size: 0.95rem; line-height: 1.65;
+  color: var(--ink-mute); max-width: 52ch;
 }
-
 .catalog__meta {
-  text-align: right;
-  font-family: var(--ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  line-height: 1.5;
+  text-align: right; font-family: var(--ui);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-mute); line-height: 1.5;
 }
 .catalog__meta strong {
-  display: block;
-  color: var(--wine);
-  font-weight: 500;
-  margin-bottom: 0.15rem;
+  display: block; color: var(--wine); font-weight: 500; margin-bottom: 0.15rem;
 }
+.catalog__toggle {
+  font-family: var(--ui); font-size: 0.9rem; color: var(--ink-mute);
+  text-align: center; align-self: center;
+  transition: transform 220ms var(--ease), color 180ms var(--ease);
+}
+.catalog__item.is-open .catalog__toggle {
+  transform: rotate(45deg);
+  color: var(--wine);
+}
+
+.catalog__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease);
+}
+.catalog__item.is-open .catalog__body { grid-template-rows: 1fr; }
+.catalog__body-inner {
+  overflow: hidden;
+}
+.catalog__body-content {
+  padding: 0 0 2rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 3rem;
+  font-size: 0.92rem; line-height: 1.65; color: var(--ink-soft);
+}
+.catalog__body-content dl { display: flex; flex-direction: column; gap: 0.75rem; }
+.catalog__body-content dt {
+  font-family: var(--ui); font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 0.15rem;
+}
+.catalog__body-content dd { font-size: 0.95rem; color: var(--ink-soft); }
 
 @media (max-width: 900px) {
   .catalog__row {
-    grid-template-columns: 2.5rem 1fr;
+    grid-template-columns: 2.5rem 1fr 2rem;
     gap: 0.75rem 1rem;
   }
-  .catalog__desc { grid-column: 2; }
+  .catalog__desc { grid-column: 2 / 3; }
   .catalog__meta {
-    grid-column: 2;
-    text-align: left;
-    margin-top: 0.25rem;
+    grid-column: 2 / 3; text-align: left; margin-top: 0.25rem;
+  }
+  .catalog__toggle { grid-column: 3; grid-row: 1; }
+  .catalog__body-content {
+    padding: 0 0 1.75rem 0;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 
 /* --------------------------------------------------------------------------
-   13. VIDA UNIVERSITARIA
+   VIDA
    -------------------------------------------------------------------------- */
 .life-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1.5rem;
+  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem;
 }
-
-.life-card {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+.life-card { display: flex; flex-direction: column; gap: 1rem; }
 .life-card__title {
-  font-family: var(--display);
-  font-size: 1.35rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
+  font-family: var(--display); font-size: 1.35rem;
+  font-weight: 500; letter-spacing: -0.005em; color: var(--ink);
 }
 .life-card__text {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--ink-mute);
+  font-size: 0.98rem; line-height: 1.7; color: var(--ink-mute);
 }
-
 .life-card--a { grid-column: span 7; }
 .life-card--b { grid-column: span 5; }
-.life-card--c { grid-column: span 4; }
-.life-card--d { grid-column: span 4; }
-.life-card--e { grid-column: span 4; }
+.life-card--c, .life-card--d, .life-card--e { grid-column: span 4; }
 
-@media (max-width: 880px) {
-  .life-card { grid-column: span 12 !important; }
+@media (max-width: 880px) { .life-card { grid-column: span 12 !important; } }
+
+/* --------------------------------------------------------------------------
+   INVESTIGACIÓN · acordeón
+   -------------------------------------------------------------------------- */
+.research-list {
+  border-top: var(--rule-hair) solid var(--rule);
+  margin-top: 0.5rem;
+}
+.research-item { border-bottom: var(--rule-hair) solid var(--rule-soft); }
+.research-trigger {
+  width: 100%; background: none; border: none; text-align: left;
+  padding: 1.5rem 0; cursor: pointer;
+  display: grid; grid-template-columns: 2.5rem 1fr 2rem;
+  gap: 1.25rem; align-items: baseline;
+  font-family: inherit; color: inherit;
+  transition: background 180ms var(--ease);
+}
+.research-trigger:hover { background: var(--paper-warm); }
+.research-trigger:focus-visible {
+  background: var(--paper-warm); outline: 2px solid var(--wine); outline-offset: -2px;
+}
+.research-trigger__num {
+  font-family: var(--ui); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--gold);
+}
+.research-trigger__title {
+  font-family: var(--display); font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 500; letter-spacing: -0.005em; line-height: 1.2;
+  color: var(--ink);
+}
+.research-trigger__icon {
+  font-family: var(--ui); font-size: 1rem; color: var(--ink-mute);
+  text-align: center; align-self: center;
+  transition: transform 220ms var(--ease), color 180ms var(--ease);
+}
+.research-item.is-open .research-trigger__icon {
+  transform: rotate(45deg); color: var(--wine);
+}
+.research-body {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease);
+}
+.research-item.is-open .research-body { grid-template-rows: 1fr; }
+.research-body__inner { overflow: hidden; }
+.research-body__content {
+  padding: 0 0 1.75rem 3.75rem;
+  font-size: 0.98rem; line-height: 1.75; color: var(--ink-soft);
+  max-width: 68ch;
+}
+.research-body__content p { margin-bottom: 0.85rem; }
+.research-body__content p:last-child { margin-bottom: 0; }
+.research-body__content ul {
+  list-style: none; padding: 0;
+  display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.75rem;
+}
+.research-body__content li {
+  padding-left: 1.1rem; position: relative; font-size: 0.94rem;
+}
+.research-body__content li::before {
+  content: '·'; position: absolute; left: 0; color: var(--wine);
+  font-weight: 700; font-size: 1.1rem;
+}
+
+@media (max-width: 700px) {
+  .research-body__content { padding-left: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   14. AULA VIRTUAL · PLATAFORMA
+   AULA · LMS
    -------------------------------------------------------------------------- */
-.lms {
-  border: var(--rule-hair) solid var(--rule);
-  background: var(--paper-warm);
-}
-
+.lms { border: var(--rule-hair) solid var(--rule); background: var(--paper-warm); }
 .lms__top {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1.5rem;
-  align-items: baseline;
-  padding: 1.5rem 2rem;
-  border-bottom: var(--rule-hair) solid var(--rule);
-  background: var(--paper);
+  display: grid; grid-template-columns: 1fr auto; gap: 1.5rem;
+  align-items: baseline; padding: 1.5rem 2rem;
+  border-bottom: var(--rule-hair) solid var(--rule); background: var(--paper);
 }
 .lms__course {
-  font-family: var(--display);
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-family: var(--display); font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 500; letter-spacing: -0.01em;
 }
 .lms__meta {
-  font-family: var(--ui);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute);
 }
-
-.lms__layout {
-  display: grid;
-  grid-template-columns: 17rem 1fr;
-  min-height: 480px;
-}
-
+.lms__layout { display: grid; grid-template-columns: 17rem 1fr; min-height: 480px; }
 .lms__sidebar {
   border-right: var(--rule-hair) solid var(--rule);
-  padding: 1.5rem 1.25rem;
-  background: var(--paper);
+  padding: 1.5rem 1.25rem; background: var(--paper);
 }
 .lms__sidebar h4 {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: 1rem;
+  font-family: var(--ui); font-size: 0.68rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-mute); margin-bottom: 1rem;
 }
-.lms__module {
-  border-top: var(--rule-hair) solid var(--rule-soft);
-  padding: 0.9rem 0;
-  font-size: 0.9rem;
+.lms__module-btn {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none; border-top: var(--rule-hair) solid var(--rule-soft);
+  padding: 0.9rem 0; cursor: pointer;
+  font-family: inherit; color: inherit;
+  transition: color 180ms var(--ease);
 }
-.lms__module:first-of-type { border-top: none; padding-top: 0; }
+.lms__module-btn:first-of-type { border-top: none; padding-top: 0; }
+.lms__module-btn:hover .lms__module-title { color: var(--wine); }
 .lms__module-title {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  align-items: baseline;
-  font-family: var(--body);
-  color: var(--ink);
+  display: flex; justify-content: space-between; gap: 0.75rem;
+  align-items: baseline; font-family: var(--body);
+  color: var(--ink); font-size: 0.92rem;
+  transition: color 180ms var(--ease);
 }
-.lms__module.is-current .lms__module-title { color: var(--wine); font-weight: 500; }
+.lms__module-btn[aria-current="true"] .lms__module-title {
+  color: var(--wine); font-weight: 500;
+}
 .lms__module-num {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--gold);
+  font-family: var(--ui); font-size: 0.68rem;
+  letter-spacing: 0.1em; color: var(--gold);
 }
 .lms__module-status {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-mute);
-  margin-top: 0.25rem;
+  font-family: var(--ui); font-size: 0.66rem;
+  letter-spacing: 0.08em; color: var(--ink-mute); margin-top: 0.25rem;
 }
-
-.lms__main {
-  padding: 2rem;
-}
+.lms__main { padding: 2rem; }
 .lms__video {
-  aspect-ratio: 16 / 9;
-  border: var(--rule-hair) solid var(--rule);
-  background: var(--forest);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 1.75rem;
+  aspect-ratio: 16 / 9; border: var(--rule-hair) solid var(--rule);
+  background: var(--forest); position: relative; overflow: hidden; margin-bottom: 1.75rem;
 }
 .lms__video::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background:
     radial-gradient(120% 80% at 20% 20%, rgba(154,126,68,0.18), transparent 60%),
     repeating-linear-gradient(45deg, transparent 0 22px, rgba(242,236,223,0.03) 22px 23px);
 }
 .lms__video-inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
-  color: var(--paper);
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 1.5rem; color: var(--paper);
 }
-.lms__video-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
+.lms__video-top, .lms__video-bottom {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
 }
-.lms__video-top span {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(242,236,223,0.75);
+.lms__video-top span, .lms__video-bottom span {
+  font-family: var(--ui); font-size: 0.66rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(242,236,223,0.75);
 }
-.lms__video-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-}
+.lms__video-center { display: flex; align-items: center; justify-content: center; flex: 1; }
 .lms__play {
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
+  width: 68px; height: 68px; border-radius: 50%;
   border: 1px solid rgba(242,236,223,0.6);
   background: rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 200ms var(--ease), transform 200ms var(--ease);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background 200ms var(--ease);
 }
 .lms__play:hover { background: rgba(0,0,0,0.45); }
 .lms__play::after {
-  content: '';
-  width: 0; height: 0;
+  content: ''; width: 0; height: 0;
   border-left: 15px solid var(--paper);
   border-top: 9px solid transparent;
   border-bottom: 9px solid transparent;
   margin-left: 3px;
 }
-.lms__video-bottom span {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(242,236,223,0.75);
-}
-
 .lms__lesson-title {
-  font-family: var(--display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  margin-bottom: 0.6rem;
+  font-family: var(--display); font-size: 1.5rem;
+  font-weight: 500; letter-spacing: -0.005em; margin-bottom: 0.6rem;
 }
 .lms__lesson-desc {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--ink-mute);
-  max-width: 62ch;
-  margin-bottom: 1.75rem;
+  font-size: 0.98rem; line-height: 1.7; color: var(--ink-mute);
+  max-width: 62ch; margin-bottom: 1.75rem;
 }
-
-.lms__progress {
-  margin-bottom: 1.75rem;
-}
+.lms__progress { margin-bottom: 1.75rem; }
 .lms__progress-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-family: var(--ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: 0.5rem;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--ui); font-size: 0.7rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 0.5rem;
 }
 .lms__progress-track {
-  height: 3px;
-  background: var(--rule-soft);
-  position: relative;
-  overflow: hidden;
+  height: 3px; background: var(--rule-soft); position: relative; overflow: hidden;
 }
 .lms__progress-fill {
-  position: absolute;
-  top: 0; left: 0; bottom: 0;
-  width: 42%;
-  background: var(--wine);
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 42%; background: var(--wine);
+  transition: width 400ms var(--ease);
 }
-
-.lms__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-}
-
+.lms__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
 .lms__foro {
-  margin-top: 2rem;
-  border-top: var(--rule-hair) solid var(--rule-soft);
+  margin-top: 2rem; border-top: var(--rule-hair) solid var(--rule-soft);
   padding-top: 1.5rem;
 }
 .lms__foro h5 {
-  font-family: var(--ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  margin-bottom: 1rem;
+  font-family: var(--ui); font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); margin-bottom: 1rem;
 }
 .lms__foro-item {
-  padding: 0.85rem 0;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.5rem 1rem;
-  align-items: baseline;
+  padding: 0.85rem 0; border-bottom: var(--rule-hair) solid var(--rule-soft);
+  font-size: 0.92rem; color: var(--ink-soft);
+  display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 1rem; align-items: baseline;
 }
 .lms__foro-item strong { font-weight: 500; color: var(--ink); }
 .lms__foro-item small {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.68rem;
+  letter-spacing: 0.08em; color: var(--ink-mute);
 }
 
 @media (max-width: 880px) {
@@ -990,94 +772,84 @@ main { display: block; }
 }
 
 /* --------------------------------------------------------------------------
-   15. ADMISIONES
+   ADMISIONES · proceso acordeón
    -------------------------------------------------------------------------- */
 .admission {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 4.5rem); align-items: start;
 }
-
-.steps {
-  border-top: var(--rule-hair) solid var(--rule);
-  margin-top: 1.5rem;
+.steps { border-top: var(--rule-hair) solid var(--rule); margin-top: 1.5rem; }
+.step { border-bottom: var(--rule-hair) solid var(--rule-soft); }
+.step__trigger {
+  width: 100%; background: none; border: none; text-align: left;
+  padding: 1.25rem 0; cursor: pointer;
+  display: grid; grid-template-columns: 2.75rem 1fr 2rem;
+  gap: 1rem; align-items: baseline;
+  font-family: inherit; color: inherit;
+  transition: background 180ms var(--ease);
 }
-.step {
-  display: grid;
-  grid-template-columns: 2.75rem 1fr;
-  gap: 1rem;
-  padding: 1.25rem 0;
-  border-bottom: var(--rule-hair) solid var(--rule-soft);
+.step__trigger:hover { background: var(--paper-warm); }
+.step__trigger:focus-visible {
+  background: var(--paper-warm); outline: 2px solid var(--wine); outline-offset: -2px;
 }
 .step__num {
-  font-family: var(--display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--gold);
-  line-height: 1;
+  font-family: var(--display); font-size: 1.5rem; font-weight: 500;
+  color: var(--gold); line-height: 1;
 }
 .step__title {
-  font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 0.25rem;
+  font-family: var(--display); font-size: 1.2rem;
+  font-weight: 500; color: var(--ink);
 }
-.step__text {
-  font-size: 0.94rem;
-  line-height: 1.65;
-  color: var(--ink-mute);
+.step__icon {
+  font-family: var(--ui); font-size: 0.95rem; color: var(--ink-mute);
+  text-align: center; align-self: center;
+  transition: transform 220ms var(--ease), color 180ms var(--ease);
+}
+.step.is-open .step__icon { transform: rotate(45deg); color: var(--wine); }
+.step__body {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease);
+}
+.step.is-open .step__body { grid-template-rows: 1fr; }
+.step__body-inner { overflow: hidden; }
+.step__body-content {
+  padding: 0 0 1.5rem 3.75rem;
+  font-size: 0.94rem; line-height: 1.7; color: var(--ink-mute);
+  max-width: 56ch;
+}
+.step__body-content ul {
+  list-style: none; padding: 0; margin-top: 0.6rem;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.step__body-content li { padding-left: 1rem; position: relative; }
+.step__body-content li::before {
+  content: '·'; position: absolute; left: 0; color: var(--wine); font-weight: 700;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.15rem;
+  display: flex; flex-direction: column; gap: 1.15rem;
   border: var(--rule-hair) solid var(--rule);
-  background: var(--paper-warm);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--paper-warm); padding: clamp(1.5rem, 3vw, 2.25rem);
 }
 .form__head {
   border-bottom: var(--rule-hair) solid var(--rule-soft);
-  padding-bottom: 1rem;
-  margin-bottom: 0.5rem;
+  padding-bottom: 1rem; margin-bottom: 0.5rem;
 }
 .form__head h3 {
-  font-family: var(--display);
-  font-size: 1.4rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
+  font-family: var(--display); font-size: 1.4rem;
+  font-weight: 500; letter-spacing: -0.005em;
 }
-.form__head p {
-  font-size: 0.88rem;
-  color: var(--ink-mute);
-  margin-top: 0.25rem;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
+.form__head p { font-size: 0.88rem; color: var(--ink-mute); margin-top: 0.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
 .field label {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
+  font-family: var(--ui); font-size: 0.68rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-mute);
 }
 .field label .req { color: var(--wine); margin-left: 0.15rem; }
-
-.field input,
-.field select,
-.field textarea {
-  background: var(--paper);
-  border: var(--rule-hair) solid var(--rule);
-  padding: 0.75rem 0.85rem;
-  font-family: var(--body);
-  font-size: 0.98rem;
-  color: var(--ink);
+.field input, .field select, .field textarea {
+  background: var(--paper); border: var(--rule-hair) solid var(--rule);
+  padding: 0.75rem 0.85rem; font-family: var(--body);
+  font-size: 0.98rem; color: var(--ink);
   transition: border-color 180ms var(--ease), background 180ms var(--ease);
 }
 .field select {
@@ -1087,200 +859,103 @@ main { display: block; }
   background-position: right 0.9rem center;
   padding-right: 2.25rem;
 }
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  border-color: var(--ink);
-  background: var(--paper-warm);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(107,42,38,0.15);
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--ink); background: var(--paper-warm);
+  outline: none; box-shadow: 0 0 0 2px rgba(107,42,38,0.15);
 }
-.field input:user-invalid,
-.field select:user-invalid {
-  border-color: var(--wine);
-}
-.field__hint {
-  font-size: 0.78rem;
-  color: var(--ink-mute);
-  font-style: italic;
-}
-
-.form__row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
+.field__hint { font-size: 0.78rem; color: var(--ink-mute); font-style: italic; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form__submit {
-  margin-top: 0.5rem;
-  align-self: flex-start;
-  background: var(--ink);
-  color: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 0.9rem 1.5rem;
-  font-family: var(--ui);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  cursor: pointer;
+  margin-top: 0.5rem; align-self: flex-start;
+  background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+  padding: 0.9rem 1.5rem; font-family: var(--ui); font-size: 0.82rem;
+  letter-spacing: 0.04em; cursor: pointer;
   transition: background 180ms var(--ease), border-color 180ms var(--ease);
 }
-.form__submit:hover {
-  background: var(--wine);
-  border-color: var(--wine);
-}
-
+.form__submit:hover { background: var(--wine); border-color: var(--wine); }
 .form__notice {
   border: var(--rule-hair) solid var(--forest);
-  background: var(--paper);
-  padding: 1.25rem 1.5rem;
-  display: none;
+  background: var(--paper); padding: 1.25rem 1.5rem; display: none;
 }
 .form__notice[data-open="true"] { display: block; }
 .form__notice h4 {
-  font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--forest);
-  margin-bottom: 0.4rem;
+  font-family: var(--display); font-size: 1.2rem;
+  font-weight: 500; color: var(--forest); margin-bottom: 0.4rem;
 }
-.form__notice p {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  line-height: 1.6;
-}
-
+.form__notice p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.6; }
 .contact-line {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
+  margin-top: 1.5rem; padding-top: 1rem;
   border-top: var(--rule-hair) solid var(--rule-soft);
-  font-size: 0.9rem;
-  color: var(--ink-mute);
+  font-size: 0.9rem; color: var(--ink-mute);
 }
 .contact-line strong {
-  font-family: var(--ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  display: block;
-  margin-bottom: 0.25rem;
-  font-weight: 500;
+  font-family: var(--ui); font-size: 0.68rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute);
+  display: block; margin-bottom: 0.25rem; font-weight: 500;
 }
 
 @media (max-width: 880px) {
   .admission { grid-template-columns: 1fr; }
   .form__row { grid-template-columns: 1fr; }
+  .step__body-content { padding-left: 0; }
 }
 
 /* --------------------------------------------------------------------------
-   16. FOOTER
+   FOOTER
    -------------------------------------------------------------------------- */
 .site-footer {
-  background: var(--ink);
-  color: var(--paper);
-  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;
-  margin-top: 4rem;
+  background: var(--ink); color: var(--paper);
+  padding: clamp(3rem, 6vw, 4.5rem) 0 2rem; margin-top: 4rem;
 }
 .footer-top {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr;
-  gap: 3rem;
-  padding-bottom: 3rem;
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem; padding-bottom: 3rem;
   border-bottom: 1px solid rgba(242,236,223,0.15);
 }
 .footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.25rem;
 }
-.footer-brand__mark {
-  width: 38px;
-  height: 38px;
-  color: var(--gold-soft);
-}
-.footer-brand__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
-}
+.footer-brand__mark { width: 38px; height: 38px; color: var(--gold-soft); }
+.footer-brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .footer-brand__name {
-  font-family: var(--display);
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--paper);
+  font-family: var(--display); font-size: 1.15rem;
+  font-weight: 500; color: var(--paper);
 }
 .footer-brand__sub {
-  font-family: var(--ui);
-  font-size: 0.6rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(242,236,223,0.6);
-  margin-top: 0.2rem;
+  font-family: var(--ui); font-size: 0.6rem; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(242,236,223,0.6); margin-top: 0.2rem;
 }
-
 .footer-text {
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: rgba(242,236,223,0.7);
-  max-width: 38ch;
+  font-size: 0.92rem; line-height: 1.7;
+  color: rgba(242,236,223,0.7); max-width: 38ch;
 }
-
 .footer-col h4 {
-  font-family: var(--ui);
-  font-size: 0.66rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-soft);
-  margin-bottom: 1.1rem;
-  font-weight: 500;
+  font-family: var(--ui); font-size: 0.66rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold-soft);
+  margin-bottom: 1.1rem; font-weight: 500;
 }
-.footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-.footer-col button,
-.footer-col a {
-  background: none;
-  border: none;
-  padding: 0;
-  text-align: left;
-  font-family: var(--body);
-  font-size: 0.92rem;
-  color: rgba(242,236,223,0.78);
-  text-decoration: none;
-  cursor: pointer;
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-col button, .footer-col a {
+  background: none; border: none; padding: 0;
+  text-align: left; font-family: var(--body); font-size: 0.92rem;
+  color: rgba(242,236,223,0.78); text-decoration: none; cursor: pointer;
   transition: color 160ms var(--ease);
 }
-.footer-col button:hover,
-.footer-col a:hover { color: var(--paper); }
-
+.footer-col button:hover, .footer-col a:hover { color: var(--paper); }
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1.5rem;
-  padding-top: 1.75rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 1.5rem; padding-top: 1.75rem; flex-wrap: wrap;
 }
 .footer-bottom p {
-  font-family: var(--ui);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  color: rgba(242,236,223,0.45);
+  font-family: var(--ui); font-size: 0.7rem;
+  letter-spacing: 0.08em; color: rgba(242,236,223,0.45);
 }
 
-@media (max-width: 900px) {
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-}
-@media (max-width: 560px) {
-  .footer-top { grid-template-columns: 1fr; }
-}
+@media (max-width: 900px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+@media (max-width: 560px) { .footer-top { grid-template-columns: 1fr; } }
 
 /* --------------------------------------------------------------------------
-   17. PREFERS-REDUCED-MOTION
+   REDUCED MOTION
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1295,17 +970,9 @@ main { display: block; }
 
 <a href="#main" class="skip-link">Ir al contenido principal</a>
 
-<!-- ======================================================================
-     SÍMBOLO INSTITUCIONAL
-     Concepto: una forma que puede leerse como hoja (territorio, crecimiento),
-     como punta de pluma (escritura, conocimiento) y como silueta vertical
-     (continuidad). El trazo central es el eje de la institución.
-     ====================================================================== -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="ucl-mark" viewBox="0 0 48 48">
-    <path d="M24 5
-             C 14.5 14.5, 12 27, 24 42
-             C 36 27, 33.5 14.5, 24 5 Z"
+    <path d="M24 5 C 14.5 14.5, 12 27, 24 42 C 36 27, 33.5 14.5, 24 5 Z"
           fill="none" stroke="currentColor" stroke-width="1.6"
           stroke-linejoin="round" stroke-linecap="round"/>
     <line x1="24" y1="14" x2="24" y2="38"
@@ -1313,13 +980,9 @@ main { display: block; }
   </symbol>
 </svg>
 
-<!-- ======================================================================
-     HEADER
-     ====================================================================== -->
 <header class="site-header">
   <div class="wrap">
     <div class="site-header__bar">
-
       <a class="brand" href="#inicio" data-nav="inicio" aria-label="Universidad Claudia Lars · inicio">
         <svg class="brand__mark" aria-hidden="true"><use href="#ucl-mark"/></svg>
         <span class="brand__text">
@@ -1327,7 +990,6 @@ main { display: block; }
           <span class="brand__sub">Morazán · El Salvador</span>
         </span>
       </a>
-
       <nav class="site-nav" aria-label="Navegación principal">
         <button type="button" class="site-nav__link" data-nav="universidad">Universidad</button>
         <button type="button" class="site-nav__link" data-nav="oferta">Oferta académica</button>
@@ -1336,15 +998,9 @@ main { display: block; }
         <button type="button" class="site-nav__link" data-nav="aula">Aula virtual</button>
         <button type="button" class="site-nav__cta" data-nav="admisiones">Admisiones</button>
       </nav>
-
-      <button type="button" class="menu-toggle" id="menuToggle"
-              aria-expanded="false" aria-controls="mobilePanel">
-        Menú
-      </button>
-
+      <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobilePanel">Menú</button>
     </div>
   </div>
-
   <div class="mobile-panel" id="mobilePanel" data-open="false">
     <div class="mobile-panel__inner">
       <button type="button" class="mobile-panel__link" data-nav="universidad">Universidad</button>
@@ -1357,60 +1013,46 @@ main { display: block; }
   </div>
 </header>
 
-<!-- ======================================================================
-     MAIN
-     ====================================================================== -->
 <main id="main">
 
   <!-- ============================================================
        INICIO
        ============================================================ -->
   <section class="page" id="inicio" data-active="true" aria-labelledby="inicio-title">
-
-    <!-- HERO EDITORIAL -->
     <div class="wrap">
       <div class="hero">
         <div class="hero__meta">
           <span class="eyebrow">Universidad Claudia Lars</span>
           <span class="eyebrow">Morazán · El Salvador</span>
         </div>
-
         <div class="hero__grid">
           <div>
             <h1 class="hero__title" id="inicio-title">
               Una universidad desde Morazán para el futuro del <em>oriente</em> de El Salvador.
             </h1>
-
             <p class="hero__lead">
               La Universidad Claudia Lars es una institución de educación superior con sede en el
               departamento de Morazán. Nace para que los estudiantes del oriente del país puedan
               formarse académicamente sin abandonar su territorio, su familia ni su comunidad.
             </p>
-
             <div class="hero__actions">
               <button type="button" class="btn" data-nav="admisiones">Solicitar admisión</button>
               <button type="button" class="btn btn--ghost" data-nav="universidad">Conocer la universidad</button>
             </div>
           </div>
-
           <figure class="hero__visual">
             <div class="photo-frame">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <rect x="3" y="4" width="18" height="16"/>
-                  <circle cx="9" cy="10" r="2"/>
-                  <path d="M3 17l5-5 4 4 3-3 6 6"/>
+                  <rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/>
                 </svg>
                 <span class="photo-frame__label">Fotografía · Paisaje de Morazán</span>
                 <span class="photo-frame__caption">Espacio reservado para imagen institucional</span>
               </div>
             </div>
-            <figcaption class="photo-frame__figcap">
-              El oriente salvadoreño. Territorio de la universidad.
-            </figcaption>
+            <figcaption class="photo-frame__figcap">El oriente salvadoreño. Territorio de la universidad.</figcaption>
           </figure>
         </div>
-
         <div class="hero__dateline">
           <span><strong>Ciclo</strong>2026</span>
           <span><strong>Sede</strong>Morazán, El Salvador</span>
@@ -1420,7 +1062,7 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- MORAZÁN · breve -->
+    <!-- MORAZÁN · mapa interactivo -->
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1429,32 +1071,65 @@ main { display: block; }
         </div>
 
         <div class="territory">
-          <div class="territory__map">
-            <svg viewBox="0 0 300 380" role="img" aria-label="Mapa esquemático de la región">
-              <defs>
-                <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                  <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="0.4" opacity="0.35"/>
-                </pattern>
-              </defs>
-              <path d="M 40 90
-                       Q 60 40, 120 50
-                       Q 180 30, 220 70
-                       Q 270 90, 260 150
-                       Q 275 210, 250 260
-                       Q 230 320, 170 340
-                       Q 110 355, 70 310
-                       Q 30 260, 45 200
-                       Q 20 140, 40 90 Z"
-                    fill="url(#hatch)" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-              <circle cx="150" cy="190" r="5" fill="currentColor"/>
-              <text x="150" y="215" text-anchor="middle"
-                    font-family="Spectral, serif" font-size="11" font-style="italic"
-                    fill="currentColor">Morazán</text>
-              <circle cx="150" cy="190" r="14" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
-              <circle cx="150" cy="190" r="26" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-            </svg>
-            <div class="territory__map-caption">
-              Esquema territorial · Región oriental de El Salvador
+          <div class="map-panel">
+            <div class="map-panel__head">
+              <span class="map-panel__title">Región de influencia</span>
+              <span class="map-panel__hint">Selecciona un municipio</span>
+            </div>
+
+            <div class="map-svg-wrap">
+              <svg viewBox="0 0 300 380" role="group" aria-label="Mapa interactivo de municipios de Morazán">
+                <!-- Municipios esquemáticos -->
+                <path class="map-muni" data-muni="yamabal"
+                      d="M 120 40 L 175 45 L 185 100 L 145 115 L 115 95 Z"
+                      tabindex="0" role="button" aria-label="Yamabal, sede de la universidad"/>
+                <text class="map-muni__label" x="148" y="78">Yamabal</text>
+
+                <path class="map-muni" data-muni="guatajiagua"
+                      d="M 60 100 L 115 95 L 130 155 L 85 175 L 55 155 Z"
+                      tabindex="0" role="button" aria-label="Guatajiagua"/>
+                <text class="map-muni__label" x="92" y="138">Guatajiagua</text>
+
+                <path class="map-muni" data-muni="cacaopera"
+                      d="M 175 45 L 230 65 L 245 130 L 200 145 L 185 100 Z"
+                      tabindex="0" role="button" aria-label="Cacaopera"/>
+                <text class="map-muni__label" x="212" y="100">Cacaopera</text>
+
+                <path class="map-muni" data-muni="jocoro"
+                      d="M 130 155 L 200 145 L 215 210 L 165 230 L 120 205 Z"
+                      tabindex="0" role="button" aria-label="Jocoro"/>
+                <text class="map-muni__label" x="168" y="192">Jocoro</text>
+
+                <path class="map-muni" data-muni="sociedad"
+                      d="M 55 155 L 120 205 L 105 265 L 55 260 L 40 205 Z"
+                      tabindex="0" role="button" aria-label="Sociedad"/>
+                <text class="map-muni__label" x="80" y="222">Sociedad</text>
+
+                <path class="map-muni" data-muni="corinto"
+                      d="M 200 145 L 245 130 L 265 195 L 240 260 L 215 210 Z"
+                      tabindex="0" role="button" aria-label="Corinto"/>
+                <text class="map-muni__label" x="238" y="192">Corinto</text>
+
+                <!-- Marcador de sede -->
+                <circle class="map-marker" cx="148" cy="78" r="3.5"/>
+                <circle cx="148" cy="78" r="9" fill="none" stroke="#6B2A26" stroke-width="0.8" opacity="0.5"/>
+              </svg>
+            </div>
+
+            <!-- Lista alternativa en móvil -->
+            <div class="map-list" role="list">
+              <button type="button" class="map-list__item" data-muni="yamabal">Yamabal <span>Sede</span></button>
+              <button type="button" class="map-list__item" data-muni="guatajiagua">Guatajiagua <span>Influencia</span></button>
+              <button type="button" class="map-list__item" data-muni="cacaopera">Cacaopera <span>Influencia</span></button>
+              <button type="button" class="map-list__item" data-muni="jocoro">Jocoro <span>Influencia</span></button>
+              <button type="button" class="map-list__item" data-muni="sociedad">Sociedad <span>Influencia</span></button>
+              <button type="button" class="map-list__item" data-muni="corinto">Corinto <span>Influencia</span></button>
+            </div>
+
+            <div class="map-info" id="mapInfo" aria-live="polite">
+              <div class="map-info__empty">
+                Selecciona un municipio en el mapa para ver información sobre la zona de influencia de la universidad.
+              </div>
             </div>
           </div>
 
@@ -1470,28 +1145,17 @@ main { display: block; }
               universitaria al territorio donde viven los estudiantes, en lugar de pedirles que lo
               abandonen para poder estudiar.
             </p>
-
-            <ul class="territory__list" aria-label="Municipios de referencia">
-              <li><span>Yamabal</span><span>Sede</span></li>
-              <li><span>Guatajiagua</span><span>Zona de influencia</span></li>
-              <li><span>Cacaopera</span><span>Zona de influencia</span></li>
-              <li><span>Jocoro</span><span>Zona de influencia</span></li>
-              <li><span>Sociedad</span><span>Zona de influencia</span></li>
-              <li><span>Corinto</span><span>Zona de influencia</span></li>
-            </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- MANIFIESTO · avance -->
     <div class="wrap">
       <div class="block">
         <div class="block__head">
           <h2 class="block__title">Una declaración fundacional.</h2>
           <span class="block__kicker">Manifiesto</span>
         </div>
-
         <div class="manifesto">
           <p class="manifesto__lead">
             Una universidad no se funda para repetir lo que ya existe. Se funda para corregir
@@ -1512,20 +1176,18 @@ main { display: block; }
               para formarse académicamente.
             </p>
             <button type="button" class="btn btn--ghost" data-nav="universidad" style="align-self:flex-start; margin-top:0.75rem;">
-              Leer el manifiesto completo
+              Conocer la universidad
             </button>
           </div>
         </div>
       </div>
     </div>
-
   </section>
 
   <!-- ============================================================
-       UNIVERSIDAD
+       UNIVERSIDAD · con tabs
        ============================================================ -->
   <section class="page" id="universidad" aria-labelledby="universidad-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1533,148 +1195,127 @@ main { display: block; }
           <span class="block__kicker">Universidad</span>
         </div>
 
-        <div class="manifesto">
-          <p class="manifesto__lead">
-            La Universidad Claudia Lars es una institución de educación superior con sede en el
-            departamento de Morazán, El Salvador. Su creación responde a una necesidad concreta:
-            la ausencia de oferta universitaria cercana para los estudiantes del oriente del país.
-          </p>
-          <div class="manifesto__body">
-            <p>
-              La universidad se organiza como una corporación de utilidad pública, de carácter
-              permanente y sin fines de lucro, conforme al marco legal salvadoreño de educación
-              superior. Su proyecto académico se estructura en torno a tres ejes: <strong>formación
-              humanística</strong>, <strong>formación científica</strong> y <strong>formación
-              tecnológica</strong>.
-            </p>
-            <p>
-              La institución reconoce el territorio en el que nace y asume el compromiso de
-              contribuir al desarrollo de la región oriental, sin perder rigor académico ni
-              ambición intelectual.
-            </p>
+        <div class="tabs">
+          <div class="tabs__nav" role="tablist" aria-label="Secciones sobre la universidad">
+            <button class="tabs__btn" role="tab" id="tab-institucion" aria-controls="panel-institucion" aria-selected="true" data-tab="institucion">Institución</button>
+            <button class="tabs__btn" role="tab" id="tab-claudia" aria-controls="panel-claudia" aria-selected="false" data-tab="claudia">Claudia Lars</button>
+            <button class="tabs__btn" role="tab" id="tab-vision" aria-controls="panel-vision" aria-selected="false" data-tab="vision">Visión</button>
+            <button class="tabs__btn" role="tab" id="tab-modelo" aria-controls="panel-modelo" aria-selected="false" data-tab="modelo">Modelo educativo</button>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Claudia Lars -->
-    <div class="wrap">
-      <div class="block">
-        <div class="block__head">
-          <h2 class="block__title">Claudia Lars.</h2>
-          <span class="block__kicker">Fundamento intelectual</span>
-        </div>
-
-        <div class="territory">
-          <div class="territory__map" style="aspect-ratio: 4/5; padding:0; background: var(--paper-deep);">
-            <div class="photo-frame" style="border:none; aspect-ratio:auto; height:100%;">
-              <div class="photo-frame__inner">
-                <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <rect x="4" y="3" width="16" height="18"/>
-                  <line x1="8" y1="8" x2="16" y2="8"/>
-                  <line x1="8" y1="12" x2="16" y2="12"/>
-                  <line x1="8" y1="16" x2="13" y2="16"/>
-                </svg>
-                <span class="photo-frame__label">Retrato · Archivo</span>
-                <span class="photo-frame__caption">Espacio reservado para imagen de archivo</span>
+          <!-- Panel 1 -->
+          <div class="tabs__panel" role="tabpanel" id="panel-institucion" aria-labelledby="tab-institucion" data-active="true">
+            <div class="manifesto">
+              <p class="manifesto__lead">
+                La Universidad Claudia Lars es una institución de educación superior con sede en el
+                departamento de Morazán, El Salvador. Su creación responde a una necesidad concreta:
+                la ausencia de oferta universitaria cercana para los estudiantes del oriente del país.
+              </p>
+              <div class="manifesto__body">
+                <p>
+                  La universidad se organiza como una corporación de utilidad pública, de carácter
+                  permanente y sin fines de lucro, conforme al marco legal salvadoreño de educación
+                  superior. Su proyecto académico se estructura en torno a tres ejes: <strong>formación
+                  humanística</strong>, <strong>formación científica</strong> y <strong>formación
+                  tecnológica</strong>.
+                </p>
+                <p>
+                  La institución reconoce el territorio en el que nace y asume el compromiso de
+                  contribuir al desarrollo de la región oriental, sin perder rigor académico ni
+                  ambición intelectual.
+                </p>
               </div>
             </div>
           </div>
 
-          <div class="territory__text">
-            <p>
-              Claudia Lars —seudónimo de Margarita del Carmen Brannon Vega— nació en Armenia,
-              Sonsonate, en 1899, y falleció en San Salvador en 1974. Es una de las voces más
-              importantes de la lírica centroamericana del siglo XX.
-            </p>
-            <p>
-              Su obra se caracteriza por una relación profunda con la tierra, con el lenguaje y
-              con la memoria del país. La universidad adopta su nombre no como homenaje ceremonial,
-              sino como programa: <strong>una institución que asume la escritura, la lectura y el
-              pensamiento crítico como ejes de la formación universitaria</strong>, y que entiende
-              la sensibilidad como parte del rigor, no como su opuesto.
-            </p>
-            <p>
-              La universidad no se propone reproducir biográficamente su figura. Se propone tomar
-              en serio lo que su obra representa: la atención al lenguaje, la pertenencia al
-              territorio y la dignidad del pensamiento propio.
-            </p>
+          <!-- Panel 2 -->
+          <div class="tabs__panel" role="tabpanel" id="panel-claudia" aria-labelledby="tab-claudia">
+            <div class="territory">
+              <div class="photo-frame" style="aspect-ratio: 4/5;">
+                <div class="photo-frame__inner">
+                  <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                    <rect x="4" y="3" width="16" height="18"/>
+                    <line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/>
+                  </svg>
+                  <span class="photo-frame__label">Retrato · Archivo</span>
+                  <span class="photo-frame__caption">Espacio reservado para imagen de archivo</span>
+                </div>
+              </div>
+              <div class="territory__text">
+                <p>
+                  Claudia Lars —seudónimo de Margarita del Carmen Brannon Vega— nació en Armenia,
+                  Sonsonate, en 1899, y falleció en San Salvador en 1974. Es una de las voces más
+                  importantes de la lírica centroamericana del siglo XX.
+                </p>
+                <p>
+                  Su obra se caracteriza por una relación profunda con la tierra, con el lenguaje y
+                  con la memoria del país. La universidad adopta su nombre no como homenaje ceremonial,
+                  sino como programa: <strong>una institución que asume la escritura, la lectura y el
+                  pensamiento crítico como ejes de la formación universitaria</strong>, y que entiende
+                  la sensibilidad como parte del rigor, no como su opuesto.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3 -->
+          <div class="tabs__panel" role="tabpanel" id="panel-vision" aria-labelledby="tab-vision">
+            <div class="manifesto">
+              <p class="manifesto__lead">
+                Una universidad del siglo XXI, con raíces en el oriente salvadoreño, capaz de formar
+                profesionales rigurosos sin pedirles que dejen de ser de donde son.
+              </p>
+              <div class="manifesto__body">
+                <p>
+                  Aspiramos a constituirnos como un referente académico regional: una institución
+                  que investigue, que publique, que dialogue con otras universidades y que forme
+                  profesionales capaces de aportar al desarrollo de Morazán y del oriente del país.
+                </p>
+                <p>
+                  Entendemos que una universidad nueva se legitima con hechos, no con discursos.
+                  Por eso nuestro primer compromiso es con la calidad de la formación, la solidez
+                  del cuerpo docente y la seriedad de los procesos institucionales.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 4 -->
+          <div class="tabs__panel" role="tabpanel" id="panel-modelo" aria-labelledby="tab-modelo">
+            <div class="manifesto">
+              <p class="manifesto__lead">
+                Formación humanística, científica y tecnológica, articuladas en un mismo proyecto
+                académico.
+              </p>
+              <div class="manifesto__body">
+                <p>
+                  El modelo educativo de la Universidad Claudia Lars se organiza en torno a tres
+                  componentes complementarios: <strong>una base humanística sólida</strong>, común a
+                  todas las carreras; <strong>una formación científica rigurosa</strong> en cada
+                  campo disciplinar; y <strong>una preparación tecnológica</strong> acorde con las
+                  demandas contemporáneas del ejercicio profesional.
+                </p>
+                <p>
+                  La docencia se articula con actividades de investigación formativa y de proyección
+                  social, entendidas como parte integral de la formación universitaria y no como
+                  actividades accesorias.
+                </p>
+                <p style="font-style: italic; color: var(--ink-mute); font-size: 0.92rem; margin-top: 1.25rem;">
+                  Documentación académica detallada: información por confirmar. Consultar con la
+                  Secretaría Académica de la institución.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Visión -->
-    <div class="wrap">
-      <div class="block">
-        <div class="block__head">
-          <h2 class="block__title">Nuestra visión.</h2>
-          <span class="block__kicker">Proyecto</span>
-        </div>
-
-        <div class="manifesto">
-          <p class="manifesto__lead">
-            Una universidad del siglo XXI, con raíces en el oriente salvadoreño, capaz de formar
-            profesionales rigurosos sin pedirles que dejen de ser de donde son.
-          </p>
-          <div class="manifesto__body">
-            <p>
-              Aspiramos a constituirnos como un referente académico regional: una institución
-              que investigue, que publique, que dialogue con otras universidades y que forme
-              profesionales capaces de aportar al desarrollo de Morazán y del oriente del país.
-            </p>
-            <p>
-              Entendemos que una universidad nueva se legitima con hechos, no con discursos.
-              Por eso nuestro primer compromiso es con la calidad de la formación, la solidez
-              del cuerpo docente y la seriedad de los procesos institucionales.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modelo educativo -->
-    <div class="wrap">
-      <div class="block">
-        <div class="block__head">
-          <h2 class="block__title">Modelo educativo.</h2>
-          <span class="block__kicker">Formación</span>
-        </div>
-
-        <div class="manifesto">
-          <p class="manifesto__lead">
-            Formación humanística, científica y tecnológica, articuladas en un mismo proyecto
-            académico.
-          </p>
-          <div class="manifesto__body">
-            <p>
-              El modelo educativo de la Universidad Claudia Lars se organiza en torno a tres
-              componentes complementarios: <strong>una base humanística sólida</strong>, común a
-              todas las carreras; <strong>una formación científica rigurosa</strong> en cada
-              campo disciplinar; y <strong>una preparación tecnológica</strong> acorde con las
-              demandas contemporáneas del ejercicio profesional.
-            </p>
-            <p>
-              La docencia se articula con actividades de investigación formativa y de proyección
-              social, entendidas como parte integral de la formación universitaria y no como
-              actividades accesorias.
-            </p>
-            <p style="font-style: italic; color: var(--ink-mute); font-size: 0.92rem; margin-top: 1.25rem;">
-              Documentación académica detallada: información por confirmar. Consultar con la
-              Secretaría Académica de la institución.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </section>
 
   <!-- ============================================================
-       OFERTA ACADÉMICA
+       OFERTA ACADÉMICA · filtros + acordeón
        ============================================================ -->
   <section class="page" id="oferta" aria-labelledby="oferta-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1682,109 +1323,190 @@ main { display: block; }
           <span class="block__kicker">Catálogo</span>
         </div>
 
-        <p style="max-width: 62ch; margin-bottom: 2.5rem; color: var(--ink-mute); font-size: 1rem; line-height: 1.7;">
-          La oferta académica inicial de la universidad se organiza en seis programas
-          profesionales. Cada uno articula un área disciplinar específica con una base
-          humanística común y una formación tecnológica transversal.
+        <p style="max-width: 62ch; margin-bottom: 2rem; color: var(--ink-mute); font-size: 1rem; line-height: 1.7;">
+          La oferta académica inicial se organiza en seis programas profesionales. Cada uno articula
+          un área disciplinar específica con una base humanística común y una formación tecnológica
+          transversal.
         </p>
 
-        <div class="catalog">
+        <!-- Filtros -->
+        <div class="catalog-toolbar" role="group" aria-label="Filtrar programas por área">
+          <span class="catalog-toolbar__label">Filtrar por área</span>
+          <button type="button" class="filter-chip" data-filter="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="filter-chip" data-filter="ingenieria" aria-pressed="false">Ingeniería</button>
+          <button type="button" class="filter-chip" data-filter="agrarias" aria-pressed="false">Ciencias agrarias</button>
+          <button type="button" class="filter-chip" data-filter="humanidades" aria-pressed="false">Humanidades</button>
+          <button type="button" class="filter-chip" data-filter="salud" aria-pressed="false">Salud</button>
+          <button type="button" class="filter-chip" data-filter="economicas" aria-pressed="false">Económicas</button>
+          <button type="button" class="filter-chip" data-filter="tecnico" aria-pressed="false">Técnico superior</button>
+        </div>
 
-          <article class="catalog__row">
-            <span class="catalog__num">01</span>
-            <h3 class="catalog__name">Licenciatura en Desarrollo de Software</h3>
-            <p class="catalog__desc">
-              Programación, estructuras de datos, bases de datos, desarrollo web y
-              soluciones digitales aplicadas al contexto regional.
-            </p>
-            <div class="catalog__meta">
-              <strong>Ingeniería</strong>
-              Duración por confirmar
+        <div class="catalog" id="catalog">
+
+          <article class="catalog__item" data-area="ingenieria">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-01">
+              <span class="catalog__num">01</span>
+              <h3 class="catalog__name">Licenciatura en Desarrollo de Software</h3>
+              <p class="catalog__desc">Programación, estructuras de datos, bases de datos, desarrollo web y soluciones digitales aplicadas al contexto regional.</p>
+              <div class="catalog__meta"><strong>Ingeniería</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-01">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Ingeniería y tecnología</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial con apoyo en aula virtual</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Interés por la resolución de problemas y el trabajo con sistemas digitales.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Desarrollo de software, soporte técnico, gestión de datos, soluciones digitales para organizaciones locales.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="catalog__row">
-            <span class="catalog__num">02</span>
-            <h3 class="catalog__name">Ingeniería en Agronegocios</h3>
-            <p class="catalog__desc">
-              Gestión sostenible de la producción agrícola y pecuaria, con énfasis en
-              mercados locales, asociatividad y cadenas de valor.
-            </p>
-            <div class="catalog__meta">
-              <strong>Ciencias agrarias</strong>
-              Duración por confirmar
+          <article class="catalog__item" data-area="agrarias">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-02">
+              <span class="catalog__num">02</span>
+              <h3 class="catalog__name">Ingeniería en Agronegocios</h3>
+              <p class="catalog__desc">Gestión sostenible de la producción agrícola y pecuaria, con énfasis en mercados locales, asociatividad y cadenas de valor.</p>
+              <div class="catalog__meta"><strong>Ciencias agrarias</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-02">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Ciencias agrarias</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial con trabajo de campo</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Vinculación o interés por el sector agropecuario de la región.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Gestión de unidades productivas, asesoría técnica, asociatividad, comercialización agropecuaria.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="catalog__row">
-            <span class="catalog__num">03</span>
-            <h3 class="catalog__name">Licenciatura en Letras y Comunicación</h3>
-            <p class="catalog__desc">
-              Lenguaje, literatura, escritura y comunicación institucional. Formación
-              humanística vinculada al legado de Claudia Lars.
-            </p>
-            <div class="catalog__meta">
-              <strong>Humanidades</strong>
-              Duración por confirmar
+          <article class="catalog__item" data-area="humanidades">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-03">
+              <span class="catalog__num">03</span>
+              <h3 class="catalog__name">Licenciatura en Letras y Comunicación</h3>
+              <p class="catalog__desc">Lenguaje, literatura, escritura y comunicación institucional. Formación humanística vinculada al legado de Claudia Lars.</p>
+              <div class="catalog__meta"><strong>Humanidades</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-03">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Humanidades</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Interés por la lectura, la escritura y la comunicación.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Redacción, edición, comunicación institucional, docencia, gestión cultural.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="catalog__row">
-            <span class="catalog__num">04</span>
-            <h3 class="catalog__name">Licenciatura en Enfermería</h3>
-            <p class="catalog__desc">
-              Formación de profesionales de la salud para la atención de comunidades
-              del oriente del país. Prácticas en contextos locales.
-            </p>
-            <div class="catalog__meta">
-              <strong>Ciencias de la salud</strong>
-              Duración por confirmar
+          <article class="catalog__item" data-area="salud">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-04">
+              <span class="catalog__num">04</span>
+              <h3 class="catalog__name">Licenciatura en Enfermería</h3>
+              <p class="catalog__desc">Formación de profesionales de la salud para la atención de comunidades del oriente del país. Prácticas en contextos locales.</p>
+              <div class="catalog__meta"><strong>Ciencias de la salud</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-04">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Ciencias de la salud</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial con prácticas</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Vocación de servicio y disposición al trabajo comunitario.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Atención primaria, hospitales, programas comunitarios de salud.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="catalog__row">
-            <span class="catalog__num">05</span>
-            <h3 class="catalog__name">Licenciatura en Administración de Empresas</h3>
-            <p class="catalog__desc">
-              Gestión, emprendimiento y dirección de organizaciones. Enfoque en
-              pequeñas y medianas empresas de la región oriental.
-            </p>
-            <div class="catalog__meta">
-              <strong>Ciencias económicas</strong>
-              Duración por confirmar
+          <article class="catalog__item" data-area="economicas">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-05">
+              <span class="catalog__num">05</span>
+              <h3 class="catalog__name">Licenciatura en Administración de Empresas</h3>
+              <p class="catalog__desc">Gestión, emprendimiento y dirección de organizaciones. Enfoque en pequeñas y medianas empresas de la región oriental.</p>
+              <div class="catalog__meta"><strong>Ciencias económicas</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-05">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Ciencias económicas</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial con apoyo en aula virtual</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Interés por el emprendimiento y la gestión organizacional.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Administración de empresas, emprendimiento, finanzas, gestión de proyectos.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="catalog__row">
-            <span class="catalog__num">06</span>
-            <h3 class="catalog__name">Técnico Superior en Turismo Rural</h3>
-            <p class="catalog__desc">
-              Aprovechamiento sostenible del patrimonio natural y cultural de
-              Morazán y la región oriental. Formación técnica de ciclo corto.
-            </p>
-            <div class="catalog__meta">
-              <strong>Técnico superior</strong>
-              Duración por confirmar
+          <article class="catalog__item" data-area="tecnico">
+            <button type="button" class="catalog__row" aria-expanded="false" aria-controls="prog-06">
+              <span class="catalog__num">06</span>
+              <h3 class="catalog__name">Técnico Superior en Turismo Rural</h3>
+              <p class="catalog__desc">Aprovechamiento sostenible del patrimonio natural y cultural de Morazán y la región oriental. Formación técnica de ciclo corto.</p>
+              <div class="catalog__meta"><strong>Técnico superior</strong>Duración por confirmar</div>
+              <span class="catalog__toggle" aria-hidden="true">+</span>
+            </button>
+            <div class="catalog__body" id="prog-06">
+              <div class="catalog__body-inner">
+                <div class="catalog__body-content">
+                  <dl>
+                    <div><dt>Área</dt><dd>Turismo y patrimonio</dd></div>
+                    <div><dt>Modalidad</dt><dd>Presencial con salidas de campo</dd></div>
+                    <div><dt>Duración</dt><dd>Información por confirmar</dd></div>
+                  </dl>
+                  <dl>
+                    <div><dt>Perfil de ingreso</dt><dd>Bachillerato concluido. Interés por el patrimonio natural y cultural de la región.</dd></div>
+                    <div><dt>Campo ocupacional</dt><dd>Gestión de destinos, guianza, emprendimientos turísticos rurales.</dd></div>
+                  </dl>
+                </div>
+              </div>
             </div>
           </article>
 
         </div>
 
         <p style="margin-top: 2.5rem; font-style: italic; color: var(--ink-mute); font-size: 0.9rem;">
-          La información curricular detallada de cada programa, así como las modalidades y
-          duraciones definitivas, se encuentra en proceso de confirmación institucional.
-          Consultar con la Secretaría Académica.
+          La información curricular detallada de cada programa se encuentra en proceso de
+          confirmación institucional. Consultar con la Secretaría Académica.
         </p>
       </div>
     </div>
-
   </section>
 
   <!-- ============================================================
        VIDA UNIVERSITARIA
        ============================================================ -->
   <section class="page" id="vida" aria-labelledby="vida-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1799,104 +1521,75 @@ main { display: block; }
         </p>
 
         <div class="life-grid">
-
           <article class="life-card life-card--a">
             <div class="photo-frame photo-frame--wide">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <rect x="3" y="4" width="18" height="16"/>
-                  <circle cx="9" cy="10" r="2"/>
-                  <path d="M3 17l5-5 4 4 3-3 6 6"/>
+                  <rect x="3" y="4" width="18" height="16"/><circle cx="9" cy="10" r="2"/><path d="M3 17l5-5 4 4 3-3 6 6"/>
                 </svg>
                 <span class="photo-frame__label">Fotografía · Comunidad estudiantil</span>
               </div>
             </div>
             <h3 class="life-card__title">Comunidad</h3>
-            <p class="life-card__text">
-              La universidad se concibe como una comunidad académica de estudiantes, docentes y
-              personal administrativo. La convivencia, el diálogo y el trabajo colectivo son parte
-              del proyecto formativo.
-            </p>
+            <p class="life-card__text">La universidad se concibe como una comunidad académica de estudiantes, docentes y personal administrativo. La convivencia, el diálogo y el trabajo colectivo son parte del proyecto formativo.</p>
           </article>
-
           <article class="life-card life-card--b">
             <div class="photo-frame photo-frame--wide">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/>
-                  <path d="M8 7h8M8 11h8M8 15h5"/>
+                  <path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/><path d="M8 7h8M8 11h8M8 15h5"/>
                 </svg>
                 <span class="photo-frame__label">Fotografía · Actividad cultural</span>
               </div>
             </div>
             <h3 class="life-card__title">Cultura</h3>
-            <p class="life-card__text">
-              Lectura, escritura, artes y pensamiento crítico. La universidad promueve una vida
-              cultural activa en diálogo con la tradición literaria del país.
-            </p>
+            <p class="life-card__text">Lectura, escritura, artes y pensamiento crítico. La universidad promueve una vida cultural activa en diálogo con la tradición literaria del país.</p>
           </article>
-
           <article class="life-card life-card--c">
             <div class="photo-frame photo-frame--square">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                   <path d="M12 3l8 4v6c0 4-3.5 7-8 8-4.5-1-8-4-8-8V7l8-4z"/>
                 </svg>
-                <span class="photo-frame__label">Fotografía · Becas y apoyos</span>
+                <span class="photo-frame__label">Fotografía · Becas</span>
               </div>
             </div>
             <h3 class="life-card__title">Becas y apoyos</h3>
-            <p class="life-card__text">
-              Programas de apoyo económico y académico para estudiantes de la región.
-              Información específica: consultar con Admisiones.
-            </p>
+            <p class="life-card__text">Programas de apoyo económico y académico para estudiantes de la región. Información específica: consultar con Admisiones.</p>
           </article>
-
           <article class="life-card life-card--d">
             <div class="photo-frame photo-frame--square">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M12 3v18M3 12h18"/>
+                  <circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>
                 </svg>
                 <span class="photo-frame__label">Fotografía · Deporte</span>
               </div>
             </div>
             <h3 class="life-card__title">Deporte</h3>
-            <p class="life-card__text">
-              Actividad física y deporte como parte de la formación integral. Instalaciones
-              y programas por confirmar.
-            </p>
+            <p class="life-card__text">Actividad física y deporte como parte de la formación integral. Instalaciones y programas por confirmar.</p>
           </article>
-
           <article class="life-card life-card--e">
             <div class="photo-frame photo-frame--square">
               <div class="photo-frame__inner">
                 <svg class="photo-frame__icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                  <path d="M3 21V9l9-6 9 6v12"/>
-                  <path d="M9 21v-6h6v6"/>
+                  <path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/>
                 </svg>
-                <span class="photo-frame__label">Fotografía · Proyección social</span>
+                <span class="photo-frame__label">Fotografía · Proyección</span>
               </div>
             </div>
             <h3 class="life-card__title">Proyección social</h3>
-            <p class="life-card__text">
-              Trabajo con comunidades de la región oriental. La universidad entiende la
-              proyección social como parte de su compromiso territorial.
-            </p>
+            <p class="life-card__text">Trabajo con comunidades de la región oriental. La universidad entiende la proyección social como parte de su compromiso territorial.</p>
           </article>
-
         </div>
       </div>
     </div>
-
   </section>
 
   <!-- ============================================================
-       INVESTIGACIÓN
+       INVESTIGACIÓN · acordeón
        ============================================================ -->
   <section class="page" id="investigacion" aria-labelledby="investigacion-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1904,62 +1597,126 @@ main { display: block; }
           <span class="block__kicker">Líneas fundacionales</span>
         </div>
 
-        <p style="max-width: 62ch; margin-bottom: 3rem; color: var(--ink-mute); font-size: 1rem; line-height: 1.7;">
+        <p style="max-width: 62ch; margin-bottom: 2.5rem; color: var(--ink-mute); font-size: 1rem; line-height: 1.7;">
           La investigación es parte constitutiva del proyecto académico de la Universidad
           Claudia Lars. Las siguientes líneas se proponen como ejes iniciales de trabajo,
           sujetos a desarrollo y confirmación institucional.
         </p>
 
-        <div class="manifesto">
+        <div class="manifesto" style="margin-bottom: 2.5rem;">
           <p class="manifesto__lead">
             Investigar desde el oriente. Producir conocimiento situado, sin renunciar al
             diálogo con la comunidad académica nacional e internacional.
           </p>
           <div class="manifesto__body">
-
             <p>
-              <strong>Lengua, literatura y cultura del oriente salvadoreño.</strong>
-              Estudio de la tradición literaria, la memoria oral y las expresiones culturales
-              de la región oriental, en diálogo con la obra de Claudia Lars y de otras voces
-              centroamericanas.
+              Las líneas de investigación aquí presentadas constituyen propuestas fundacionales
+              que orientan el trabajo académico de la universidad en su primera etapa. Cada línea
+              articula docencia, investigación formativa y proyección social.
             </p>
-
-            <p>
-              <strong>Desarrollo territorial y agronegocios.</strong>
-              Investigación aplicada sobre producción agrícola, cadenas de valor, asociatividad
-              y modelos de desarrollo rural pertinentes para Morazán y la región.
-            </p>
-
-            <p>
-              <strong>Tecnología y educación.</strong>
-              Estudio del uso de herramientas digitales en contextos educativos y comunitarios,
-              con énfasis en zonas con acceso limitado a infraestructura tecnológica.
-            </p>
-
-            <p>
-              <strong>Salud comunitaria.</strong>
-              Investigación sobre determinantes sociales de la salud, atención primaria y
-              prácticas de cuidado en comunidades del oriente del país.
-            </p>
-
-            <p style="font-style: italic; color: var(--ink-mute); font-size: 0.92rem; margin-top: 1.25rem;">
-              Las líneas aquí presentadas constituyen propuestas fundacionales. Su desarrollo
-              definitivo dependerá de la aprobación institucional correspondiente. Información
-              por confirmar.
-            </p>
-
           </div>
+        </div>
+
+        <div class="research-list">
+
+          <article class="research-item">
+            <button type="button" class="research-trigger" aria-expanded="false" aria-controls="res-01">
+              <span class="research-trigger__num">01</span>
+              <span class="research-trigger__title">Lengua, literatura y cultura del oriente salvadoreño</span>
+              <span class="research-trigger__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="research-body" id="res-01">
+              <div class="research-body__inner">
+                <div class="research-body__content">
+                  <p>Estudio de la tradición literaria, la memoria oral y las expresiones culturales
+                  de la región oriental, en diálogo con la obra de Claudia Lars y de otras voces
+                  centroamericanas.</p>
+                  <ul>
+                    <li>Archivo literario y documental de la región</li>
+                    <li>Memoria oral y patrimonio inmaterial</li>
+                    <li>Literatura centroamericana comparada</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-item">
+            <button type="button" class="research-trigger" aria-expanded="false" aria-controls="res-02">
+              <span class="research-trigger__num">02</span>
+              <span class="research-trigger__title">Desarrollo territorial y agronegocios</span>
+              <span class="research-trigger__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="research-body" id="res-02">
+              <div class="research-body__inner">
+                <div class="research-body__content">
+                  <p>Investigación aplicada sobre producción agrícola, cadenas de valor, asociatividad
+                  y modelos de desarrollo rural pertinentes para Morazán y la región.</p>
+                  <ul>
+                    <li>Sostenibilidad y producción agropecuaria</li>
+                    <li>Cadenas de valor y comercialización local</li>
+                    <li>Modelos asociativos y cooperativismo</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-item">
+            <button type="button" class="research-trigger" aria-expanded="false" aria-controls="res-03">
+              <span class="research-trigger__num">03</span>
+              <span class="research-trigger__title">Tecnología y educación</span>
+              <span class="research-trigger__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="research-body" id="res-03">
+              <div class="research-body__inner">
+                <div class="research-body__content">
+                  <p>Estudio del uso de herramientas digitales en contextos educativos y comunitarios,
+                  con énfasis en zonas con acceso limitado a infraestructura tecnológica.</p>
+                  <ul>
+                    <li>Aula virtual y brecha digital</li>
+                    <li>Recursos abiertos para la educación superior</li>
+                    <li>Tecnologías apropiadas para contextos rurales</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="research-item">
+            <button type="button" class="research-trigger" aria-expanded="false" aria-controls="res-04">
+              <span class="research-trigger__num">04</span>
+              <span class="research-trigger__title">Salud comunitaria</span>
+              <span class="research-trigger__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="research-body" id="res-04">
+              <div class="research-body__inner">
+                <div class="research-body__content">
+                  <p>Investigación sobre determinantes sociales de la salud, atención primaria y
+                  prácticas de cuidado en comunidades del oriente del país.</p>
+                  <ul>
+                    <li>Determinantes sociales de la salud</li>
+                    <li>Atención primaria en zonas rurales</li>
+                    <li>Prácticas comunitarias de cuidado</li>
+                  </ul>
+                  <p style="font-style: italic; color: var(--ink-mute); font-size: 0.9rem; margin-top: 1rem;">
+                    Las líneas aquí presentadas constituyen propuestas fundacionales. Su desarrollo
+                    definitivo dependerá de la aprobación institucional correspondiente.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </div>
-
   </section>
 
   <!-- ============================================================
        AULA VIRTUAL
        ============================================================ -->
   <section class="page" id="aula" aria-labelledby="aula-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -1974,90 +1731,62 @@ main { display: block; }
         </p>
 
         <div class="lms">
-
           <div class="lms__top">
             <div>
               <h3 class="lms__course">Literatura Centroamericana I</h3>
-              <div class="lms__meta" style="margin-top: 0.35rem;">
-                Docente: Dra. María Elena Portillo · Ciclo 2026
-              </div>
+              <div class="lms__meta" style="margin-top: 0.35rem;">Docente: Dra. María Elena Portillo · Ciclo 2026</div>
             </div>
-            <div class="lms__meta">Semana 05 / 16</div>
+            <div class="lms__meta" id="lmsWeek">Semana 05 / 16</div>
           </div>
 
           <div class="lms__layout">
-
             <aside class="lms__sidebar" aria-label="Módulos del curso">
               <h4>Módulos</h4>
 
-              <div class="lms__module">
-                <div class="lms__module-title">
-                  <span>Introducción</span>
-                  <span class="lms__module-num">01</span>
-                </div>
+              <button type="button" class="lms__module-btn" data-module="1" data-week="01" aria-current="false">
+                <div class="lms__module-title"><span>Introducción</span><span class="lms__module-num">01</span></div>
                 <div class="lms__module-status">Completado</div>
-              </div>
-
-              <div class="lms__module">
-                <div class="lms__module-title">
-                  <span>Modernismo</span>
-                  <span class="lms__module-num">02</span>
-                </div>
+              </button>
+              <button type="button" class="lms__module-btn" data-module="2" data-week="02" aria-current="false">
+                <div class="lms__module-title"><span>Modernismo</span><span class="lms__module-num">02</span></div>
                 <div class="lms__module-status">Completado</div>
-              </div>
-
-              <div class="lms__module is-current">
-                <div class="lms__module-title">
-                  <span>Claudia Lars</span>
-                  <span class="lms__module-num">03</span>
-                </div>
+              </button>
+              <button type="button" class="lms__module-btn" data-module="3" data-week="05" aria-current="true">
+                <div class="lms__module-title"><span>Claudia Lars</span><span class="lms__module-num">03</span></div>
                 <div class="lms__module-status">En curso · Semana actual</div>
-              </div>
-
-              <div class="lms__module">
-                <div class="lms__module-title">
-                  <span>Vanguardia</span>
-                  <span class="lms__module-num">04</span>
-                </div>
+              </button>
+              <button type="button" class="lms__module-btn" data-module="4" data-week="09" aria-current="false">
+                <div class="lms__module-title"><span>Vanguardia</span><span class="lms__module-num">04</span></div>
                 <div class="lms__module-status">Por iniciar</div>
-              </div>
-
-              <div class="lms__module">
-                <div class="lms__module-title">
-                  <span>Literatura actual</span>
-                  <span class="lms__module-num">05</span>
-                </div>
+              </button>
+              <button type="button" class="lms__module-btn" data-module="5" data-week="12" aria-current="false">
+                <div class="lms__module-title"><span>Literatura actual</span><span class="lms__module-num">05</span></div>
                 <div class="lms__module-status">Por iniciar</div>
-              </div>
-
-              <div class="lms__module">
-                <div class="lms__module-title">
-                  <span>Proyecto final</span>
-                  <span class="lms__module-num">06</span>
-                </div>
+              </button>
+              <button type="button" class="lms__module-btn" data-module="6" data-week="15" aria-current="false">
+                <div class="lms__module-title"><span>Proyecto final</span><span class="lms__module-num">06</span></div>
                 <div class="lms__module-status">Por iniciar</div>
-              </div>
+              </button>
             </aside>
 
             <div class="lms__main">
-
               <div class="lms__video" role="img" aria-label="Grabación de la sesión">
                 <div class="lms__video-inner">
                   <div class="lms__video-top">
-                    <span>Grabación · Sesión 05</span>
+                    <span id="lmsSessionLabel">Grabación · Sesión 05</span>
                     <span>48:12</span>
                   </div>
                   <div class="lms__video-center">
                     <button type="button" class="lms__play" aria-label="Reproducir grabación"></button>
                   </div>
                   <div class="lms__video-bottom">
-                    <span>Claudia Lars · Tierra, lenguaje y memoria</span>
+                    <span id="lmsVideoCaption">Claudia Lars · Tierra, lenguaje y memoria</span>
                   </div>
                 </div>
               </div>
 
-              <h4 class="lms__lesson-title">Claudia Lars y la poesía de la tierra</h4>
-              <p class="lms__lesson-desc">
+              <h4 class="lms__lesson-title" id="lmsLessonTitle">Claudia Lars y la poesía de la tierra</h4>
+              <p class="lms__lesson-desc" id="lmsLessonDesc">
                 En esta sesión se analiza la obra de Claudia Lars en relación con el paisaje,
                 el lenguaje y la memoria del país. Se discuten los vínculos entre su producción
                 poética y las tradiciones literarias centroamericanas del siglo XX.
@@ -2066,10 +1795,10 @@ main { display: block; }
               <div class="lms__progress">
                 <div class="lms__progress-head">
                   <span>Progreso del curso</span>
-                  <span>42%</span>
+                  <span id="lmsProgressValue">42%</span>
                 </div>
-                <div class="lms__progress-track" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso del curso">
-                  <div class="lms__progress-fill"></div>
+                <div class="lms__progress-track" role="progressbar" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100" aria-label="Progreso del curso" id="lmsProgressBar">
+                  <div class="lms__progress-fill" id="lmsProgressFill"></div>
                 </div>
               </div>
 
@@ -2093,21 +1822,17 @@ main { display: block; }
                   <small>Hace 6 horas</small>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
   </section>
 
   <!-- ============================================================
-       ADMISIONES
+       ADMISIONES · acordeón + form
        ============================================================ -->
   <section class="page" id="admisiones" aria-labelledby="admisiones-title">
-
     <div class="wrap">
       <div class="block">
         <div class="block__head">
@@ -2116,7 +1841,6 @@ main { display: block; }
         </div>
 
         <div class="admission">
-
           <div>
             <p style="font-size: 1.02rem; line-height: 1.75; color: var(--ink-soft); max-width: 52ch; margin-bottom: 1.5rem;">
               El proceso de admisión de la Universidad Claudia Lars busca acompañar a cada
@@ -2125,51 +1849,89 @@ main { display: block; }
             </p>
 
             <div class="steps">
-
               <div class="step">
-                <div class="step__num">01</div>
-                <div>
-                  <div class="step__title">Solicitud inicial</div>
-                  <p class="step__text">
-                    La persona interesada completa el formulario de contacto. Este paso
-                    no constituye inscripción formal.
-                  </p>
+                <button type="button" class="step__trigger" aria-expanded="false" aria-controls="step-1">
+                  <span class="step__num">01</span>
+                  <span class="step__title">Solicitud inicial</span>
+                  <span class="step__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="step__body" id="step-1">
+                  <div class="step__body-inner">
+                    <div class="step__body-content">
+                      <p>La persona interesada completa el formulario de contacto. Este paso no
+                      constituye inscripción formal ni compromiso de matrícula.</p>
+                      <ul>
+                        <li>Formulario disponible en esta página</li>
+                        <li>Respuesta del equipo de admisiones en un plazo por confirmar</li>
+                        <li>Sin costo</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="step">
-                <div class="step__num">02</div>
-                <div>
-                  <div class="step__title">Entrevista de orientación</div>
-                  <p class="step__text">
-                    El equipo de admisiones se comunica para conversar sobre la carrera de
-                    interés, expectativas y acompañamiento académico.
-                  </p>
+                <button type="button" class="step__trigger" aria-expanded="false" aria-controls="step-2">
+                  <span class="step__num">02</span>
+                  <span class="step__title">Entrevista de orientación</span>
+                  <span class="step__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="step__body" id="step-2">
+                  <div class="step__body-inner">
+                    <div class="step__body-content">
+                      <p>El equipo de admisiones se comunica para conversar sobre la carrera de
+                      interés, expectativas y acompañamiento académico.</p>
+                      <ul>
+                        <li>Modalidad por confirmar</li>
+                        <li>Orientación sobre el programa de interés</li>
+                        <li>Espacio para resolver dudas sobre la institución</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="step">
-                <div class="step__num">03</div>
-                <div>
-                  <div class="step__title">Entrega de documentación</div>
-                  <p class="step__text">
-                    Requisitos específicos por confirmar. Consultar con la oficina de
-                    Admisiones para información actualizada.
-                  </p>
+                <button type="button" class="step__trigger" aria-expanded="false" aria-controls="step-3">
+                  <span class="step__num">03</span>
+                  <span class="step__title">Entrega de documentación</span>
+                  <span class="step__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="step__body" id="step-3">
+                  <div class="step__body-inner">
+                    <div class="step__body-content">
+                      <p>Requisitos específicos por confirmar. La documentación requerida se
+                      comunicará oportunamente a las personas que hayan completado los pasos
+                      anteriores.</p>
+                      <ul>
+                        <li>Lista de requisitos: información por confirmar</li>
+                        <li>Consulta directa con la oficina de Admisiones</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
 
               <div class="step">
-                <div class="step__num">04</div>
-                <div>
-                  <div class="step__title">Confirmación de matrícula</div>
-                  <p class="step__text">
-                    Una vez completados los pasos anteriores, se confirma el ingreso y se
-                    asigna el ciclo académico correspondiente.
-                  </p>
+                <button type="button" class="step__trigger" aria-expanded="false" aria-controls="step-4">
+                  <span class="step__num">04</span>
+                  <span class="step__title">Confirmación de matrícula</span>
+                  <span class="step__icon" aria-hidden="true">+</span>
+                </button>
+                <div class="step__body" id="step-4">
+                  <div class="step__body-inner">
+                    <div class="step__body-content">
+                      <p>Una vez completados los pasos anteriores, se confirma el ingreso y se
+                      asigna el ciclo académico correspondiente.</p>
+                      <ul>
+                        <li>Asignación de ciclo académico</li>
+                        <li>Información sobre el inicio de clases</li>
+                        <li>Contacto con la coordinación académica</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-
             </div>
 
             <div class="contact-line">
@@ -2248,22 +2010,16 @@ main { display: block; }
               </p>
             </div>
           </form>
-
         </div>
       </div>
     </div>
-
   </section>
 
 </main>
 
-<!-- ======================================================================
-     FOOTER
-     ====================================================================== -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-top">
-
       <div>
         <div class="footer-brand">
           <svg class="footer-brand__mark" aria-hidden="true"><use href="#ucl-mark"/></svg>
@@ -2306,7 +2062,6 @@ main { display: block; }
           <li><span style="color: rgba(242,236,223,0.78); font-size: 0.92rem;">Atención por confirmar</span></li>
         </ul>
       </div>
-
     </div>
 
     <div class="footer-bottom">
@@ -2316,30 +2071,97 @@ main { display: block; }
   </div>
 </footer>
 
-<!-- ======================================================================
-     JAVASCRIPT
-     ====================================================================== -->
 <script>
 (function () {
   'use strict';
 
-  /* -----------------------------------------------------------------
-     1. NAVEGACIÓN POR SECCIONES
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     1. DATOS DEL MAPA
+     ============================================================ */
+  var MUNI_DATA = {
+    yamabal: {
+      label: 'Sede universitaria',
+      title: 'Yamabal',
+      text: 'Sede de la Universidad Claudia Lars. El municipio se encuentra en el departamento de Morazán, en la zona oriental de El Salvador.'
+    },
+    guatajiagua: {
+      label: 'Zona de influencia',
+      title: 'Guatajiagua',
+      text: 'Municipio de Morazán. Forma parte de la zona de influencia de la universidad para estudiantes del occidente del departamento.'
+    },
+    cacaopera: {
+      label: 'Zona de influencia',
+      title: 'Cacaopera',
+      text: 'Municipio de Morazán con presencia de patrimonio cultural. Forma parte del área de referencia territorial de la universidad.'
+    },
+    jocoro: {
+      label: 'Zona de influencia',
+      title: 'Jocoro',
+      text: 'Municipio de Morazán. Forma parte de la zona de influencia académica de la universidad para estudiantes de la región central del departamento.'
+    },
+    sociedad: {
+      label: 'Zona de influencia',
+      title: 'Sociedad',
+      text: 'Municipio de Morazán. Forma parte de la zona de influencia de la universidad para estudiantes del sector sur del departamento.'
+    },
+    corinto: {
+      label: 'Zona de influencia',
+      title: 'Corinto',
+      text: 'Municipio de Morazán. Forma parte del área de referencia territorial de la universidad para estudiantes del oriente del departamento.'
+    }
+  };
+
+  var mapInfo = document.getElementById('mapInfo');
+  var mapMunis = document.querySelectorAll('.map-muni');
+  var mapListItems = document.querySelectorAll('.map-list__item');
+
+  function setMuni(id) {
+    var data = MUNI_DATA[id];
+    if (!data) return;
+
+    // Actualizar el panel de información
+    mapInfo.innerHTML =
+      '<div class="map-info__label">' + data.label + '</div>' +
+      '<div class="map-info__title">' + data.title + '</div>' +
+      '<div class="map-info__text">' + data.text + '</div>';
+
+    // Actualizar clases activas en mapa y lista
+    mapMunis.forEach(function (m) {
+      m.classList.toggle('is-active', m.dataset.muni === id);
+    });
+    mapListItems.forEach(function (b) {
+      b.classList.toggle('is-active', b.dataset.muni === id);
+    });
+  }
+
+  mapMunis.forEach(function (m) {
+    m.addEventListener('click', function () { setMuni(m.dataset.muni); });
+    m.addEventListener('mouseenter', function () { setMuni(m.dataset.muni); });
+    m.addEventListener('focus', function () { setMuni(m.dataset.muni); });
+    m.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setMuni(m.dataset.muni);
+      }
+    });
+  });
+
+  mapListItems.forEach(function (b) {
+    b.addEventListener('click', function () { setMuni(b.dataset.muni); });
+  });
+
+  /* ============================================================
+     2. NAVEGACIÓN ENTRE PÁGINAS
+     ============================================================ */
   var SECTIONS = ['inicio', 'universidad', 'oferta', 'vida', 'investigacion', 'aula', 'admisiones'];
   var DEFAULT = 'inicio';
-
-  var header = document.querySelector('.site-header');
   var main = document.getElementById('main');
   var navLinks = document.querySelectorAll('[data-nav]');
 
   function setActiveNav(id) {
     navLinks.forEach(function (link) {
-      if (link.dataset.nav === id) {
-        link.setAttribute('aria-current', 'page');
-      } else {
-        link.removeAttribute('aria-current');
-      }
+      if (link.dataset.nav === id) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
     });
   }
 
@@ -2347,7 +2169,6 @@ main { display: block; }
     opts = opts || {};
     if (SECTIONS.indexOf(id) === -1) id = DEFAULT;
 
-    // Ocultar todas las páginas
     SECTIONS.forEach(function (name) {
       var el = document.getElementById(name);
       if (!el) return;
@@ -2362,42 +2183,34 @@ main { display: block; }
 
     setActiveNav(id);
 
-    // Actualizar el hash sin provocar scroll hacia el elemento
     if (opts.updateHash !== false) {
       var currentHash = location.hash.replace(/^#/, '');
       if (currentHash !== id) {
-        if (history.pushState) {
-          history.pushState(null, '', '#' + id);
-        } else {
-          location.hash = id;
-        }
+        if (history.pushState) history.pushState(null, '', '#' + id);
+        else location.hash = id;
       }
     }
 
-    // Cerrar panel móvil
     closeMobile();
 
-    // Enfocar el encabezado principal de la sección para accesibilidad
     if (opts.focus !== false) {
       var section = document.getElementById(id);
       if (section) {
-        var target = section.querySelector('h1, h2, [data-focus]');
+        var target = section.querySelector('h1, h2');
         if (target) {
           target.setAttribute('tabindex', '-1');
-          // Solo enfocar si la navegación fue por interacción del usuario
           target.focus({ preventScroll: true });
           target.removeAttribute('tabindex');
         }
       }
     }
 
-    // Scroll al inicio de la página
     window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
-  /* -----------------------------------------------------------------
-     2. MENÚ MÓVIL
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     3. MENÚ MÓVIL
+     ============================================================ */
   var menuToggle = document.getElementById('menuToggle');
   var mobilePanel = document.getElementById('mobilePanel');
 
@@ -2414,11 +2227,8 @@ main { display: block; }
     if (isOpen) closeMobile(); else openMobile();
   }
 
-  if (menuToggle) {
-    menuToggle.addEventListener('click', toggleMobile);
-  }
+  if (menuToggle) menuToggle.addEventListener('click', toggleMobile);
 
-  // Cerrar menú móvil con Escape
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && mobilePanel.getAttribute('data-open') === 'true') {
       closeMobile();
@@ -2426,90 +2236,160 @@ main { display: block; }
     }
   });
 
-  // Cerrar menú si la ventana se agranda
   window.addEventListener('resize', function () {
     if (window.innerWidth > 960) closeMobile();
   });
 
-  /* -----------------------------------------------------------------
-     3. DELEGACIÓN DE NAVEGACIÓN
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     4. DELEGACIÓN DE NAVEGACIÓN
+     ============================================================ */
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-nav]');
     if (!trigger) return;
-
-    // Enlaces con href="#..." — evitar salto brusco
     if (trigger.tagName === 'A') {
       var href = trigger.getAttribute('href') || '';
-      if (href.charAt(0) === '#') {
-        e.preventDefault();
-      }
+      if (href.charAt(0) === '#') e.preventDefault();
     } else {
       e.preventDefault();
     }
-
     show(trigger.dataset.nav);
   });
 
-  /* -----------------------------------------------------------------
-     4. SINCRONIZACIÓN CON EL HASH Y EL HISTORIAL
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     5. HASH Y HISTORIAL
+     ============================================================ */
   function fromHash(initial) {
     var id = (location.hash || '').replace(/^#/, '') || DEFAULT;
     show(id, { updateHash: false, focus: !initial });
   }
-
   window.addEventListener('hashchange', function () { fromHash(false); });
   window.addEventListener('popstate', function () { fromHash(false); });
 
-  /* -----------------------------------------------------------------
-     5. FORMULARIO DE ADMISIÓN
-     ----------------------------------------------------------------- */
-  var form = document.getElementById('admissionForm');
-  var notice = document.getElementById('formNotice');
-  var noticeText = document.getElementById('formNoticeText');
+  /* ============================================================
+     6. TABS DE UNIVERSIDAD
+     ============================================================ */
+  var tabBtns = document.querySelectorAll('.tabs__btn');
+  var tabPanels = document.querySelectorAll('.tabs__panel');
 
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      notice.setAttribute('data-open', 'false');
-
-      // Validación nativa
-      if (!form.checkValidity()) {
-        // Enfocar el primer campo inválido
-        var firstInvalid = form.querySelector(':invalid');
-        if (firstInvalid) firstInvalid.focus();
-        return;
-      }
-
-      // Recoger datos
-      var nombre = (form.nombre.value || '').trim().split(' ')[0] || '';
-      var programa = form.carrera.value || '';
-
-      noticeText.innerHTML =
-        'Gracias, <strong>' + escapeHTML(nombre) + '</strong>. ' +
-        'Hemos registrado tu interés en <em>' + escapeHTML(programa) + '</em>. ' +
-        'El equipo de admisiones de la Universidad Claudia Lars se pondrá en contacto ' +
-        'contigo a la brevedad posible.';
-
-      notice.setAttribute('data-open', 'true');
-      notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      notice.focus && notice.focus();
-
-      // Resetear los campos (excepto el aviso)
-      form.reset();
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      tabBtns.forEach(function (b) { b.setAttribute('aria-selected', 'false'); });
+      tabPanels.forEach(function (p) { p.removeAttribute('data-active'); });
+      btn.setAttribute('aria-selected', 'true');
+      var target = document.getElementById(btn.getAttribute('aria-controls'));
+      if (target) target.setAttribute('data-active', 'true');
     });
-  }
+  });
 
-  function escapeHTML(str) {
-    return String(str).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  /* ============================================================
+     7. FILTROS DEL CATÁLOGO
+     ============================================================ */
+  var filterChips = document.querySelectorAll('.filter-chip');
+  var catalogItems = document.querySelectorAll('.catalog__item');
+
+  filterChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var filter = chip.dataset.filter;
+
+      filterChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+      chip.setAttribute('aria-pressed', 'true');
+
+      catalogItems.forEach(function (item) {
+        var area = item.dataset.area;
+        var visible = (filter === 'todas' || filter === area);
+        item.classList.toggle('is-hidden', !visible);
+        if (!visible) item.classList.remove('is-open');
+      });
     });
-  }
+  });
 
-  /* -----------------------------------------------------------------
-     6. INTERACCIONES DEL AULA VIRTUAL
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     8. ACORDEÓN DEL CATÁLOGO
+     ============================================================ */
+  var catalogRows = document.querySelectorAll('.catalog__row');
+
+  catalogRows.forEach(function (row) {
+    row.addEventListener('click', function () {
+      var item = row.closest('.catalog__item');
+      var isOpen = item.classList.toggle('is-open');
+      row.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  /* ============================================================
+     9. ACORDEÓN DE INVESTIGACIÓN
+     ============================================================ */
+  var researchTriggers = document.querySelectorAll('.research-trigger');
+
+  researchTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      var item = trigger.closest('.research-item');
+      var isOpen = item.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  /* ============================================================
+     10. ACORDEÓN DE ADMISIONES
+     ============================================================ */
+  var stepTriggers = document.querySelectorAll('.step__trigger');
+
+  stepTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      var step = trigger.closest('.step');
+      var isOpen = step.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  /* ============================================================
+     11. AULA VIRTUAL · módulos interactivos
+     ============================================================ */
+  var moduleBtns = document.querySelectorAll('.lms__module-btn');
+  var lmsWeek = document.getElementById('lmsWeek');
+  var lmsSession = document.getElementById('lmsSessionLabel');
+  var lmsLessonTitle = document.getElementById('lmsLessonTitle');
+  var lmsLessonDesc = document.getElementById('lmsLessonDesc');
+  var lmsProgressValue = document.getElementById('lmsProgressValue');
+  var lmsProgressBar = document.getElementById('lmsProgressBar');
+  var lmsProgressFill = document.getElementById('lmsProgressFill');
+
+  var MODULE_CONTENT = {
+    '1': { title: 'Introducción a la literatura centroamericana', desc: 'Panorama general de las tradiciones literarias de Centroamérica. Contexto histórico, géneros y principales autores.', progress: 100 },
+    '2': { title: 'Modernismo y sus derivas', desc: 'Estudio del modernismo literario y su recepción en Centroamérica. Rubén Darío y su influencia en la región.', progress: 100 },
+    '3': { title: 'Claudia Lars y la poesía de la tierra', desc: 'Análisis de la obra de Claudia Lars en relación con el paisaje, el lenguaje y la memoria del país.', progress: 42 },
+    '4': { title: 'Vanguardias centroamericanas', desc: 'Las vanguardias literarias del siglo XX en Centroamérica. Rupturas formales y propuestas estéticas.', progress: 0 },
+    '5': { title: 'Literatura actual', desc: 'Panorama de la literatura centroamericana contemporánea. Nuevas voces, nuevos formatos.', progress: 0 },
+    '6': { title: 'Proyecto final', desc: 'Trabajo monográfico final del curso. Investigación sobre un tema acordado con la docente.', progress: 0 }
+  };
+
+  moduleBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var moduleId = btn.dataset.module;
+      var week = btn.dataset.week;
+      var content = MODULE_CONTENT[moduleId];
+      if (!content) return;
+
+      moduleBtns.forEach(function (b) { b.setAttribute('aria-current', 'false'); });
+      btn.setAttribute('aria-current', 'true');
+
+      if (lmsWeek) lmsWeek.textContent = 'Semana ' + week + ' / 16';
+      if (lmsSession) lmsSession.textContent = 'Grabación · Sesión ' + week;
+      if (lmsLessonTitle) lmsLessonTitle.textContent = content.title;
+      if (lmsLessonDesc) lmsLessonDesc.textContent = content.desc;
+      if (lmsProgressValue) lmsProgressValue.textContent = content.progress + '%';
+      if (lmsProgressBar) lmsProgressBar.setAttribute('aria-valuenow', content.progress);
+      if (lmsProgressFill) lmsProgressFill.style.width = content.progress + '%';
+
+      // Actualizar foro
+      var foroTitle = document.querySelector('#foroBlock h5');
+      if (foroTitle) foroTitle.textContent = 'Foro · Módulo ' + ('0' + moduleId).slice(-2);
+    });
+  });
+
+  /* ============================================================
+     12. AULA VIRTUAL · acciones
+     ============================================================ */
   var quizBtn = document.getElementById('quizBtn');
   var foroBtn = document.getElementById('foroBtn');
   var foroBlock = document.getElementById('foroBlock');
@@ -2536,9 +2416,49 @@ main { display: block; }
     });
   }
 
-  /* -----------------------------------------------------------------
-     7. INICIALIZACIÓN
-     ----------------------------------------------------------------- */
+  /* ============================================================
+     13. FORMULARIO DE ADMISIÓN
+     ============================================================ */
+  var form = document.getElementById('admissionForm');
+  var notice = document.getElementById('formNotice');
+  var noticeText = document.getElementById('formNoticeText');
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      notice.setAttribute('data-open', 'false');
+
+      if (!form.checkValidity()) {
+        var firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      var nombre = (form.nombre.value || '').trim().split(' ')[0] || '';
+      var programa = form.carrera.value || '';
+
+      noticeText.innerHTML =
+        'Gracias, <strong>' + escapeHTML(nombre) + '</strong>. ' +
+        'Hemos registrado tu interés en <em>' + escapeHTML(programa) + '</em>. ' +
+        'El equipo de admisiones de la Universidad Claudia Lars se pondrá en contacto ' +
+        'contigo a la brevedad posible.';
+
+      notice.setAttribute('data-open', 'true');
+      notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      form.reset();
+    });
+  }
+
+  function escapeHTML(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ============================================================
+     14. INICIALIZACIÓN
+     ============================================================ */
   fromHash(true);
 
 })();
