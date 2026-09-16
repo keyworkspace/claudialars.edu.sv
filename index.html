@@ -12,12 +12,9 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS
-   Sistema visual replicado del lenguaje Webflow institucional
+   UNIVERSIDAD CLAUDIA LARS · sistema UEES
    ========================================================================== */
-
 :root {
-  /* Colores primarios · mismo ADN cromático */
   --purple:       #6B2D8E;
   --purple-deep:  #2B1461;
   --purple-mid:   #8B3DAE;
@@ -33,7 +30,6 @@
   --red:          #E63946;
   --orange:       #FF6B35;
 
-  /* Neutros */
   --ink:          #0E0A1A;
   --ink-soft:     #221A38;
   --paper:        #FAF7F0;
@@ -76,9 +72,7 @@ ul, ol { list-style: none; }
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
-/* ==========================================================================
-   LOADER
-   ========================================================================== */
+/* LOADER */
 .loader {
   position: fixed; inset: 0;
   background: var(--paper);
@@ -87,7 +81,6 @@ ul, ol { list-style: none; }
   transition: opacity 600ms ease, visibility 600ms ease;
 }
 .loader[data-hidden="true"] { opacity: 0; visibility: hidden; pointer-events: none; }
-
 .loader__inner { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .loader__mark { width: 64px; height: 64px; color: var(--purple); }
 .loader__bar {
@@ -102,9 +95,7 @@ ul, ol { list-style: none; }
 }
 @keyframes loadFill { to { width: 100%; } }
 
-/* ==========================================================================
-   NAV
-   ========================================================================== */
+/* NAV */
 .nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--paper);
@@ -126,11 +117,9 @@ ul, ol { list-style: none; }
   gap: 2rem;
 }
 
-.brand {
-  display: flex; align-items: center; gap: 0.75rem;
-  flex-shrink: 0;
-}
-.brand__mark { width: 40px; height: 40px; color: var(--purple); }
+.brand { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.brand__mark { width: 40px; height: 40px; color: var(--purple); transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1); }
+.brand:hover .brand__mark { transform: rotate(-8deg) scale(1.08); }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand__name {
   font-family: var(--ui);
@@ -149,11 +138,7 @@ ul, ol { list-style: none; }
   margin-top: 0.15rem;
 }
 
-.nav__links {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-}
+.nav__links { display: flex; align-items: center; gap: 0.15rem; }
 .nav__link {
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
@@ -163,28 +148,46 @@ ul, ol { list-style: none; }
   cursor: pointer;
   background: none; border: none;
   transition: background 200ms ease, color 200ms ease;
-  position: relative;
 }
 .nav__link:hover { background: rgba(107,45,142,0.08); color: var(--purple); }
 .nav__link[aria-current="page"] { background: var(--purple); color: white; }
 
 .nav__actions { display: flex; align-items: center; gap: 0.75rem; }
 
+/* BOTÓN OFICIAL · hover fill UEES */
 .nav__official {
+  position: relative;
   display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1rem;
+  padding: 0.65rem 1.1rem;
   border-radius: 999px;
   border: 1.5px solid var(--ink);
-  background: transparent;
+  background-color: transparent;
   color: var(--ink);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   cursor: pointer;
-  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  transition: background-size 420ms cubic-bezier(0.65, 0, 0.2, 1),
+              color 280ms cubic-bezier(0.65, 0, 0.2, 1),
+              border-color 280ms ease;
 }
-.nav__official:hover { background: var(--ink); color: var(--paper); }
-.nav__official::after { content: '↗'; font-size: 0.85rem; }
+.nav__official:hover {
+  background-size: 100% 100%;
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.nav__official .arr {
+  position: relative;
+  display: inline-block;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.nav__official:hover .arr { transform: translate(3px, -3px); }
 
 .menu-toggle {
   display: none;
@@ -200,21 +203,17 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 0.5rem;
 }
-.menu-toggle__icon {
-  width: 14px; height: 10px;
-  position: relative;
-}
+.menu-toggle__icon { width: 14px; height: 10px; position: relative; }
 .menu-toggle__icon::before,
 .menu-toggle__icon::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
+  content: ''; position: absolute; left: 0; right: 0;
+  height: 2px; background: currentColor; border-radius: 2px;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
 }
 .menu-toggle__icon::before { top: 0; }
 .menu-toggle__icon::after { bottom: 0; }
+.menu-toggle:hover .menu-toggle__icon::before { transform: translateY(-1px); }
+.menu-toggle:hover .menu-toggle__icon::after { transform: translateY(1px); }
 
 @media (max-width: 1100px) {
   .nav__links { display: none; }
@@ -222,10 +221,8 @@ ul, ol { list-style: none; }
   .nav__official { display: none; }
 }
 
-/* Panel móvil */
 .mobile-nav {
-  position: fixed;
-  top: 0; right: 0; bottom: 0;
+  position: fixed; top: 0; right: 0; bottom: 0;
   width: min(440px, 92vw);
   background: var(--paper);
   z-index: 200;
@@ -244,7 +241,9 @@ ul, ol { list-style: none; }
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 2rem;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1), background 200ms ease;
 }
+.mobile-nav__close:hover { transform: rotate(90deg); background: var(--purple); }
 .mobile-nav__item {
   display: block; width: 100%;
   background: none; border: none;
@@ -257,9 +256,9 @@ ul, ol { list-style: none; }
   letter-spacing: -0.02em;
   color: var(--ink);
   cursor: pointer;
-  transition: color 200ms ease, padding 200ms ease;
+  transition: color 200ms ease, padding 300ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.mobile-nav__item:hover { color: var(--purple); padding-left: 0.5rem; }
+.mobile-nav__item:hover { color: var(--purple); padding-left: 0.75rem; }
 .mobile-nav__cta {
   display: block;
   margin-top: 2rem;
@@ -284,9 +283,7 @@ ul, ol { list-style: none; }
 }
 .nav-overlay[data-open="true"] { opacity: 1; visibility: visible; }
 
-/* ==========================================================================
-   MAIN + PÁGINAS
-   ========================================================================== */
+/* MAIN */
 main { display: block; }
 .page { display: none; }
 .page[data-active="true"] { display: block; }
@@ -297,9 +294,7 @@ main { display: block; }
   padding: 0 var(--gutter);
 }
 
-/* ==========================================================================
-   HERO
-   ========================================================================== */
+/* HERO */
 .hero {
   background: var(--purple);
   color: white;
@@ -308,14 +303,11 @@ main { display: block; }
   position: relative;
   overflow: hidden;
 }
-
 .hero__inner {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--gutter);
-  position: relative;
 }
-
 .hero__spread {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
@@ -323,8 +315,6 @@ main { display: block; }
   align-items: center;
   min-height: 520px;
 }
-
-/* Riel de placas (hero ticker) */
 .hero__rail {
   position: relative;
   height: 520px;
@@ -332,7 +322,6 @@ main { display: block; }
   mask-image: linear-gradient(180deg, transparent 0%, black 8%, black 92%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
-
 .hero__rail-track {
   display: flex;
   gap: 1rem;
@@ -344,31 +333,21 @@ main { display: block; }
   to { transform: translateX(-50%); }
 }
 .hero__rail:hover .hero__rail-track { animation-play-state: paused; }
-
 .hero__col {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex-shrink: 0;
-  justify-content: center;
+  display: flex; flex-direction: column; gap: 1rem;
+  flex-shrink: 0; justify-content: center;
 }
-
 .hero__tile {
   width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
-  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; flex-shrink: 0;
+  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.hero__tile:hover { transform: scale(1.04); }
+.hero__tile:hover { transform: scale(1.05); }
 .hero__tile svg { width: 52px; height: 52px; opacity: 0.85; }
-
 .hero__tile--circle { border-radius: 50%; }
 .hero__tile--square { border-radius: 28px; }
 .hero__tile--pill { border-radius: 100px; }
-
 .hero__tile--h1 { height: 220px; background: var(--papaya); color: var(--ink); }
 .hero__tile--h2 { height: 300px; background: var(--yellow); color: var(--ink); }
 .hero__tile--h3 { height: 260px; background: var(--lightblue); color: var(--ink); }
@@ -377,7 +356,6 @@ main { display: block; }
 .hero__tile--h6 { height: 280px; background: var(--lightblue); color: var(--ink); }
 .hero__tile--h7 { height: 300px; background: var(--purple-mid); color: white; }
 .hero__tile--h8 { height: 240px; background: var(--purple-soft); color: var(--purple-deep); }
-
 .hero__tile-num {
   position: absolute;
   top: 1rem; left: 1.1rem;
@@ -388,9 +366,7 @@ main { display: block; }
   opacity: 0.55;
 }
 
-/* Contenido */
 .hero__content { position: relative; }
-
 .hero__tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.45rem 0.95rem;
@@ -409,7 +385,6 @@ main { display: block; }
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--yellow);
-  box-shadow: 0 0 0 3px rgba(255,210,63,0.25);
   animation: pulseDot 2s ease-in-out infinite;
 }
 @keyframes pulseDot {
@@ -426,21 +401,26 @@ main { display: block; }
   color: white;
   margin-bottom: 1.75rem;
 }
-.hero__title .scribble {
+
+/* HIGHLIGHT arreglado · barra fina debajo de la palabra */
+.hl {
   position: relative;
   display: inline-block;
-  padding: 0 0.08em;
+  isolation: isolate;
+  z-index: 0;
+  padding: 0 0.02em;
 }
-.hero__title .scribble::before {
+.hl::before {
   content: '';
   position: absolute;
-  left: -3%; right: -3%;
-  bottom: 0.08em;
-  height: 0.42em;
+  left: -1.5%;
+  right: -1.5%;
+  bottom: 0.1em;
+  height: 0.22em;
   background: var(--yellow);
   border-radius: 100px;
   z-index: -1;
-  transform: rotate(-1.5deg);
+  transform: rotate(-1deg);
 }
 
 .hero__lead {
@@ -450,7 +430,6 @@ main { display: block; }
   max-width: 48ch;
   margin-bottom: 2rem;
 }
-
 .hero__actions {
   display: flex;
   align-items: center;
@@ -458,36 +437,41 @@ main { display: block; }
   flex-wrap: wrap;
 }
 
+/* CTA CIRCLE · animación UEES */
 .cta-circle {
   position: relative;
   width: 84px; height: 84px;
   border-radius: 50%;
-  background: var(--yellow);
+  background-color: var(--yellow);
   color: var(--ink);
   border: none;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   overflow: hidden;
-  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.cta-circle__arrow {
-  position: relative;
-  z-index: 1;
-  font-size: 1.5rem;
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+  isolation: isolate;
+  transition: transform 450ms cubic-bezier(0.65, 0, 0.2, 1);
 }
 .cta-circle::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--papaya);
-  transform: scale(0);
+  background: var(--purple);
   border-radius: 50%;
+  transform: scale(0);
   transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+  z-index: 0;
 }
 .cta-circle:hover::before { transform: scale(1); }
-.cta-circle:hover .cta-circle__arrow { transform: rotate(-45deg); }
+.cta-circle__arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: var(--ink);
+  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1),
+              color 350ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.cta-circle:hover .cta-circle__arrow { transform: rotate(-45deg); color: var(--yellow); }
 .cta-circle:hover { transform: scale(1.06); }
 
 .cta-link {
@@ -499,10 +483,11 @@ main { display: block; }
   background: none; border: none;
   padding: 0.75rem 0;
   border-bottom: 2px solid rgba(255,255,255,0.4);
-  transition: border-color 200ms ease, gap 200ms ease;
+  transition: border-color 250ms ease, gap 300ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.cta-link:hover { border-color: white; gap: 0.75rem; }
-.cta-link::after { content: '→'; }
+.cta-link:hover { border-color: white; gap: 0.85rem; }
+.cta-link::after { content: '→'; transition: transform 300ms cubic-bezier(0.65, 0, 0.2, 1); }
+.cta-link:hover::after { transform: translateX(3px); }
 
 @media (max-width: 900px) {
   .hero__spread { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
@@ -518,14 +503,13 @@ main { display: block; }
   .hero__tile--h8 { height: 180px; }
 }
 
-/* ==========================================================================
-   BLOQUES REDONDEADOS
-   ========================================================================== */
+/* ROUNDED BLOCKS */
 .rblock {
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
+.rblock + .rblock { margin-top: 1.25rem; }
 .rblock__inner {
   border-radius: 40px;
   padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
@@ -536,6 +520,8 @@ main { display: block; }
 .rblock--dark .rblock__inner { background: var(--purple-deep); color: white; }
 .rblock--papaya .rblock__inner { background: var(--papaya); color: var(--purple-deep); }
 .rblock--yellow .rblock__inner { background: var(--yellow); color: var(--ink); }
+.rblock--purple .rblock__inner { background: var(--purple); color: white; }
+.rblock--cream .rblock__inner { background: var(--paper-warm); color: var(--ink); }
 
 .rblock__grid {
   display: grid;
@@ -543,7 +529,6 @@ main { display: block; }
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
 }
-.rblock__grid--center { grid-template-columns: 1fr; text-align: center; }
 
 .rblock__title {
   font-family: var(--ui);
@@ -555,55 +540,82 @@ main { display: block; }
 }
 .rblock__title em {
   font-style: normal;
-  background: linear-gradient(180deg, transparent 62%, currentColor 62%, currentColor 92%, transparent 92%);
-  padding: 0 0.1em;
+  color: var(--purple);
 }
+.rblock--dark .rblock__title em,
+.rblock--purple .rblock__title em { color: var(--yellow); }
 
 .rblock__text {
   font-size: 1.05rem;
   line-height: 1.6;
   max-width: 52ch;
   opacity: 0.85;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
+.rblock__text:last-of-type { margin-bottom: 1.75rem; }
 
+/* BOTONES · hover fill estilo UEES */
 .btn-big {
-  display: inline-flex; align-items: center; gap: 0.75rem;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   padding: 1.15rem 1.75rem;
-  background: var(--ink);
+  background-color: var(--ink);
   color: white;
   border-radius: 999px;
+  font-family: var(--ui);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
   border: none;
-  transition: background 200ms ease, transform 200ms ease, gap 200ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  background-image: linear-gradient(var(--papaya), var(--papaya));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  transition: background-size 480ms cubic-bezier(0.65, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.btn-big:hover { background: var(--purple); gap: 1rem; }
-.btn-big--light { background: white; color: var(--ink); }
-.btn-big--light:hover { background: var(--yellow); }
-.btn-big::after { content: '→'; }
+.btn-big:hover {
+  background-size: 100% 100%;
+  color: var(--ink);
+}
+.btn-big::after {
+  content: '→';
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.btn-big:hover::after { transform: translateX(5px); }
+
+.btn-big--light {
+  background-color: white;
+  color: var(--ink);
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+}
+.btn-big--light:hover { color: var(--ink); }
+
+.btn-big--purple {
+  background-color: var(--purple);
+  color: white;
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+}
+.btn-big--purple:hover { color: var(--ink); }
 
 @media (max-width: 800px) {
   .rblock__grid { grid-template-columns: 1fr; }
   .rblock__inner { border-radius: 32px; }
 }
 
-/* ==========================================================================
-   DIFERENTES · grid asimétrico
-   ========================================================================== */
-.dif-section {
-  padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
-}
-
+/* DIF SECTION */
+.dif-section { padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem); }
 .dif-head {
   max-width: var(--max);
   margin: 0 auto clamp(3rem, 5vw, 4.5rem);
   padding: 0 var(--gutter);
   text-align: center;
 }
-
 .dif-title {
   font-family: var(--ui);
   font-weight: 800;
@@ -615,20 +627,21 @@ main { display: block; }
 .dif-title .circled {
   position: relative;
   display: inline-block;
-  padding: 0 0.15em;
+  padding: 0 0.18em;
 }
 .dif-title .circled::after {
   content: '';
   position: absolute;
-  inset: -8% -6%;
+  inset: -10% -8%;
   border: 3px solid var(--red);
   border-radius: 50% 45% 48% 52% / 55% 48% 52% 45%;
   transform: rotate(-3deg);
   animation: wobbly 4s ease-in-out infinite;
+  pointer-events: none;
 }
 @keyframes wobbly {
   0%, 100% { transform: rotate(-3deg) scale(1); }
-  50% { transform: rotate(-1deg) scale(1.02); }
+  50% { transform: rotate(-1.5deg) scale(1.015); }
 }
 
 .dif-grid {
@@ -639,16 +652,9 @@ main { display: block; }
   flex-direction: column;
   gap: 1.25rem;
 }
-
-.dif-row {
-  display: grid;
-  gap: 1.25rem;
-}
+.dif-row { display: grid; gap: 1.25rem; }
 .dif-row--2 { grid-template-columns: 1fr 1fr; }
-
-@media (max-width: 900px) {
-  .dif-row--2 { grid-template-columns: 1fr; }
-}
+@media (max-width: 900px) { .dif-row--2 { grid-template-columns: 1fr; } }
 
 .dif-card {
   border-radius: 32px;
@@ -660,10 +666,9 @@ main { display: block; }
   min-height: 380px;
   position: relative;
   overflow: hidden;
-  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.dif-card:hover { transform: translateY(-4px); }
-
+.dif-card:hover { transform: translateY(-5px); }
 .dif-card--papaya { background: var(--papaya); color: var(--ink); }
 .dif-card--purple { background: var(--purple); color: white; }
 .dif-card--yellow { background: var(--yellow); color: var(--ink); }
@@ -671,14 +676,7 @@ main { display: block; }
 .dif-card--deep { background: var(--purple-deep); color: white; }
 .dif-card--cream { background: var(--paper-warm); color: var(--ink); }
 
-.dif-card__head {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  position: relative;
-  z-index: 1;
-}
-
+.dif-card__head { display: flex; flex-direction: column; gap: 1.25rem; position: relative; z-index: 1; }
 .dif-card__eyebrow {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -687,7 +685,6 @@ main { display: block; }
   font-weight: 500;
   opacity: 0.7;
 }
-
 .dif-card__title {
   font-family: var(--ui);
   font-weight: 800;
@@ -696,14 +693,12 @@ main { display: block; }
   letter-spacing: -0.025em;
   max-width: 22ch;
 }
-
 .dif-card__desc {
   font-size: 0.95rem;
   line-height: 1.55;
   opacity: 0.82;
   max-width: 42ch;
 }
-
 .dif-card__bottom {
   display: flex;
   justify-content: space-between;
@@ -714,46 +709,61 @@ main { display: block; }
 }
 
 .dif-card__icon {
-  width: 96px;
-  height: 96px;
+  width: 96px; height: 96px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: rgba(0,0,0,0.08);
   flex-shrink: 0;
+  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
 }
+.dif-card:hover .dif-card__icon { transform: rotate(-8deg) scale(1.06); }
 .dif-card--purple .dif-card__icon,
 .dif-card--deep .dif-card__icon { background: rgba(255,255,255,0.14); }
 .dif-card__icon svg { width: 44px; height: 44px; }
 
+/* BOTÓN DIF-CARD · hover fill UEES */
 .dif-cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--ui);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.02em;
   padding: 0.75rem 1.15rem;
   border-radius: 999px;
-  background: var(--ink);
+  background-color: var(--ink);
   color: white;
   border: none;
   cursor: pointer;
-  transition: background 200ms ease, gap 200ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  background-image: linear-gradient(var(--purple), var(--purple));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  transition: background-size 450ms cubic-bezier(0.65, 0, 0.2, 1),
+              color 280ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.dif-cta:hover { background: var(--purple); gap: 0.75rem; }
-.dif-cta::after { content: '→'; }
+.dif-cta:hover { background-size: 100% 100%; color: white; }
+.dif-cta::after {
+  content: '→';
+  transition: transform 380ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.dif-cta:hover::after { transform: translateX(4px); }
 
 .dif-card--purple .dif-cta,
-.dif-card--deep .dif-cta { background: white; color: var(--ink); }
-.dif-card--purple .dif-cta:hover,
-.dif-card--deep .dif-cta:hover { background: var(--yellow); }
-
-/* ==========================================================================
-   FAQ · sticky
-   ========================================================================== */
-.faq-section {
-  padding: clamp(4rem, 8vw, 7rem) 0;
+.dif-card--deep .dif-cta {
+  background-color: white;
+  color: var(--ink);
+  background-image: linear-gradient(var(--yellow), var(--yellow));
 }
+.dif-card--purple .dif-cta:hover,
+.dif-card--deep .dif-cta:hover { color: var(--ink); }
+
+/* FAQ */
+.faq-section { padding: clamp(4rem, 8vw, 7rem) 0; }
 .faq-grid {
   max-width: var(--max);
   margin: 0 auto;
@@ -763,15 +773,9 @@ main { display: block; }
   gap: clamp(2rem, 5vw, 5rem);
   align-items: start;
 }
-@media (max-width: 900px) {
-  .faq-grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 900px) { .faq-grid { grid-template-columns: 1fr; } }
 
-.faq-side {
-  position: sticky;
-  top: 100px;
-  align-self: start;
-}
+.faq-side { position: sticky; top: 100px; align-self: start; }
 .faq-side__title {
   font-family: var(--ui);
   font-weight: 800;
@@ -781,12 +785,7 @@ main { display: block; }
   color: var(--ink);
   margin-bottom: 1rem;
 }
-.faq-side__title em {
-  font-style: normal;
-  color: var(--purple);
-  background: linear-gradient(180deg, transparent 62%, var(--yellow) 62%, var(--yellow) 92%, transparent 92%);
-  padding: 0 0.1em;
-}
+.faq-side__title em { font-style: normal; color: var(--purple); }
 .faq-side__text {
   font-size: 0.98rem;
   line-height: 1.6;
@@ -807,12 +806,10 @@ main { display: block; }
 }
 .faq-side__poster::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(90% 60% at 30% 15%, rgba(255,210,63,0.35), transparent 60%),
-    radial-gradient(80% 60% at 80% 85%, rgba(255,167,82,0.3), transparent 60%),
-    repeating-linear-gradient(-30deg, transparent 0 40px, rgba(255,255,255,0.04) 40px 41px);
+    radial-gradient(80% 60% at 80% 85%, rgba(255,167,82,0.3), transparent 60%);
 }
 .faq-side__poster-badge {
   position: absolute;
@@ -836,10 +833,7 @@ main { display: block; }
   letter-spacing: -0.03em;
   max-width: 12ch;
 }
-.faq-side__poster-title em {
-  font-style: normal;
-  color: var(--yellow);
-}
+.faq-side__poster-title em { font-style: normal; color: var(--yellow); }
 
 .faq-list { border-top: 1.5px solid var(--ink); }
 .faq-item { border-bottom: 1.5px solid rgba(14,10,26,0.12); }
@@ -874,13 +868,13 @@ main { display: block; }
   flex-shrink: 0;
   font-size: 1.3rem;
   font-weight: 300;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1), background 200ms ease;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1),
+              background 250ms ease;
 }
 .faq-item.is-open .faq-trigger__icon {
   background: var(--purple);
   transform: rotate(45deg);
 }
-
 .faq-body {
   display: grid;
   grid-template-rows: 0fr;
@@ -899,17 +893,9 @@ main { display: block; }
 .faq-body__content p:last-child { margin-bottom: 0; }
 .faq-body__content strong { color: var(--ink); }
 
-/* ==========================================================================
-   PODCAST
-   ========================================================================== */
-.podcast-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.podcast-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
+/* PODCAST */
+.podcast-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+.podcast-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .podcast-block {
   border-radius: 40px;
   background: var(--lightblue);
@@ -920,57 +906,36 @@ main { display: block; }
   gap: clamp(2rem, 4vw, 3.5rem);
   align-items: center;
 }
-@media (max-width: 800px) {
-  .podcast-block { grid-template-columns: 1fr; }
-}
-
+@media (max-width: 800px) { .podcast-block { grid-template-columns: 1fr; } }
 .podcast-visual {
   border-radius: 28px;
   aspect-ratio: 1;
   background: var(--purple);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   position: relative;
   overflow: hidden;
 }
 .podcast-visual::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(60% 60% at 30% 30%, rgba(255,210,63,0.4), transparent 70%),
     radial-gradient(70% 70% at 80% 80%, rgba(255,167,82,0.35), transparent 70%);
 }
-.podcast-visual svg {
-  position: relative;
-  width: 120px; height: 120px;
-  color: white;
-  opacity: 0.9;
-}
-
+.podcast-visual svg { position: relative; width: 120px; height: 120px; color: white; opacity: 0.9; }
 .podcast-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.45rem 0.9rem;
-  background: var(--green);
-  color: white;
+  background: var(--green); color: white;
   border-radius: 999px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
   margin-bottom: 1.25rem;
 }
 .podcast-tag::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: white;
-  animation: pulseDot 2s ease-in-out infinite;
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: white; animation: pulseDot 2s ease-in-out infinite;
 }
-
 .podcast-title {
   font-family: var(--ui);
   font-weight: 800;
@@ -979,25 +944,14 @@ main { display: block; }
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
-.podcast-title em {
-  font-style: normal;
-  color: var(--purple);
-}
+.podcast-title em { font-style: normal; color: var(--purple); }
 .podcast-desc {
-  font-size: 1rem;
-  line-height: 1.55;
-  opacity: 0.8;
-  margin-bottom: 1.75rem;
-  max-width: 46ch;
+  font-size: 1rem; line-height: 1.55;
+  opacity: 0.8; margin-bottom: 1.75rem; max-width: 46ch;
 }
 
-/* ==========================================================================
-   LOGO TICKER
-   ========================================================================== */
-.logos-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-  overflow: hidden;
-}
+/* LOGO TICKER */
+.logos-section { padding: clamp(3rem, 6vw, 5rem) 0; overflow: hidden; }
 .logos-label {
   text-align: center;
   font-family: var(--mono);
@@ -1021,33 +975,24 @@ main { display: block; }
   to { transform: translateX(-50%); }
 }
 .logos-ticker:hover { animation-play-state: paused; }
-
 .logo-tile {
-  width: 140px;
-  height: 120px;
+  width: 140px; height: 120px;
   border-radius: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--ui);
-  font-weight: 800;
-  font-size: 0.85rem;
-  letter-spacing: -0.02em;
-  text-align: center;
-  padding: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--ui); font-weight: 800;
+  font-size: 0.85rem; letter-spacing: -0.02em;
+  text-align: center; padding: 1rem;
   flex-shrink: 0;
-  transition: transform 300ms ease;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
 }
-.logo-tile:hover { transform: scale(1.06); }
+.logo-tile:hover { transform: scale(1.06) rotate(-2deg); }
 .logo-tile:nth-child(5n+1) { background: var(--gray); color: var(--ink); }
 .logo-tile:nth-child(5n+2) { background: var(--purple); color: white; }
 .logo-tile:nth-child(5n+3) { background: var(--yellow); color: var(--ink); }
 .logo-tile:nth-child(5n+4) { background: var(--lightblue); color: var(--purple-deep); }
 .logo-tile:nth-child(5n+5) { background: var(--papaya); color: var(--ink); }
 
-/* ==========================================================================
-   BIG HEADINGS
-   ========================================================================== */
+/* BIG HEADINGS */
 .big-headings {
   padding: clamp(3rem, 6vw, 6rem) 0;
   max-width: var(--max);
@@ -1063,12 +1008,9 @@ main { display: block; }
   line-height: 0.95;
   letter-spacing: -0.045em;
   color: var(--ink);
-  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.big-heading em {
-  font-style: normal;
-  color: var(--purple);
-}
+.big-heading em { font-style: normal; color: var(--purple); }
 .big-heading--outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--ink);
@@ -1079,13 +1021,8 @@ main { display: block; }
   color: transparent;
 }
 
-/* ==========================================================================
-   TESTIMONIOS · muro infinito
-   ========================================================================== */
-.testi-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-  overflow: hidden;
-}
+/* TESTIMONIOS */
+.testi-section { padding: clamp(3rem, 6vw, 5rem) 0; overflow: hidden; }
 .testi-head {
   max-width: var(--max);
   margin: 0 auto 2.5rem;
@@ -1099,22 +1036,7 @@ main { display: block; }
   letter-spacing: -0.03em;
   line-height: 1;
 }
-.testi-title em {
-  font-style: normal;
-  color: var(--purple);
-  position: relative;
-  padding: 0 0.1em;
-}
-.testi-title em::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0; bottom: -0.05em;
-  height: 0.3em;
-  background: var(--yellow);
-  border-radius: 100px;
-  z-index: -1;
-  transform: rotate(-1deg);
-}
+.testi-title em { font-style: normal; color: var(--purple); }
 
 .testi-wall {
   display: flex;
@@ -1138,7 +1060,9 @@ main { display: block; }
   flex-direction: column;
   gap: 1.25rem;
   min-height: 220px;
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
 }
+.testi-card:hover { transform: translateY(-4px); }
 .testi-card:nth-child(6n+1) { background: var(--paper-warm); color: var(--ink); }
 .testi-card:nth-child(6n+2) { background: var(--yellow); color: var(--ink); }
 .testi-card:nth-child(6n+3) { background: var(--lightblue); color: var(--purple-deep); }
@@ -1150,56 +1074,34 @@ main { display: block; }
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 500;
-  letter-spacing: -0.005em;
 }
 .testi-card__quote strong { font-weight: 800; }
-
-.testi-card__stars {
-  display: flex;
-  gap: 0.2rem;
-  color: var(--yellow);
-  font-size: 0.85rem;
-}
+.testi-card__stars { display: flex; gap: 0.2rem; color: var(--yellow); font-size: 0.85rem; }
 .testi-card:nth-child(6n+2) .testi-card__stars,
 .testi-card:nth-child(6n+5) .testi-card__stars { color: var(--purple); }
 
 .testi-card__author {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-top: auto;
-  padding-top: 1rem;
-  border-top: 1px solid currentColor;
-  border-color: rgba(14,10,26,0.12);
+  display: flex; align-items: center; gap: 0.85rem;
+  margin-top: auto; padding-top: 1rem;
+  border-top: 1px solid rgba(14,10,26,0.12);
 }
 .testi-card:nth-child(6n+4) .testi-card__author,
 .testi-card:nth-child(6n+6) .testi-card__author { border-color: rgba(255,255,255,0.18); }
-
 .testi-card__avatar {
   width: 42px; height: 42px;
   border-radius: 50%;
   background: rgba(14,10,26,0.1);
   display: flex; align-items: center; justify-content: center;
-  font-weight: 800;
-  font-size: 1rem;
-  flex-shrink: 0;
+  font-weight: 800; font-size: 1rem; flex-shrink: 0;
 }
 .testi-card:nth-child(6n+4) .testi-card__avatar,
 .testi-card:nth-child(6n+6) .testi-card__avatar { background: rgba(255,255,255,0.15); }
 .testi-card__name { font-size: 0.85rem; font-weight: 700; }
 .testi-card__role { font-size: 0.72rem; opacity: 0.7; }
 
-/* ==========================================================================
-   BLOG
-   ========================================================================== */
-.blog-section {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.blog-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
+/* BLOG */
+.blog-section { padding: clamp(3rem, 6vw, 5rem) 0; }
+.blog-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .blog-title {
   text-align: center;
   font-family: var(--ui);
@@ -1209,7 +1111,6 @@ main { display: block; }
   margin-bottom: 2.5rem;
 }
 .blog-title em { font-style: normal; color: var(--purple); }
-
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1220,34 +1121,22 @@ main { display: block; }
   overflow: hidden;
   background: var(--paper-warm);
   cursor: pointer;
-  transition: transform 300ms ease, box-shadow 300ms ease;
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1), box-shadow 400ms ease;
   display: flex;
   flex-direction: column;
 }
-.blog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,20,97,0.1); }
-
+.blog-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(43,20,97,0.1); }
 .blog-card__image {
   aspect-ratio: 4/3;
   background: var(--purple);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  color: white; position: relative; overflow: hidden;
 }
 .blog-card:nth-child(2) .blog-card__image { background: var(--papaya); color: var(--ink); }
 .blog-card:nth-child(3) .blog-card__image { background: var(--yellow); color: var(--ink); }
 .blog-card:nth-child(4) .blog-card__image { background: var(--lightblue); color: var(--purple-deep); }
-
-.blog-card__image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(45deg, transparent 0 24px, rgba(255,255,255,0.04) 24px 25px);
-}
-.blog-card__image svg { width: 56px; height: 56px; position: relative; }
-
+.blog-card__image svg { width: 56px; height: 56px; position: relative; transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1); }
+.blog-card:hover .blog-card__image svg { transform: scale(1.15) rotate(-6deg); }
 .blog-card__body { padding: 1.5rem; }
 .blog-card__tag {
   font-family: var(--mono);
@@ -1267,17 +1156,9 @@ main { display: block; }
   color: var(--ink);
 }
 
-/* ==========================================================================
-   CTA FINAL
-   ========================================================================== */
-.final-cta {
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.final-cta__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
+/* CTA FINAL */
+.final-cta { padding: clamp(3rem, 6vw, 5rem) 0; }
+.final-cta__inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .final-cta__block {
   border-radius: 40px;
   background: var(--purple);
@@ -1289,8 +1170,7 @@ main { display: block; }
 }
 .final-cta__block::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
     radial-gradient(50% 50% at 15% 15%, rgba(255,210,63,0.22), transparent 70%),
     radial-gradient(50% 50% at 85% 85%, rgba(255,167,82,0.22), transparent 70%);
@@ -1304,10 +1184,7 @@ main { display: block; }
   letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
 }
-.final-cta__title em {
-  font-style: normal;
-  color: var(--yellow);
-}
+.final-cta__title em { font-style: normal; color: var(--yellow); }
 .final-cta__text {
   position: relative;
   font-size: 1.05rem;
@@ -1317,33 +1194,18 @@ main { display: block; }
   opacity: 0.85;
 }
 
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
+/* FOOTER */
 .footer {
   background: var(--ink);
   color: var(--paper);
   padding: clamp(3.5rem, 6vw, 5rem) 0 2rem;
   margin-top: 4rem;
 }
-.footer__inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
-
-.footer__brand {
-  display: flex; align-items: center; gap: 0.85rem;
-  margin-bottom: 1.25rem;
-}
+.footer__inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.footer__brand { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; }
 .footer__brand-mark { width: 42px; height: 42px; color: var(--yellow); }
 .footer__brand-text { display: flex; flex-direction: column; line-height: 1.05; }
-.footer__brand-name {
-  font-family: var(--ui);
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-}
+.footer__brand-name { font-family: var(--ui); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
 .footer__brand-sub {
   font-family: var(--mono);
   font-size: 0.58rem;
@@ -1352,7 +1214,6 @@ main { display: block; }
   color: rgba(250,247,240,0.6);
   margin-top: 0.2rem;
 }
-
 .footer__grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -1360,20 +1221,9 @@ main { display: block; }
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(250,247,240,0.12);
 }
-@media (max-width: 900px) {
-  .footer__grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-}
-@media (max-width: 560px) {
-  .footer__grid { grid-template-columns: 1fr; }
-}
-
-.footer__desc {
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: rgba(250,247,240,0.7);
-  max-width: 36ch;
-}
-
+@media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; } }
+@media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; } }
+.footer__desc { font-size: 0.92rem; line-height: 1.65; color: rgba(250,247,240,0.7); max-width: 36ch; }
 .footer__col h4 {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -1391,29 +1241,23 @@ main { display: block; }
   font-size: 0.9rem;
   color: rgba(250,247,240,0.75);
   cursor: pointer;
-  transition: color 200ms ease;
+  transition: color 200ms ease, padding 250ms cubic-bezier(0.65, 0, 0.2, 1);
 }
 .footer__col button:hover,
-.footer__col a:hover { color: var(--yellow); }
-
-.footer__socials {
-  display: flex;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
+.footer__col a:hover { color: var(--yellow); padding-left: 0.35rem; }
+.footer__socials { display: flex; gap: 0.6rem; margin-top: 1rem; }
 .footer__social {
   width: 42px; height: 42px;
   border-radius: 50%;
   background: rgba(250,247,240,0.08);
   display: flex; align-items: center; justify-content: center;
   color: var(--paper);
-  transition: background 200ms ease, transform 200ms ease;
+  transition: background 250ms ease, transform 400ms cubic-bezier(0.65, 0, 0.2, 1), color 250ms ease;
   cursor: pointer;
   border: none;
 }
-.footer__social:hover { background: var(--yellow); color: var(--ink); transform: translateY(-2px); }
+.footer__social:hover { background: var(--yellow); color: var(--ink); transform: translateY(-3px) rotate(-6deg); }
 .footer__social svg { width: 18px; height: 18px; }
-
 .footer__bottom {
   padding-top: 1.75rem;
   display: flex;
@@ -1427,16 +1271,12 @@ main { display: block; }
   letter-spacing: 0.05em;
 }
 
-/* ==========================================================================
-   WHATSAPP FLOAT
-   ========================================================================== */
+/* WHATSAPP */
 .float-contact {
   position: fixed;
   bottom: 1.5rem; right: 1.5rem;
   z-index: 150;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
   padding: 0.6rem 1.25rem 0.6rem 0.6rem;
   background: white;
   color: var(--ink);
@@ -1444,12 +1284,12 @@ main { display: block; }
   border: none;
   cursor: pointer;
   box-shadow: 0 12px 32px rgba(43,20,97,0.18);
-  transition: transform 300ms ease, box-shadow 300ms ease;
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1), box-shadow 400ms ease;
   font-size: 0.82rem;
   font-weight: 700;
 }
 .float-contact:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.03);
   box-shadow: 0 16px 40px rgba(43,20,97,0.25);
 }
 .float-contact__icon {
@@ -1459,17 +1299,16 @@ main { display: block; }
   display: flex; align-items: center; justify-content: center;
   color: white;
   flex-shrink: 0;
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
 }
+.float-contact:hover .float-contact__icon { transform: rotate(-10deg) scale(1.08); }
 .float-contact__icon svg { width: 20px; height: 20px; }
-
 @media (max-width: 640px) {
   .float-contact__text { display: none; }
   .float-contact { padding: 0.6rem; }
 }
 
-/* ==========================================================================
-   REVEAL
-   ========================================================================== */
+/* REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1478,47 +1317,255 @@ main { display: block; }
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* ==========================================================================
-   REDUCED MOTION
-   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .hero__rail-track,
-  .testi-wall,
-  .logos-ticker { animation: none; }
+  .hero__rail-track, .testi-wall, .logos-ticker { animation: none; }
 }
 
 /* ==========================================================================
-   SECCIONES INTERNAS (universidad, oferta, etc.)
+   SECCIONES INTERNAS · mismo lenguaje de bloques
    ========================================================================== */
-.page-head {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.5rem) var(--gutter) 2rem;
+.page-hero { padding: clamp(2rem, 4vw, 3rem) 0 0; }
+
+.page-hero__inner {
+  border-radius: 40px;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
+  position: relative;
+  overflow: hidden;
+  color: white;
 }
-.page-title {
+.page-hero__inner--purple { background: var(--purple); }
+.page-hero__inner--deep { background: var(--purple-deep); }
+.page-hero__inner--papaya { background: var(--papaya); color: var(--ink); }
+.page-hero__inner--yellow { background: var(--yellow); color: var(--ink); }
+.page-hero__inner--lightblue { background: var(--lightblue); color: var(--purple-deep); }
+.page-hero__inner--cream { background: var(--paper-warm); color: var(--ink); }
+
+.page-hero__inner::before {
+  content: '';
+  position: absolute;
+  top: -30%; right: -10%;
+  width: 60%; height: 160%;
+  background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
+  pointer-events: none;
+}
+.page-hero__inner--papaya::before,
+.page-hero__inner--yellow::before,
+.page-hero__inner--lightblue::before,
+.page-hero__inner--cream::before {
+  background: radial-gradient(circle, rgba(107,45,142,0.1), transparent 60%);
+}
+
+.page-hero__content {
+  position: relative;
+  max-width: 780px;
+}
+
+.page-hero__tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.page-hero__inner--papaya .page-hero__tag,
+.page-hero__inner--yellow .page-hero__tag,
+.page-hero__inner--lightblue .page-hero__tag,
+.page-hero__inner--cream .page-hero__tag {
+  background: rgba(14,10,26,0.08);
+  border-color: rgba(14,10,26,0.15);
+  color: var(--purple-deep);
+}
+.page-hero__tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--yellow);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+.page-hero__inner--papaya .page-hero__tag::before,
+.page-hero__inner--yellow .page-hero__tag::before { background: var(--purple); }
+
+.page-hero__title {
   font-family: var(--ui);
   font-weight: 900;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: clamp(2.4rem, 6vw, 5rem);
   line-height: 0.95;
-  letter-spacing: -0.045em;
-  color: var(--ink);
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
 }
-.page-title em {
-  font-style: normal;
-  color: var(--purple);
-}
-.page-lead {
+.page-hero__title em { font-style: normal; color: var(--yellow); }
+.page-hero__inner--papaya .page-hero__title em,
+.page-hero__inner--yellow .page-hero__title em { color: var(--purple); }
+.page-hero__inner--lightblue .page-hero__title em,
+.page-hero__inner--cream .page-hero__title em { color: var(--purple); }
+
+.page-hero__lead {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--ink-soft);
-  max-width: 62ch;
-  opacity: 0.8;
+  opacity: 0.88;
+  max-width: 58ch;
+  margin-bottom: 1.75rem;
+}
+.page-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+/* Oferta · grid de carreras */
+.carreras-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 1000px) { .carreras-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .carreras-grid { grid-template-columns: 1fr; } }
+
+.carrera-card {
+  border-radius: 28px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 320px;
+  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.carrera-card:hover { transform: translateY(-6px); }
+.carrera-card--papaya { background: var(--papaya); color: var(--ink); }
+.carrera-card--purple { background: var(--purple); color: white; }
+.carrera-card--yellow { background: var(--yellow); color: var(--ink); }
+.carrera-card--lightblue { background: var(--lightblue); color: var(--purple-deep); }
+.carrera-card--deep { background: var(--purple-deep); color: white; }
+.carrera-card--cream { background: var(--paper-warm); color: var(--ink); }
+
+.carrera-card__num {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  font-weight: 600;
+}
+.carrera-card__title {
+  font-family: var(--ui);
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+.carrera-card__desc {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.82;
+  flex: 1;
+}
+.carrera-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.carrera-card__icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+}
+.carrera-card:hover .carrera-card__icon { transform: rotate(-10deg) scale(1.08); }
+.carrera-card--purple .carrera-card__icon,
+.carrera-card--deep .carrera-card__icon { background: rgba(255,255,255,0.14); }
+.carrera-card__icon svg { width: 30px; height: 30px; }
+
+/* Form */
+.form-block {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.form-card {
+  border-radius: 40px;
+  background: var(--lightblue);
+  color: var(--purple-deep);
+  padding: clamp(2.5rem, 5vw, 4rem);
+}
+.form-card__head {
+  margin-bottom: 2rem;
+  max-width: 52ch;
+}
+.form-card__head h3 {
+  font-family: var(--ui);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.5rem;
+}
+.form-card__head p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  opacity: 0.85;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-field label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--purple-deep);
+}
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--purple-deep);
+  background: white;
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-size: 0.95rem;
+  color: var(--ink);
+  appearance: none;
+  outline: none;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px rgba(107,45,142,0.12);
+}
+.form-field--full { grid-column: 1 / -1; margin-top: 0.25rem; }
+
+.form-notice {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: white;
+  border-radius: 24px;
+  display: none;
+}
+.form-notice[data-open="true"] { display: block; }
+.form-notice h4 {
+  font-family: var(--ui);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+.form-notice p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  opacity: 0.85;
 }
 </style>
 </head>
@@ -1552,8 +1599,7 @@ main { display: block; }
   <symbol id="ic-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 21c0-5 4-9 8-9-2 5-5 8-8 9z"/>
     <path d="M12 21c0-5-4-9-8-9 2 5 5 8 8 9z"/>
-    <path d="M12 21V8"/>
-    <circle cx="12" cy="4" r="2"/>
+    <path d="M12 21V8"/><circle cx="12" cy="4" r="2"/>
   </symbol>
   <symbol id="ic-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 016-6h0a6 6 0 016 6v1"/>
@@ -1577,15 +1623,12 @@ main { display: block; }
     <rect x="9" y="3" width="6" height="12" rx="3"/>
     <path d="M5 11a7 7 0 0014 0M12 18v3"/>
   </symbol>
-
   <symbol id="ic-wa" viewBox="0 0 24 24" fill="currentColor">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.127 1.529 5.86L0 24l6.31-1.657A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
   </symbol>
-
   <symbol id="ic-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="5"/>
-    <circle cx="12" cy="12" r="4"/>
+    <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>
     <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
   </symbol>
   <symbol id="ic-fb" viewBox="0 0 24 24" fill="currentColor">
@@ -1620,7 +1663,10 @@ main { display: block; }
     </div>
 
     <div class="nav__actions">
-      <button class="nav__official" data-nav="admisiones">Sitio oficial</button>
+      <button class="nav__official" data-nav="admisiones">
+        Sitio oficial
+        <span class="arr" aria-hidden="true">↗</span>
+      </button>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">
         <span class="menu-toggle__icon" aria-hidden="true"></span>
         Menú
@@ -1654,55 +1700,8 @@ main { display: block; }
       <div class="hero__inner">
         <div class="hero__spread">
 
-          <!-- RIEL -->
           <div class="hero__rail" aria-hidden="true">
             <div class="hero__rail-track">
-              <!-- Columna 1 -->
-              <div class="hero__col">
-                <div class="hero__tile hero__tile--h1 hero__tile--circle">
-                  <span class="hero__tile-num">01</span>
-                  <svg><use href="#ic-book"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h2 hero__tile--square">
-                  <span class="hero__tile-num">02</span>
-                  <svg><use href="#ic-leaf"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h3 hero__tile--pill">
-                  <span class="hero__tile-num">03</span>
-                  <svg><use href="#ic-people"/></svg>
-                </div>
-              </div>
-              <!-- Columna 2 -->
-              <div class="hero__col">
-                <div class="hero__tile hero__tile--h4 hero__tile--square">
-                  <span class="hero__tile-num">04</span>
-                  <svg><use href="#ic-compass"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h5 hero__tile--circle">
-                  <span class="hero__tile-num">05</span>
-                  <svg><use href="#ic-spark"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h6 hero__tile--pill">
-                  <span class="hero__tile-num">06</span>
-                  <svg><use href="#ic-heart"/></svg>
-                </div>
-              </div>
-              <!-- Columna 3 -->
-              <div class="hero__col">
-                <div class="hero__tile hero__tile--h7 hero__tile--circle">
-                  <span class="hero__tile-num">07</span>
-                  <svg><use href="#ic-globe"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h8 hero__tile--square">
-                  <span class="hero__tile-num">08</span>
-                  <svg><use href="#ic-book"/></svg>
-                </div>
-                <div class="hero__tile hero__tile--h1 hero__tile--pill">
-                  <span class="hero__tile-num">09</span>
-                  <svg><use href="#ic-mic"/></svg>
-                </div>
-              </div>
-              <!-- Duplicado para loop -->
               <div class="hero__col">
                 <div class="hero__tile hero__tile--h1 hero__tile--circle"><span class="hero__tile-num">01</span><svg><use href="#ic-book"/></svg></div>
                 <div class="hero__tile hero__tile--h2 hero__tile--square"><span class="hero__tile-num">02</span><svg><use href="#ic-leaf"/></svg></div>
@@ -1718,23 +1717,34 @@ main { display: block; }
                 <div class="hero__tile hero__tile--h8 hero__tile--square"><span class="hero__tile-num">08</span><svg><use href="#ic-book"/></svg></div>
                 <div class="hero__tile hero__tile--h1 hero__tile--pill"><span class="hero__tile-num">09</span><svg><use href="#ic-mic"/></svg></div>
               </div>
+              <div class="hero__col" aria-hidden="true">
+                <div class="hero__tile hero__tile--h1 hero__tile--circle"><span class="hero__tile-num">01</span><svg><use href="#ic-book"/></svg></div>
+                <div class="hero__tile hero__tile--h2 hero__tile--square"><span class="hero__tile-num">02</span><svg><use href="#ic-leaf"/></svg></div>
+                <div class="hero__tile hero__tile--h3 hero__tile--pill"><span class="hero__tile-num">03</span><svg><use href="#ic-people"/></svg></div>
+              </div>
+              <div class="hero__col" aria-hidden="true">
+                <div class="hero__tile hero__tile--h4 hero__tile--square"><span class="hero__tile-num">04</span><svg><use href="#ic-compass"/></svg></div>
+                <div class="hero__tile hero__tile--h5 hero__tile--circle"><span class="hero__tile-num">05</span><svg><use href="#ic-spark"/></svg></div>
+                <div class="hero__tile hero__tile--h6 hero__tile--pill"><span class="hero__tile-num">06</span><svg><use href="#ic-heart"/></svg></div>
+              </div>
+              <div class="hero__col" aria-hidden="true">
+                <div class="hero__tile hero__tile--h7 hero__tile--circle"><span class="hero__tile-num">07</span><svg><use href="#ic-globe"/></svg></div>
+                <div class="hero__tile hero__tile--h8 hero__tile--square"><span class="hero__tile-num">08</span><svg><use href="#ic-book"/></svg></div>
+                <div class="hero__tile hero__tile--h1 hero__tile--pill"><span class="hero__tile-num">09</span><svg><use href="#ic-mic"/></svg></div>
+              </div>
             </div>
           </div>
 
-          <!-- CONTENIDO -->
           <div class="hero__content">
             <span class="hero__tag">Ciclo 2026 · Admisiones abiertas</span>
-
             <h1 class="hero__title">
-              Inscríbete ahora y estudia en <span class="scribble">Claudia Lars</span>
+              Inscríbete ahora y estudia en <span class="hl">Claudia Lars</span>
             </h1>
-
             <p class="hero__lead">
               Una universidad nueva, con sede en el departamento de Morazán, pensada para que
               los estudiantes del oriente del país puedan formarse académicamente sin abandonar
               su territorio, su familia ni su comunidad.
             </p>
-
             <div class="hero__actions">
               <button class="cta-circle" data-nav="admisiones" aria-label="Solicitar admisión">
                 <span class="cta-circle__arrow">→</span>
@@ -1747,14 +1757,12 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- ROUNDED BLOCK 1 · Reserva tu cupo -->
+    <!-- ROUNDED BLOCK 1 -->
     <div class="rblock" style="margin-top:1.5rem;">
       <div class="rblock__inner rblock--lightblue reveal">
         <div class="rblock__grid">
           <div>
-            <h2 class="rblock__title">
-              Reserva tu cupo para el <em>ciclo 2026</em>
-            </h2>
+            <h2 class="rblock__title">Reserva tu cupo para el <em>ciclo 2026</em></h2>
             <p class="rblock__text">
               El proceso de admisión está abierto. Completa el formulario y el equipo de
               admisiones se pondrá en contacto para acompañarte en cada paso.
@@ -1774,14 +1782,12 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- ROUNDED BLOCK 2 · HAZ CLIC -->
-    <div class="rblock" style="margin-top:1.25rem;">
+    <!-- ROUNDED BLOCK 2 -->
+    <div class="rblock">
       <div class="rblock__inner rblock--dark reveal">
         <div class="rblock__grid">
           <div>
-            <h2 class="rblock__title">
-              Un proceso <em>acompañado</em> de principio a fin
-            </h2>
+            <h2 class="rblock__title">Un proceso <em>acompañado</em> de principio a fin</h2>
             <p class="rblock__text">
               Cada estudiante es atendido por un asesor académico que acompaña el proceso
               de ingreso desde la primera consulta hasta la matrícula.
@@ -1799,40 +1805,30 @@ main { display: block; }
       </div>
     </div>
 
-    <!-- LO QUE NOS HACE DIFERENTES -->
+    <!-- DIFERENTES -->
     <section class="dif-section">
       <header class="dif-head reveal">
-        <h2 class="dif-title">
-          Lo que nos hace <span class="circled">diferentes</span>
-        </h2>
+        <h2 class="dif-title">Lo que nos hace <span class="circled">diferentes</span></h2>
       </header>
 
       <div class="dif-grid">
-
         <div class="dif-row dif-row--2">
           <article class="dif-card dif-card--papaya reveal">
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">01 · Identidad</span>
               <h3 class="dif-card__title">Una universidad con nombre de poeta</h3>
-              <p class="dif-card__desc">
-                Tomamos el nombre de Claudia Lars porque su obra representa una relación profunda
-                entre lenguaje, tierra y pensamiento. No es un homenaje decorativo: es un programa.
-              </p>
+              <p class="dif-card__desc">Tomamos el nombre de Claudia Lars porque su obra representa una relación profunda entre lenguaje, tierra y pensamiento.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="universidad">Conoce más</button>
               <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
             </div>
           </article>
-
           <article class="dif-card dif-card--purple reveal">
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">02 · Territorio</span>
               <h3 class="dif-card__title">Sede en el corazón del oriente</h3>
-              <p class="dif-card__desc">
-                Yamabal, Morazán. Una ubicación pensada para estudiantes del oriente del país,
-                sin viajes largos ni alquileres fuera del departamento.
-              </p>
+              <p class="dif-card__desc">Yamabal, Morazán. Una ubicación pensada para estudiantes del oriente del país, sin viajes largos.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="universidad">Ver ubicación</button>
@@ -1846,25 +1842,18 @@ main { display: block; }
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">03 · Formación</span>
               <h3 class="dif-card__title">Humanidades, ciencia y tecnología</h3>
-              <p class="dif-card__desc">
-                Tres ejes que se articulan en una misma formación. Letras, agronegocios,
-                salud y software bajo un mismo proyecto académico.
-              </p>
+              <p class="dif-card__desc">Tres ejes que se articulan en una misma formación. Letras, agronegocios, salud y software.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="oferta">Ver carreras</button>
               <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
             </div>
           </article>
-
           <article class="dif-card dif-card--lightblue reveal">
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">04 · Comunidad</span>
               <h3 class="dif-card__title">Una comunidad pequeña y activa</h3>
-              <p class="dif-card__desc">
-                La vida universitaria se entiende como parte de la formación. Cultura, deporte
-                y proyección social son parte del proyecto.
-              </p>
+              <p class="dif-card__desc">La vida universitaria se entiende como parte de la formación. Cultura, deporte y proyección social.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="vida">Conoce más</button>
@@ -1878,25 +1867,18 @@ main { display: block; }
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">05 · Aula digital</span>
               <h3 class="dif-card__title">Tecnología al servicio del estudio</h3>
-              <p class="dif-card__desc">
-                Plataforma académica propia, materiales de curso, evaluaciones y foros de
-                discusión. Pensada para funcionar incluso con conectividad limitada.
-              </p>
+              <p class="dif-card__desc">Plataforma académica propia, materiales de curso, evaluaciones y foros de discusión.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="aula">Ver aula</button>
               <div class="dif-card__icon"><svg><use href="#ic-compass"/></svg></div>
             </div>
           </article>
-
           <article class="dif-card dif-card--cream reveal">
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">06 · Acompañamiento</span>
               <h3 class="dif-card__title">Admisión con acompañamiento real</h3>
-              <p class="dif-card__desc">
-                Cada estudiante es atendido por un asesor académico que lo acompaña desde la
-                primera consulta hasta la matrícula.
-              </p>
+              <p class="dif-card__desc">Cada estudiante es atendido por un asesor académico que lo acompaña desde la primera consulta hasta la matrícula.</p>
             </div>
             <div class="dif-card__bottom">
               <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
@@ -1904,29 +1886,18 @@ main { display: block; }
             </div>
           </article>
         </div>
-
       </div>
     </section>
 
-    <!-- FAQ STICKY -->
+    <!-- FAQ -->
     <section class="faq-section">
       <div class="faq-grid">
-
         <div class="faq-side">
-          <h2 class="faq-side__title">
-            Todo lo que necesitas <em>saber</em>
-          </h2>
-          <p class="faq-side__text">
-            Resolvemos las dudas más frecuentes sobre el proceso de admisión y la vida
-            académica en la Universidad Claudia Lars.
-          </p>
+          <h2 class="faq-side__title">Todo lo que necesitas <em>saber</em></h2>
+          <p class="faq-side__text">Resolvemos las dudas más frecuentes sobre el proceso de admisión y la vida académica.</p>
           <div class="faq-side__poster">
             <span class="faq-side__poster-badge">Ciclo 2026</span>
-            <div class="faq-side__poster-title">
-              Admisiones<br>
-              abiertas<br>
-              <em>para ti</em>
-            </div>
+            <div class="faq-side__poster-title">Admisiones<br>abiertas<br><em>para ti</em></div>
           </div>
         </div>
 
@@ -1936,77 +1907,52 @@ main { display: block; }
               <span class="faq-trigger__title">Requisitos de ingreso</span>
               <span class="faq-trigger__icon">+</span>
             </button>
-            <div class="faq-body" id="faq-1">
-              <div class="faq-body__inner"><div class="faq-body__content">
-                <p>Los requisitos específicos se encuentran en proceso de definición institucional.
-                <strong>Consulta directamente con la oficina de Admisiones</strong> para conocer
-                la documentación vigente antes de iniciar el proceso.</p>
-                <p>Como referencia general, todo proceso de ingreso a educación superior en
-                El Salvador suele solicitar título de bachillerato, documentos de identidad
-                y fotografías. La lista exacta se comunicará oportunamente.</p>
-              </div></div>
-            </div>
+            <div class="faq-body" id="faq-1"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>Los requisitos específicos se encuentran en proceso de definición institucional. <strong>Consulta directamente con la oficina de Admisiones</strong> para conocer la documentación vigente.</p>
+              <p>Como referencia general, todo proceso de ingreso a educación superior en El Salvador suele solicitar título de bachillerato, documentos de identidad y fotografías. La lista exacta se comunicará oportunamente.</p>
+            </div></div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-trigger" aria-expanded="false" aria-controls="faq-2">
               <span class="faq-trigger__title">Curso propedéutico</span>
               <span class="faq-trigger__icon">+</span>
             </button>
-            <div class="faq-body" id="faq-2">
-              <div class="faq-body__inner"><div class="faq-body__content">
-                <p>La universidad contempla un curso propedéutico de nivelación para estudiantes
-                de nuevo ingreso. Su objetivo es reforzar los conocimientos adquiridos en
-                bachillerato y facilitar la transición a la vida universitaria.</p>
-                <p><em>Información específica por confirmar. Consultar con Admisiones.</em></p>
-              </div></div>
-            </div>
+            <div class="faq-body" id="faq-2"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>La universidad contempla un curso propedéutico de nivelación para estudiantes de nuevo ingreso. Su objetivo es reforzar los conocimientos adquiridos en bachillerato.</p>
+              <p><em>Información específica por confirmar. Consultar con Admisiones.</em></p>
+            </div></div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-trigger" aria-expanded="false" aria-controls="faq-3">
               <span class="faq-trigger__title">Aranceles y becas</span>
               <span class="faq-trigger__icon">+</span>
             </button>
-            <div class="faq-body" id="faq-3">
-              <div class="faq-body__inner"><div class="faq-body__content">
-                <p>La universidad trabaja en un esquema de cuotas diferenciadas y programas de
-                apoyo económico que permitan el acceso a estudiantes de la región oriental.</p>
-                <p><em>Los aranceles definitivos y las condiciones de beca se encuentran en proceso
-                de confirmación institucional.</em></p>
-              </div></div>
-            </div>
+            <div class="faq-body" id="faq-3"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>La universidad trabaja en un esquema de cuotas diferenciadas y programas de apoyo económico que permitan el acceso a estudiantes de la región oriental.</p>
+              <p><em>Los aranceles definitivos y las condiciones de beca se encuentran en proceso de confirmación institucional.</em></p>
+            </div></div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-trigger" aria-expanded="false" aria-controls="faq-4">
               <span class="faq-trigger__title">Calendario académico</span>
               <span class="faq-trigger__icon">+</span>
             </button>
-            <div class="faq-body" id="faq-4">
-              <div class="faq-body__inner"><div class="faq-body__content">
-                <p>Las fechas del ciclo 2026, incluyendo períodos de inscripción, inicio de
-                clases y evaluaciones, se publicarán una vez confirmadas institucionalmente.</p>
-                <p><em>Información por confirmar. Consultar con Admisiones.</em></p>
-              </div></div>
-            </div>
+            <div class="faq-body" id="faq-4"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>Las fechas del ciclo 2026, incluyendo períodos de inscripción, inicio de clases y evaluaciones, se publicarán una vez confirmadas institucionalmente.</p>
+              <p><em>Información por confirmar. Consultar con Admisiones.</em></p>
+            </div></div></div>
           </div>
-
           <div class="faq-item">
             <button class="faq-trigger" aria-expanded="false" aria-controls="faq-5">
               <span class="faq-trigger__title">Preguntas frecuentes</span>
               <span class="faq-trigger__icon">+</span>
             </button>
-            <div class="faq-body" id="faq-5">
-              <div class="faq-body__inner"><div class="faq-body__content">
-                <p>Para cualquier consulta adicional sobre procesos académicos o administrativos,
-                el equipo de admisiones atiende por correo y de forma presencial.</p>
-                <p>Correo: <strong>admision@claudialars.edu.sv</strong></p>
-              </div></div>
-            </div>
+            <div class="faq-body" id="faq-5"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>Para cualquier consulta adicional sobre procesos académicos o administrativos, el equipo de admisiones atiende por correo y de forma presencial.</p>
+              <p>Correo: <strong>admision@claudialars.edu.sv</strong></p>
+            </div></div></div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -2014,21 +1960,12 @@ main { display: block; }
     <section class="podcast-section">
       <div class="podcast-inner">
         <div class="podcast-block reveal">
-          <div class="podcast-visual">
-            <svg><use href="#ic-mic"/></svg>
-          </div>
+          <div class="podcast-visual"><svg><use href="#ic-mic"/></svg></div>
           <div>
             <span class="podcast-tag">Ahora disponible</span>
-            <h2 class="podcast-title">
-              Podcast: <em>Mi carrera ideal</em>
-            </h2>
-            <p class="podcast-desc">
-              Tips y conversaciones para elegir tu carrera universitaria con criterio.
-              Escúchalo donde quieras.
-            </p>
-            <button class="btn-big">
-              Escúchalo
-            </button>
+            <h2 class="podcast-title">Podcast: <em>Mi carrera ideal</em></h2>
+            <p class="podcast-desc">Tips y conversaciones para elegir tu carrera universitaria con criterio. Escúchalo donde quieras.</p>
+            <button class="btn-big">Escúchalo</button>
           </div>
         </div>
       </div>
@@ -2046,7 +1983,6 @@ main { display: block; }
         <div class="logo-tile">CDA</div>
         <div class="logo-tile">Qonakuy</div>
         <div class="logo-tile">Telescopi</div>
-        <!-- Duplicado -->
         <div class="logo-tile" aria-hidden="true">UES</div>
         <div class="logo-tile" aria-hidden="true">MINED</div>
         <div class="logo-tile" aria-hidden="true">CONEAU</div>
@@ -2060,64 +1996,42 @@ main { display: block; }
 
     <!-- BIG HEADINGS -->
     <div class="big-headings">
-      <h2 class="big-heading reveal">
-        Empieza a ser <em>lo que quieres ser</em>
-      </h2>
-      <h2 class="big-heading big-heading--outline reveal">
-        Estudia en <em>Claudia Lars</em>
-      </h2>
+      <h2 class="big-heading reveal">Empieza a ser <em>lo que quieres ser</em></h2>
+      <h2 class="big-heading big-heading--outline reveal">Estudia en <em>Claudia Lars</em></h2>
     </div>
 
     <!-- TESTIMONIOS -->
     <section class="testi-section">
       <header class="testi-head">
-        <h2 class="testi-title">
-          Palabras de <em>nuestra comunidad</em>
-        </h2>
+        <h2 class="testi-title">Palabras de <em>nuestra comunidad</em></h2>
       </header>
 
       <div class="testi-wall">
         <article class="testi-card">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Lo que más valoro es que <strong>no tengo que viajar todos los días</strong> hasta San Miguel para poder estudiar."</p>
-          <div class="testi-card__author">
-            <span class="testi-card__avatar">M</span>
-            <div><div class="testi-card__name">María José R.</div><div class="testi-card__role">Estudiante · Yamabal</div></div>
-          </div>
+          <div class="testi-card__author"><span class="testi-card__avatar">M</span><div><div class="testi-card__name">María José R.</div><div class="testi-card__role">Estudiante · Yamabal</div></div></div>
         </article>
         <article class="testi-card">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Los docentes se toman el tiempo de explicar. <strong>No sientes que seas un número más.</strong>"</p>
-          <div class="testi-card__author">
-            <span class="testi-card__avatar">C</span>
-            <div><div class="testi-card__name">Carlos A.</div><div class="testi-card__role">Estudiante · Guatajiagua</div></div>
-          </div>
+          <div class="testi-card__author"><span class="testi-card__avatar">C</span><div><div class="testi-card__name">Carlos A.</div><div class="testi-card__role">Estudiante · Guatajiagua</div></div></div>
         </article>
         <article class="testi-card">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"El <strong>aula virtual funciona bien</strong> incluso con internet limitado. Es un detalle que importa."</p>
-          <div class="testi-card__author">
-            <span class="testi-card__avatar">S</span>
-            <div><div class="testi-card__name">Sofía M.</div><div class="testi-card__role">Estudiante · Cacaopera</div></div>
-          </div>
+          <div class="testi-card__author"><span class="testi-card__avatar">S</span><div><div class="testi-card__name">Sofía M.</div><div class="testi-card__role">Estudiante · Cacaopera</div></div></div>
         </article>
         <article class="testi-card">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Me gusta que la universidad tenga <strong>un nombre de mujer y de poeta</strong>. Eso dice algo."</p>
-          <div class="testi-card__author">
-            <span class="testi-card__avatar">A</span>
-            <div><div class="testi-card__name">Andrea L.</div><div class="testi-card__role">Aspirante · Jocoro</div></div>
-          </div>
+          <div class="testi-card__author"><span class="testi-card__avatar">A</span><div><div class="testi-card__name">Andrea L.</div><div class="testi-card__role">Aspirante · Jocoro</div></div></div>
         </article>
         <article class="testi-card">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Como padre, me da tranquilidad que <strong>mi hija pueda estudiar cerca</strong> y volver a casa todos los días."</p>
-          <div class="testi-card__author">
-            <span class="testi-card__avatar">R</span>
-            <div><div class="testi-card__name">Roberto P.</div><div class="testi-card__role">Padre de familia</div></div>
-          </div>
+          <div class="testi-card__author"><span class="testi-card__avatar">R</span><div><div class="testi-card__name">Roberto P.</div><div class="testi-card__role">Padre de familia</div></div></div>
         </article>
-        <!-- Duplicado -->
         <article class="testi-card" aria-hidden="true">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Lo que más valoro es que <strong>no tengo que viajar todos los días</strong> hasta San Miguel para poder estudiar."</p>
@@ -2171,7 +2085,6 @@ main { display: block; }
           <p class="testi-card__quote">"Los <strong>asesores académicos</strong> son muy atentos. Se nota que les importa."</p>
           <div class="testi-card__author"><span class="testi-card__avatar">P</span><div><div class="testi-card__name">Pablo S.</div><div class="testi-card__role">Aspirante · Cacaopera</div></div></div>
         </article>
-        <!-- Duplicado -->
         <article class="testi-card" aria-hidden="true">
           <div class="testi-card__stars">★★★★★</div>
           <p class="testi-card__quote">"Me encanta que las clases sean <strong>dinámicas y prácticas</strong>. Se aprende haciendo."</p>
@@ -2241,14 +2154,8 @@ main { display: block; }
     <section class="final-cta">
       <div class="final-cta__inner">
         <div class="final-cta__block reveal">
-          <h2 class="final-cta__title">
-            Tu lugar en <em>Morazán</em><br>
-            te está esperando
-          </h2>
-          <p class="final-cta__text">
-            Si estás pensando en estudiar una carrera universitaria, conversemos. El equipo de
-            admisiones puede orientarte sobre programas, requisitos y acompañamiento.
-          </p>
+          <h2 class="final-cta__title">Tu lugar en <em>Morazán</em><br>te está esperando</h2>
+          <p class="final-cta__text">Si estás pensando en estudiar una carrera universitaria, conversemos. El equipo de admisiones puede orientarte sobre programas, requisitos y acompañamiento.</p>
           <button class="btn-big btn-big--light" data-nav="admisiones">Solicitar información</button>
         </div>
       </div>
@@ -2260,17 +2167,28 @@ main { display: block; }
        UNIVERSIDAD
        ============================================================ -->
   <section class="page" id="universidad">
-    <div class="page-head">
-      <h1 class="page-title">La <em>institución</em></h1>
-      <p class="page-lead">
-        La Universidad Claudia Lars es una institución de educación superior con sede en el
-        departamento de Morazán. Su proyecto académico se organiza en torno a tres ejes:
-        formación humanística, formación científica y formación tecnológica.
-      </p>
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--papaya reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Universidad</span>
+            <h1 class="page-hero__title">La <em>institución</em></h1>
+            <p class="page-hero__lead">
+              Una universidad nueva, con sede en el departamento de Morazán. Su proyecto
+              académico se organiza en torno a tres ejes: formación humanística, formación
+              científica y formación tecnológica.
+            </p>
+            <div class="page-hero__actions">
+              <button class="btn-big" data-nav="admisiones">Solicitar admisión</button>
+              <button class="btn-big btn-big--light" data-nav="oferta">Ver carreras</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="rblock" style="margin-top:2rem;">
-      <div class="rblock__inner rblock--papaya reveal">
+    <div class="rblock" style="margin-top:1.5rem;">
+      <div class="rblock__inner rblock--lightblue reveal">
         <div class="rblock__grid">
           <div>
             <h2 class="rblock__title">Claudia <em>Lars</em></h2>
@@ -2296,43 +2214,32 @@ main { display: block; }
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ============================================================
-       OFERTA
-       ============================================================ -->
-  <section class="page" id="oferta">
-    <div class="page-head">
-      <h1 class="page-title">Oferta <em>académica</em></h1>
-      <p class="page-lead">
-        Seis programas profesionales, articulados en torno a una base humanística común y
-        una formación tecnológica transversal.
-      </p>
-    </div>
+    <section class="dif-section" style="padding-top:3rem;">
+      <header class="dif-head reveal">
+        <h2 class="dif-title">Nuestros <span class="circled">pilares</span></h2>
+      </header>
 
-    <section class="dif-section" style="padding-top:1rem;">
       <div class="dif-grid">
         <div class="dif-row dif-row--2">
           <article class="dif-card dif-card--purple reveal">
             <div class="dif-card__head">
-              <span class="dif-card__eyebrow">01 · Ingeniería</span>
-              <h3 class="dif-card__title">Licenciatura en Desarrollo de Software</h3>
-              <p class="dif-card__desc">Programación, bases de datos, desarrollo web y soluciones digitales aplicadas al contexto regional.</p>
+              <span class="dif-card__eyebrow">01 · Humanidades</span>
+              <h3 class="dif-card__title">Pensamiento crítico y sensibilidad</h3>
+              <p class="dif-card__desc">Una base humanística común a todas las carreras, que forma profesionales capaces de leer el mundo con atención.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
-              <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
+              <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
             </div>
           </article>
           <article class="dif-card dif-card--yellow reveal">
             <div class="dif-card__head">
-              <span class="dif-card__eyebrow">02 · Ciencias agrarias</span>
-              <h3 class="dif-card__title">Ingeniería en Agronegocios</h3>
-              <p class="dif-card__desc">Gestión sostenible de la producción agrícola y pecuaria, con énfasis en mercados locales.</p>
+              <span class="dif-card__eyebrow">02 · Ciencia</span>
+              <h3 class="dif-card__title">Rigor y método</h3>
+              <p class="dif-card__desc">Formación científica rigurosa en cada campo disciplinar, con énfasis en la investigación formativa.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
-              <div class="dif-card__icon"><svg><use href="#ic-leaf"/></svg></div>
+              <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
             </div>
           </article>
         </div>
@@ -2340,69 +2247,162 @@ main { display: block; }
         <div class="dif-row dif-row--2">
           <article class="dif-card dif-card--lightblue reveal">
             <div class="dif-card__head">
-              <span class="dif-card__eyebrow">03 · Humanidades</span>
-              <h3 class="dif-card__title">Licenciatura en Letras y Comunicación</h3>
-              <p class="dif-card__desc">Lenguaje, literatura, escritura y comunicación institucional. Formación vinculada al legado de Claudia Lars.</p>
+              <span class="dif-card__eyebrow">03 · Territorio</span>
+              <h3 class="dif-card__title">Raíces en Morazán</h3>
+              <p class="dif-card__desc">Compromiso con el desarrollo del oriente del país y con las comunidades que lo habitan.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
-              <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
+              <div class="dif-card__icon"><svg><use href="#ic-leaf"/></svg></div>
             </div>
           </article>
-          <article class="dif-card dif-card--papaya reveal">
-            <div class="dif-card__head">
-              <span class="dif-card__eyebrow">04 · Ciencias de la salud</span>
-              <h3 class="dif-card__title">Licenciatura en Enfermería</h3>
-              <p class="dif-card__desc">Formación de profesionales de la salud para la atención de comunidades del oriente del país.</p>
-            </div>
-            <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
-              <div class="dif-card__icon"><svg><use href="#ic-heart"/></svg></div>
-            </div>
-          </article>
-        </div>
-
-        <div class="dif-row dif-row--2">
           <article class="dif-card dif-card--deep reveal">
             <div class="dif-card__head">
-              <span class="dif-card__eyebrow">05 · Ciencias económicas</span>
-              <h3 class="dif-card__title">Licenciatura en Administración de Empresas</h3>
-              <p class="dif-card__desc">Gestión, emprendimiento y dirección de organizaciones. Enfoque en la región oriental.</p>
+              <span class="dif-card__eyebrow">04 · Tecnología</span>
+              <h3 class="dif-card__title">Herramientas del presente</h3>
+              <p class="dif-card__desc">Preparación tecnológica acorde con las demandas contemporáneas del ejercicio profesional.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
               <div class="dif-card__icon"><svg><use href="#ic-globe"/></svg></div>
             </div>
           </article>
-          <article class="dif-card dif-card--cream reveal">
-            <div class="dif-card__head">
-              <span class="dif-card__eyebrow">06 · Técnico superior</span>
-              <h3 class="dif-card__title">Técnico Superior en Turismo Rural</h3>
-              <p class="dif-card__desc">Aprovechamiento sostenible del patrimonio natural y cultural de Morazán y la región oriental.</p>
-            </div>
-            <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
-              <div class="dif-card__icon"><svg><use href="#ic-compass"/></svg></div>
-            </div>
-          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__block reveal">
+          <h2 class="final-cta__title">Conoce la <em>universidad</em></h2>
+          <p class="final-cta__text">Agenda una conversación con el equipo de admisiones para conocer el proyecto en detalle.</p>
+          <button class="btn-big btn-big--light" data-nav="admisiones">Agendar conversación</button>
         </div>
       </div>
     </section>
   </section>
 
   <!-- ============================================================
-       VIDA UNIVERSITARIA
+       OFERTA
        ============================================================ -->
-  <section class="page" id="vida">
-    <div class="page-head">
-      <h1 class="page-title">Vida <em>universitaria</em></h1>
-      <p class="page-lead">
-        La vida universitaria se entiende como parte de la formación, no como un añadido.
-        Comunidad, cultura, deporte y proyección social son parte del proyecto académico.
-      </p>
+  <section class="page" id="oferta">
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--purple reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Oferta académica</span>
+            <h1 class="page-hero__title">Seis programas <em>profesionales</em></h1>
+            <p class="page-hero__lead">
+              Articulados en torno a una base humanística común y una formación tecnológica
+              transversal. Ocho ciclos por programa, modalidad presencial con apoyo del aula
+              virtual.
+            </p>
+            <div class="page-hero__actions">
+              <button class="btn-big" data-nav="admisiones">Solicitar info</button>
+              <button class="btn-big btn-big--light" data-nav="aula">Ver aula virtual</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <section class="dif-section" style="padding-top:1rem;">
+    <section class="dif-section" style="padding-top:2rem;">
+      <div class="carreras-grid">
+        <article class="carrera-card carrera-card--purple reveal">
+          <span class="carrera-card__num">01 · Ingeniería</span>
+          <h3 class="carrera-card__title">Licenciatura en Desarrollo de Software</h3>
+          <p class="carrera-card__desc">Programación, bases de datos, desarrollo web y soluciones digitales aplicadas al contexto regional.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-spark"/></svg></div>
+          </div>
+        </article>
+
+        <article class="carrera-card carrera-card--yellow reveal">
+          <span class="carrera-card__num">02 · Ciencias agrarias</span>
+          <h3 class="carrera-card__title">Ingeniería en Agronegocios</h3>
+          <p class="carrera-card__desc">Gestión sostenible de la producción agrícola y pecuaria, con énfasis en mercados locales.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-leaf"/></svg></div>
+          </div>
+        </article>
+
+        <article class="carrera-card carrera-card--lightblue reveal">
+          <span class="carrera-card__num">03 · Humanidades</span>
+          <h3 class="carrera-card__title">Licenciatura en Letras y Comunicación</h3>
+          <p class="carrera-card__desc">Lenguaje, literatura, escritura y comunicación institucional. Formación vinculada al legado de Claudia Lars.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-book"/></svg></div>
+          </div>
+        </article>
+
+        <article class="carrera-card carrera-card--papaya reveal">
+          <span class="carrera-card__num">04 · Salud</span>
+          <h3 class="carrera-card__title">Licenciatura en Enfermería</h3>
+          <p class="carrera-card__desc">Formación de profesionales de la salud para la atención de comunidades del oriente del país.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-heart"/></svg></div>
+          </div>
+        </article>
+
+        <article class="carrera-card carrera-card--deep reveal">
+          <span class="carrera-card__num">05 · Ciencias económicas</span>
+          <h3 class="carrera-card__title">Licenciatura en Administración de Empresas</h3>
+          <p class="carrera-card__desc">Gestión, emprendimiento y dirección de organizaciones. Enfoque en la región oriental.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-globe"/></svg></div>
+          </div>
+        </article>
+
+        <article class="carrera-card carrera-card--cream reveal">
+          <span class="carrera-card__num">06 · Técnico superior</span>
+          <h3 class="carrera-card__title">Técnico Superior en Turismo Rural</h3>
+          <p class="carrera-card__desc">Aprovechamiento sostenible del patrimonio natural y cultural de Morazán y la región oriental.</p>
+          <div class="carrera-card__bottom">
+            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <div class="carrera-card__icon"><svg><use href="#ic-compass"/></svg></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__block reveal">
+          <h2 class="final-cta__title">Encuentra tu <em>carrera ideal</em></h2>
+          <p class="final-cta__text">Nuestro equipo puede orientarte sobre cuál programa se ajusta mejor a tus intereses y expectativas.</p>
+          <button class="btn-big btn-big--light" data-nav="admisiones">Solicitar orientación</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================================================
+       VIDA
+       ============================================================ -->
+  <section class="page" id="vida">
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--yellow reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Vida universitaria</span>
+            <h1 class="page-hero__title">Comunidad, cultura y <em>territorio</em></h1>
+            <p class="page-hero__lead">
+              La vida universitaria se entiende como parte de la formación, no como un añadido.
+              Comunidad, cultura, deporte y proyección social son parte del proyecto académico.
+            </p>
+            <div class="page-hero__actions">
+              <button class="btn-big" data-nav="admisiones">Ser parte</button>
+              <button class="btn-big btn-big--light" data-nav="universidad">Conocer más</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="dif-section" style="padding-top:2rem;">
       <div class="dif-grid">
         <div class="dif-row dif-row--2">
           <article class="dif-card dif-card--purple reveal">
@@ -2455,76 +2455,124 @@ main { display: block; }
         </div>
       </div>
     </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__block reveal">
+          <h2 class="final-cta__title">Vive la <em>universidad</em></h2>
+          <p class="final-cta__text">Conoce las actividades culturales, deportivas y de proyección social de la comunidad universitaria.</p>
+          <button class="btn-big btn-big--light" data-nav="admisiones">Ser parte</button>
+        </div>
+      </div>
+    </section>
   </section>
 
   <!-- ============================================================
        INVESTIGACIÓN
        ============================================================ -->
   <section class="page" id="investigacion">
-    <div class="page-head">
-      <h1 class="page-title">Líneas de <em>investigación</em></h1>
-      <p class="page-lead">
-        La investigación es parte constitutiva del proyecto académico. Las siguientes líneas
-        se proponen como ejes iniciales de trabajo, sujetos a confirmación institucional.
-      </p>
-    </div>
-
-    <div class="wrap" style="padding-bottom:3rem;">
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-trigger" aria-expanded="false" aria-controls="inv-1">
-            <span class="faq-trigger__title">Lengua, literatura y cultura del oriente salvadoreño</span>
-            <span class="faq-trigger__icon">+</span>
-          </button>
-          <div class="faq-body" id="inv-1"><div class="faq-body__inner"><div class="faq-body__content">
-            <p>Estudio de la tradición literaria, la memoria oral y las expresiones culturales de la región oriental, en diálogo con la obra de Claudia Lars.</p>
-          </div></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-trigger" aria-expanded="false" aria-controls="inv-2">
-            <span class="faq-trigger__title">Desarrollo territorial y agronegocios</span>
-            <span class="faq-trigger__icon">+</span>
-          </button>
-          <div class="faq-body" id="inv-2"><div class="faq-body__inner"><div class="faq-body__content">
-            <p>Investigación aplicada sobre producción agrícola, cadenas de valor, asociatividad y modelos de desarrollo rural pertinentes para Morazán.</p>
-          </div></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-trigger" aria-expanded="false" aria-controls="inv-3">
-            <span class="faq-trigger__title">Tecnología y educación</span>
-            <span class="faq-trigger__icon">+</span>
-          </button>
-          <div class="faq-body" id="inv-3"><div class="faq-body__inner"><div class="faq-body__content">
-            <p>Estudio del uso de herramientas digitales en contextos educativos y comunitarios, con énfasis en zonas con acceso limitado a infraestructura.</p>
-          </div></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-trigger" aria-expanded="false" aria-controls="inv-4">
-            <span class="faq-trigger__title">Salud comunitaria</span>
-            <span class="faq-trigger__icon">+</span>
-          </button>
-          <div class="faq-body" id="inv-4"><div class="faq-body__inner"><div class="faq-body__content">
-            <p>Investigación sobre determinantes sociales de la salud, atención primaria y prácticas de cuidado en comunidades del oriente del país.</p>
-          </div></div></div>
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--lightblue reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Investigación</span>
+            <h1 class="page-hero__title">Cuatro <em>líneas fundacionales</em></h1>
+            <p class="page-hero__lead">
+              La investigación es parte constitutiva del proyecto académico. Las siguientes
+              líneas se proponen como ejes iniciales de trabajo, sujetos a confirmación
+              institucional.
+            </p>
+            <div class="page-hero__actions">
+              <button class="btn-big" data-nav="admisiones">Colaborar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <section class="dif-section" style="padding-top:2rem;">
+      <div class="dif-grid">
+        <div class="dif-row dif-row--2">
+          <article class="dif-card dif-card--papaya reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Línea 01</span>
+              <h3 class="dif-card__title">Lengua, literatura y cultura del oriente salvadoreño</h3>
+              <p class="dif-card__desc">Estudio de la tradición literaria, la memoria oral y las expresiones culturales de la región oriental.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
+            </div>
+          </article>
+          <article class="dif-card dif-card--purple reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Línea 02</span>
+              <h3 class="dif-card__title">Desarrollo territorial y agronegocios</h3>
+              <p class="dif-card__desc">Investigación aplicada sobre producción agrícola, cadenas de valor y desarrollo rural.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-leaf"/></svg></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dif-row dif-row--2">
+          <article class="dif-card dif-card--yellow reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Línea 03</span>
+              <h3 class="dif-card__title">Tecnología y educación</h3>
+              <p class="dif-card__desc">Estudio del uso de herramientas digitales en contextos educativos y comunitarios.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
+            </div>
+          </article>
+          <article class="dif-card dif-card--deep reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Línea 04</span>
+              <h3 class="dif-card__title">Salud comunitaria</h3>
+              <p class="dif-card__desc">Determinantes sociales de la salud, atención primaria y prácticas de cuidado en comunidades.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-heart"/></svg></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__block reveal">
+          <h2 class="final-cta__title">Investigar desde el <em>oriente</em></h2>
+          <p class="final-cta__text">Producir conocimiento situado, sin renunciar al diálogo con la comunidad académica nacional e internacional.</p>
+          <button class="btn-big btn-big--light" data-nav="admisiones">Colaborar</button>
+        </div>
+      </div>
+    </section>
   </section>
 
   <!-- ============================================================
-       AULA VIRTUAL
+       AULA
        ============================================================ -->
   <section class="page" id="aula">
-    <div class="page-head">
-      <h1 class="page-title">Aula <em>virtual</em></h1>
-      <p class="page-lead">
-        La plataforma académica articula la docencia presencial con recursos digitales de
-        apoyo, evaluaciones y espacios de discusión.
-      </p>
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--deep reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Aula virtual</span>
+            <h1 class="page-hero__title">Plataforma <em>académica</em></h1>
+            <p class="page-hero__lead">
+              El aula virtual articula la docencia presencial con recursos digitales de apoyo,
+              evaluaciones y espacios de discusión. Diseñada para funcionar incluso con
+              conectividad limitada.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="rblock" style="margin-top:2rem;">
-      <div class="rblock__inner rblock--dark reveal" style="padding:0;">
+    <div class="rblock" style="margin-top:1.5rem;">
+      <div class="rblock__inner rblock--lightblue reveal" style="padding:0;">
         <div style="padding:2.5rem;">
           <span style="font-family:var(--mono);font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;opacity:0.65;">Demo · Módulo 03</span>
           <h3 style="font-family:var(--ui);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.03em;margin-top:0.6rem;">
@@ -2532,7 +2580,7 @@ main { display: block; }
           </h3>
           <p style="opacity:0.8;margin-top:0.5rem;">Docente · Dra. María Elena Portillo · Semana 05 / 16</p>
         </div>
-        <div style="background:rgba(255,255,255,0.06);padding:2.5rem;">
+        <div style="background:rgba(14,10,26,0.06);padding:2.5rem;">
           <h4 style="font-family:var(--ui);font-size:1.5rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.85rem;">
             Claudia Lars y la poesía de la tierra
           </h4>
@@ -2542,72 +2590,207 @@ main { display: block; }
             poética y las tradiciones literarias centroamericanas del siglo XX.
           </p>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-            <button class="btn-big btn-big--light">Iniciar evaluación</button>
-            <button class="btn-big" style="background:rgba(255,255,255,0.15);">Ir al foro</button>
+            <button class="btn-big">Iniciar evaluación</button>
+            <button class="btn-big btn-big--light">Ir al foro</button>
           </div>
         </div>
       </div>
     </div>
+
+    <section class="dif-section" style="padding-top:3rem;">
+      <header class="dif-head reveal">
+        <h2 class="dif-title">Todo lo que <span class="circled">incluye</span></h2>
+      </header>
+
+      <div class="dif-grid">
+        <div class="dif-row dif-row--2">
+          <article class="dif-card dif-card--purple reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Materiales</span>
+              <h3 class="dif-card__title">Contenido de curso organizado por módulos</h3>
+              <p class="dif-card__desc">Cada asignatura se estructura en módulos con materiales descargables y recursos complementarios.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
+            </div>
+          </article>
+          <article class="dif-card dif-card--yellow reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Evaluaciones</span>
+              <h3 class="dif-card__title">Quizzes y tareas en línea</h3>
+              <p class="dif-card__desc">Retroalimentación automática, seguimiento del progreso y registro académico digital.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="dif-row dif-row--2">
+          <article class="dif-card dif-card--lightblue reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Foros</span>
+              <h3 class="dif-card__title">Espacios de discusión por módulo</h3>
+              <p class="dif-card__desc">Cada módulo incluye un foro académico moderado por el docente del curso.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-people"/></svg></div>
+            </div>
+          </article>
+          <article class="dif-card dif-card--papaya reveal">
+            <div class="dif-card__head">
+              <span class="dif-card__eyebrow">Acceso</span>
+              <h3 class="dif-card__title">Disponible desde cualquier dispositivo</h3>
+              <p class="dif-card__desc">La plataforma funciona en computadora, tablet y celular, con o sin conexión estable.</p>
+            </div>
+            <div class="dif-card__bottom">
+              <div class="dif-card__icon"><svg><use href="#ic-globe"/></svg></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </section>
 
   <!-- ============================================================
        ADMISIONES
        ============================================================ -->
   <section class="page" id="admisiones">
-    <div class="page-head">
-      <h1 class="page-title">Admisiones <em>2026</em></h1>
-      <p class="page-lead">
-        Completa el formulario y el equipo de admisiones se pondrá en contacto contigo para
-        acompañarte en cada paso del proceso.
-      </p>
+    <div class="page-hero">
+      <div class="wrap">
+        <div class="page-hero__inner page-hero__inner--purple reveal">
+          <div class="page-hero__content">
+            <span class="page-hero__tag">Ciclo 2026</span>
+            <h1 class="page-hero__title">Admisiones <em>abiertas</em></h1>
+            <p class="page-hero__lead">
+              Completa el formulario y el equipo de admisiones se pondrá en contacto contigo
+              para acompañarte en cada paso del proceso.
+            </p>
+            <div class="page-hero__actions">
+              <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus()">Rellenar formulario</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="rblock" style="margin-top:2rem;">
-      <div class="rblock__inner rblock--lightblue reveal">
-        <form id="admissionForm" novalidate style="max-width:680px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-            <div>
-              <label style="display:block;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;color:var(--purple-deep);" for="nombre">Nombre completo *</label>
-              <input id="nombre" name="nombre" type="text" required placeholder="Nombre y apellidos" style="width:100%;padding:1rem 1.25rem;border:2px solid var(--purple-deep);background:white;border-radius:999px;font-size:0.95rem;outline:none;">
-            </div>
-            <div>
-              <label style="display:block;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;color:var(--purple-deep);" for="email">Correo *</label>
-              <input id="email" name="email" type="email" required placeholder="nombre@correo.com" style="width:100%;padding:1rem 1.25rem;border:2px solid var(--purple-deep);background:white;border-radius:999px;font-size:0.95rem;outline:none;">
-            </div>
-          </div>
+    <div class="form-block" style="margin-top:1.5rem;">
+      <div class="form-card reveal">
+        <div class="form-card__head">
+          <h3>Solicitud de información</h3>
+          <p>Los datos que compartas serán utilizados únicamente para contactarte sobre el proceso de admisión.</p>
+        </div>
 
-          <div style="margin-top:1rem;">
-            <label style="display:block;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;color:var(--purple-deep);" for="municipio">Municipio de residencia *</label>
-            <select id="municipio" name="municipio" required style="width:100%;padding:1rem 1.25rem;border:2px solid var(--purple-deep);background:white;border-radius:999px;font-size:0.95rem;appearance:none;outline:none;">
-              <option value="">Selecciona tu municipio</option>
-              <option>Yamabal</option><option>Guatajiagua</option><option>Jocoro</option>
-              <option>Sociedad</option><option>Cacaopera</option><option>Corinto</option>
-              <option>Otro municipio de Morazán</option><option>Otro departamento</option>
-            </select>
-          </div>
-
-          <div style="margin-top:1rem;">
-            <label style="display:block;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;color:var(--purple-deep);" for="carrera">Programa de interés *</label>
-            <select id="carrera" name="carrera" required style="width:100%;padding:1rem 1.25rem;border:2px solid var(--purple-deep);background:white;border-radius:999px;font-size:0.95rem;appearance:none;outline:none;">
-              <option value="">Selecciona un programa</option>
-              <option>Desarrollo de Software</option>
-              <option>Ingeniería en Agronegocios</option>
-              <option>Letras y Comunicación</option>
-              <option>Enfermería</option>
-              <option>Administración de Empresas</option>
-              <option>Turismo Rural</option>
-            </select>
+        <form id="admissionForm" novalidate>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="nombre">Nombre completo *</label>
+              <input id="nombre" name="nombre" type="text" required placeholder="Nombre y apellidos">
+            </div>
+            <div class="form-field">
+              <label for="email">Correo electrónico *</label>
+              <input id="email" name="email" type="email" required placeholder="nombre@correo.com">
+            </div>
+            <div class="form-field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" type="tel" placeholder="+503 0000 0000">
+            </div>
+            <div class="form-field">
+              <label for="municipio">Municipio de residencia *</label>
+              <select id="municipio" name="municipio" required>
+                <option value="">Selecciona tu municipio</option>
+                <option>Yamabal</option><option>Guatajiagua</option><option>Jocoro</option>
+                <option>Sociedad</option><option>Cacaopera</option><option>Corinto</option>
+                <option>Otro municipio de Morazán</option><option>Otro departamento</option>
+              </select>
+            </div>
+            <div class="form-field form-field--full">
+              <label for="carrera">Programa de interés *</label>
+              <select id="carrera" name="carrera" required>
+                <option value="">Selecciona un programa</option>
+                <option>Desarrollo de Software</option>
+                <option>Ingeniería en Agronegocios</option>
+                <option>Letras y Comunicación</option>
+                <option>Enfermería</option>
+                <option>Administración de Empresas</option>
+                <option>Turismo Rural</option>
+              </select>
+            </div>
           </div>
 
           <button type="submit" class="btn-big" style="margin-top:1.5rem;">Enviar solicitud</button>
 
-          <div id="formNotice" style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:white;border-radius:24px;display:none;">
-            <p style="font-weight:700;margin-bottom:0.35rem;">Solicitud recibida</p>
-            <p style="font-size:0.92rem;opacity:0.8;" id="formNoticeText"></p>
+          <div class="form-notice" id="formNotice" role="status" aria-live="polite">
+            <h4>Solicitud recibida</h4>
+            <p id="formNoticeText"></p>
           </div>
         </form>
       </div>
     </div>
+
+    <section class="faq-section">
+      <div class="faq-grid">
+        <div class="faq-side">
+          <h2 class="faq-side__title">Preguntas <em>frecuentes</em></h2>
+          <p class="faq-side__text">Todo lo que necesitas saber antes de iniciar tu proceso de admisión.</p>
+          <div class="faq-side__poster">
+            <span class="faq-side__poster-badge">Admisión</span>
+            <div class="faq-side__poster-title">Estamos<br>aquí para<br><em>ayudarte</em></div>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="adm-1">
+              <span class="faq-trigger__title">Requisitos de ingreso</span>
+              <span class="faq-trigger__icon">+</span>
+            </button>
+            <div class="faq-body" id="adm-1"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>Los requisitos específicos se encuentran en proceso de definición institucional. <strong>Consulta directamente con la oficina de Admisiones</strong> para conocer la documentación vigente.</p>
+            </div></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="adm-2">
+              <span class="faq-trigger__title">Curso propedéutico</span>
+              <span class="faq-trigger__icon">+</span>
+            </button>
+            <div class="faq-body" id="adm-2"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>La universidad contempla un curso propedéutico de nivelación para estudiantes de nuevo ingreso.</p>
+              <p><em>Información específica por confirmar.</em></p>
+            </div></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="adm-3">
+              <span class="faq-trigger__title">Aranceles y becas</span>
+              <span class="faq-trigger__icon">+</span>
+            </button>
+            <div class="faq-body" id="adm-3"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>La universidad trabaja en un esquema de cuotas diferenciadas y programas de apoyo económico.</p>
+              <p><em>Los aranceles definitivos se encuentran en proceso de confirmación.</em></p>
+            </div></div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false" aria-controls="adm-4">
+              <span class="faq-trigger__title">Calendario académico</span>
+              <span class="faq-trigger__icon">+</span>
+            </button>
+            <div class="faq-body" id="adm-4"><div class="faq-body__inner"><div class="faq-body__content">
+              <p>Las fechas del ciclo 2026 se publicarán una vez confirmadas institucionalmente.</p>
+            </div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta__inner">
+        <div class="final-cta__block reveal">
+          <h2 class="final-cta__title">Tu futuro empieza <em>hoy</em></h2>
+          <p class="final-cta__text">Conversemos. El equipo de admisiones puede orientarte sobre programas, requisitos y acompañamiento.</p>
+          <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus(); window.scrollTo({top: document.getElementById('admissionForm').getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth'})">Solicitar información</button>
+        </div>
+      </div>
+    </section>
   </section>
 
 </main>
@@ -2673,7 +2856,7 @@ main { display: block; }
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
+<!-- WHATSAPP -->
 <button class="float-contact" aria-label="Contactar a un asesor académico">
   <span class="float-contact__icon" aria-hidden="true"><svg><use href="#ic-wa"/></svg></span>
   <span class="float-contact__text">Contactar a un asesor</span>
@@ -2729,7 +2912,6 @@ main { display: block; }
     show(id, { updateHash: false });
   });
 
-  /* SCROLL NAV */
   window.addEventListener('scroll', function () {
     nav.setAttribute('data-scrolled', window.scrollY > 30 ? 'true' : 'false');
   }, { passive: true });
@@ -2797,7 +2979,8 @@ main { display: block; }
       document.getElementById('formNoticeText').innerHTML =
         'Gracias, <strong>' + esc(nombre) + '</strong>. Registramos tu interés en <strong>' +
         esc(programa) + '</strong>. Nos pondremos en contacto pronto.';
-      document.getElementById('formNotice').style.display = 'block';
+      document.getElementById('formNotice').setAttribute('data-open', 'true');
+      document.getElementById('formNotice').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       form.reset();
     });
   }
