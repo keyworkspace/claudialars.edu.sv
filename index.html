@@ -12,7 +12,7 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS · sistema UEES
+   UNIVERSIDAD CLAUDIA LARS · sistema UEES con relleno circular
    ========================================================================== */
 :root {
   --purple:       #6B2D8E;
@@ -42,6 +42,9 @@
 
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --max: 1440px;
+
+  /* Curva característica UEES */
+  --fill-ease: cubic-bezier(0.65, 0, 0.2, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,7 +75,9 @@ ul, ol { list-style: none; }
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 
-/* LOADER */
+/* ==========================================================================
+   LOADER
+   ========================================================================== */
 .loader {
   position: fixed; inset: 0;
   background: var(--paper);
@@ -95,7 +100,249 @@ ul, ol { list-style: none; }
 }
 @keyframes loadFill { to { width: 100%; } }
 
-/* NAV */
+/* ==========================================================================
+   BOTONES · relleno circular desde abajo-centro
+   ========================================================================== */
+
+/* Botón grande · círculo emerge desde abajo-centro */
+.btn-big {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.15rem 1.75rem;
+  background: var(--ink);
+  color: white;
+  border-radius: 999px;
+  font-family: var(--ui);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 400ms var(--fill-ease);
+  z-index: 0;
+}
+
+.btn-big::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--papaya);
+  border-radius: 50%;
+  transform: translate(-50%, 60%) scale(0);
+  transform-origin: center bottom;
+  transition: transform 700ms var(--fill-ease);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.btn-big:hover::before { transform: translate(-50%, 60%) scale(2.6); }
+.btn-big:hover { color: var(--ink); }
+
+.btn-big__label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-big__arrow {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transition: transform 400ms var(--fill-ease);
+}
+.btn-big:hover .btn-big__arrow { transform: translateX(5px); }
+
+/* Variante light */
+.btn-big--light {
+  background: white;
+  color: var(--ink);
+}
+.btn-big--light::before { background: var(--yellow); }
+.btn-big--light:hover { color: var(--ink); }
+
+/* Variante purple */
+.btn-big--purple {
+  background: var(--purple);
+  color: white;
+}
+.btn-big--purple::before { background: var(--yellow); }
+.btn-big--purple:hover { color: var(--ink); }
+
+/* ==========================================================================
+   BOTÓN CIRCULAR · relleno radial desde el centro
+   ========================================================================== */
+.cta-circle {
+  position: relative;
+  width: 84px; height: 84px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 500ms var(--fill-ease);
+  z-index: 0;
+}
+
+.cta-circle::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--purple);
+  transform: scale(0);
+  transform-origin: center center;
+  transition: transform 600ms var(--fill-ease);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cta-circle:hover::before { transform: scale(1); }
+
+.cta-circle__arrow {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: var(--ink);
+  transition: transform 500ms var(--fill-ease),
+              color 400ms var(--fill-ease);
+}
+
+.cta-circle:hover .cta-circle__arrow {
+  transform: rotate(-45deg);
+  color: var(--yellow);
+}
+.cta-circle:hover { transform: scale(1.06); }
+
+/* ==========================================================================
+   BOTÓN NAV · sitio oficial
+   ========================================================================== */
+.nav__official {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 400ms var(--fill-ease),
+              border-color 400ms var(--fill-ease);
+  z-index: 0;
+}
+
+.nav__official::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, 60%) scale(0);
+  transform-origin: center bottom;
+  transition: transform 650ms var(--fill-ease);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.nav__official:hover::before { transform: translate(-50%, 60%) scale(2.6); }
+.nav__official:hover { color: var(--paper); border-color: var(--ink); }
+
+.nav__official__label { position: relative; z-index: 1; }
+.nav__official__arrow {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transition: transform 400ms var(--fill-ease);
+}
+.nav__official:hover .nav__official__arrow { transform: translate(3px, -3px); }
+
+/* ==========================================================================
+   BOTÓN de card (dif-cta)
+   ========================================================================== */
+.dif-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ui);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.15rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: white;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 400ms var(--fill-ease);
+  z-index: 0;
+}
+
+.dif-cta::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--purple);
+  border-radius: 50%;
+  transform: translate(-50%, 60%) scale(0);
+  transform-origin: center bottom;
+  transition: transform 650ms var(--fill-ease);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dif-cta:hover::before { transform: translate(-50%, 60%) scale(2.4); }
+.dif-cta:hover { color: white; }
+
+.dif-cta__label { position: relative; z-index: 1; }
+.dif-cta__arrow {
+  position: relative;
+  z-index: 1;
+  transition: transform 400ms var(--fill-ease);
+}
+.dif-cta:hover .dif-cta__arrow { transform: translateX(4px); }
+
+/* Variantes sobre fondo oscuro */
+.dif-card--purple .dif-cta,
+.dif-card--deep .dif-cta {
+  background: white;
+  color: var(--ink);
+}
+.dif-card--purple .dif-cta::before,
+.dif-card--deep .dif-cta::before { background: var(--yellow); }
+.dif-card--purple .dif-cta:hover,
+.dif-card--deep .dif-cta:hover { color: var(--ink); }
+
+/* ==========================================================================
+   NAV
+   ========================================================================== */
 .nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--paper);
@@ -118,7 +365,10 @@ ul, ol { list-style: none; }
 }
 
 .brand { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.brand__mark { width: 40px; height: 40px; color: var(--purple); transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1); }
+.brand__mark {
+  width: 40px; height: 40px; color: var(--purple);
+  transition: transform 400ms var(--fill-ease);
+}
 .brand:hover .brand__mark { transform: rotate(-8deg) scale(1.08); }
 .brand__text { display: flex; flex-direction: column; line-height: 1.05; }
 .brand__name {
@@ -154,41 +404,6 @@ ul, ol { list-style: none; }
 
 .nav__actions { display: flex; align-items: center; gap: 0.75rem; }
 
-/* BOTÓN OFICIAL · hover fill UEES */
-.nav__official {
-  position: relative;
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.65rem 1.1rem;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  background-color: transparent;
-  color: var(--ink);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  overflow: hidden;
-  isolation: isolate;
-  background-image: linear-gradient(var(--ink), var(--ink));
-  background-size: 0% 100%;
-  background-repeat: no-repeat;
-  background-position: left center;
-  transition: background-size 420ms cubic-bezier(0.65, 0, 0.2, 1),
-              color 280ms cubic-bezier(0.65, 0, 0.2, 1),
-              border-color 280ms ease;
-}
-.nav__official:hover {
-  background-size: 100% 100%;
-  color: var(--paper);
-  border-color: var(--ink);
-}
-.nav__official .arr {
-  position: relative;
-  display: inline-block;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.nav__official:hover .arr { transform: translate(3px, -3px); }
-
 .menu-toggle {
   display: none;
   background: var(--ink); color: var(--paper);
@@ -208,7 +423,7 @@ ul, ol { list-style: none; }
 .menu-toggle__icon::after {
   content: ''; position: absolute; left: 0; right: 0;
   height: 2px; background: currentColor; border-radius: 2px;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 350ms var(--fill-ease);
 }
 .menu-toggle__icon::before { top: 0; }
 .menu-toggle__icon::after { bottom: 0; }
@@ -221,6 +436,9 @@ ul, ol { list-style: none; }
   .nav__official { display: none; }
 }
 
+/* ==========================================================================
+   MOBILE NAV
+   ========================================================================== */
 .mobile-nav {
   position: fixed; top: 0; right: 0; bottom: 0;
   width: min(440px, 92vw);
@@ -228,7 +446,7 @@ ul, ol { list-style: none; }
   z-index: 200;
   padding: 2rem var(--gutter);
   transform: translateX(100%);
-  transition: transform 450ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 450ms var(--fill-ease);
   overflow-y: auto;
 }
 .mobile-nav[data-open="true"] { transform: none; }
@@ -241,7 +459,7 @@ ul, ol { list-style: none; }
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 2rem;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1), background 200ms ease;
+  transition: transform 400ms var(--fill-ease), background 250ms ease;
 }
 .mobile-nav__close:hover { transform: rotate(90deg); background: var(--purple); }
 .mobile-nav__item {
@@ -256,7 +474,7 @@ ul, ol { list-style: none; }
   letter-spacing: -0.02em;
   color: var(--ink);
   cursor: pointer;
-  transition: color 200ms ease, padding 300ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: color 200ms ease, padding 300ms var(--fill-ease);
 }
 .mobile-nav__item:hover { color: var(--purple); padding-left: 0.75rem; }
 .mobile-nav__cta {
@@ -283,7 +501,9 @@ ul, ol { list-style: none; }
 }
 .nav-overlay[data-open="true"] { opacity: 1; visibility: visible; }
 
-/* MAIN */
+/* ==========================================================================
+   MAIN + PÁGINAS
+   ========================================================================== */
 main { display: block; }
 .page { display: none; }
 .page[data-active="true"] { display: block; }
@@ -294,7 +514,9 @@ main { display: block; }
   padding: 0 var(--gutter);
 }
 
-/* HERO */
+/* ==========================================================================
+   HERO
+   ========================================================================== */
 .hero {
   background: var(--purple);
   color: white;
@@ -341,7 +563,7 @@ main { display: block; }
   width: 200px;
   display: flex; align-items: center; justify-content: center;
   position: relative; flex-shrink: 0;
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 500ms var(--fill-ease);
 }
 .hero__tile:hover { transform: scale(1.05); }
 .hero__tile svg { width: 52px; height: 52px; opacity: 0.85; }
@@ -402,7 +624,7 @@ main { display: block; }
   margin-bottom: 1.75rem;
 }
 
-/* HIGHLIGHT arreglado · barra fina debajo de la palabra */
+/* HIGHLIGHT · barra fina debajo, sin tapar la palabra */
 .hl {
   position: relative;
   display: inline-block;
@@ -415,8 +637,8 @@ main { display: block; }
   position: absolute;
   left: -1.5%;
   right: -1.5%;
-  bottom: 0.1em;
-  height: 0.22em;
+  bottom: 0.08em;
+  height: 0.2em;
   background: var(--yellow);
   border-radius: 100px;
   z-index: -1;
@@ -437,58 +659,6 @@ main { display: block; }
   flex-wrap: wrap;
 }
 
-/* CTA CIRCLE · animación UEES */
-.cta-circle {
-  position: relative;
-  width: 84px; height: 84px;
-  border-radius: 50%;
-  background-color: var(--yellow);
-  color: var(--ink);
-  border: none;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
-  isolation: isolate;
-  transition: transform 450ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.cta-circle::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--purple);
-  border-radius: 50%;
-  transform: scale(0);
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
-  z-index: 0;
-}
-.cta-circle:hover::before { transform: scale(1); }
-.cta-circle__arrow {
-  position: relative;
-  z-index: 1;
-  font-size: 1.5rem;
-  color: var(--ink);
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1),
-              color 350ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.cta-circle:hover .cta-circle__arrow { transform: rotate(-45deg); color: var(--yellow); }
-.cta-circle:hover { transform: scale(1.06); }
-
-.cta-link {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: white;
-  cursor: pointer;
-  background: none; border: none;
-  padding: 0.75rem 0;
-  border-bottom: 2px solid rgba(255,255,255,0.4);
-  transition: border-color 250ms ease, gap 300ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.cta-link:hover { border-color: white; gap: 0.85rem; }
-.cta-link::after { content: '→'; transition: transform 300ms cubic-bezier(0.65, 0, 0.2, 1); }
-.cta-link:hover::after { transform: translateX(3px); }
-
 @media (max-width: 900px) {
   .hero__spread { grid-template-columns: 1fr; gap: 2rem; min-height: auto; }
   .hero__rail { height: 320px; }
@@ -503,7 +673,9 @@ main { display: block; }
   .hero__tile--h8 { height: 180px; }
 }
 
-/* ROUNDED BLOCKS */
+/* ==========================================================================
+   ROUNDED BLOCKS
+   ========================================================================== */
 .rblock {
   max-width: var(--max);
   margin: 0 auto;
@@ -538,10 +710,7 @@ main { display: block; }
   letter-spacing: -0.03em;
   margin-bottom: 1rem;
 }
-.rblock__title em {
-  font-style: normal;
-  color: var(--purple);
-}
+.rblock__title em { font-style: normal; color: var(--purple); }
 .rblock--dark .rblock__title em,
 .rblock--purple .rblock__title em { color: var(--yellow); }
 
@@ -554,61 +723,14 @@ main { display: block; }
 }
 .rblock__text:last-of-type { margin-bottom: 1.75rem; }
 
-/* BOTONES · hover fill estilo UEES */
-.btn-big {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.15rem 1.75rem;
-  background-color: var(--ink);
-  color: white;
-  border-radius: 999px;
-  font-family: var(--ui);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  cursor: pointer;
-  border: none;
-  overflow: hidden;
-  isolation: isolate;
-  background-image: linear-gradient(var(--papaya), var(--papaya));
-  background-size: 0% 100%;
-  background-repeat: no-repeat;
-  background-position: left center;
-  transition: background-size 480ms cubic-bezier(0.65, 0, 0.2, 1),
-              color 300ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.btn-big:hover {
-  background-size: 100% 100%;
-  color: var(--ink);
-}
-.btn-big::after {
-  content: '→';
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.btn-big:hover::after { transform: translateX(5px); }
-
-.btn-big--light {
-  background-color: white;
-  color: var(--ink);
-  background-image: linear-gradient(var(--yellow), var(--yellow));
-}
-.btn-big--light:hover { color: var(--ink); }
-
-.btn-big--purple {
-  background-color: var(--purple);
-  color: white;
-  background-image: linear-gradient(var(--yellow), var(--yellow));
-}
-.btn-big--purple:hover { color: var(--ink); }
-
 @media (max-width: 800px) {
   .rblock__grid { grid-template-columns: 1fr; }
   .rblock__inner { border-radius: 32px; }
 }
 
-/* DIF SECTION */
+/* ==========================================================================
+   DIF SECTION
+   ========================================================================== */
 .dif-section { padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem); }
 .dif-head {
   max-width: var(--max);
@@ -666,7 +788,7 @@ main { display: block; }
   min-height: 380px;
   position: relative;
   overflow: hidden;
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 400ms var(--fill-ease);
 }
 .dif-card:hover { transform: translateY(-5px); }
 .dif-card--papaya { background: var(--papaya); color: var(--ink); }
@@ -707,62 +829,22 @@ main { display: block; }
   position: relative;
   z-index: 1;
 }
-
 .dif-card__icon {
   width: 96px; height: 96px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: rgba(0,0,0,0.08);
   flex-shrink: 0;
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 500ms var(--fill-ease);
 }
 .dif-card:hover .dif-card__icon { transform: rotate(-8deg) scale(1.06); }
 .dif-card--purple .dif-card__icon,
 .dif-card--deep .dif-card__icon { background: rgba(255,255,255,0.14); }
 .dif-card__icon svg { width: 44px; height: 44px; }
 
-/* BOTÓN DIF-CARD · hover fill UEES */
-.dif-cta {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--ui);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1.15rem;
-  border-radius: 999px;
-  background-color: var(--ink);
-  color: white;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  isolation: isolate;
-  background-image: linear-gradient(var(--purple), var(--purple));
-  background-size: 0% 100%;
-  background-repeat: no-repeat;
-  background-position: left center;
-  transition: background-size 450ms cubic-bezier(0.65, 0, 0.2, 1),
-              color 280ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.dif-cta:hover { background-size: 100% 100%; color: white; }
-.dif-cta::after {
-  content: '→';
-  transition: transform 380ms cubic-bezier(0.65, 0, 0.2, 1);
-}
-.dif-cta:hover::after { transform: translateX(4px); }
-
-.dif-card--purple .dif-cta,
-.dif-card--deep .dif-cta {
-  background-color: white;
-  color: var(--ink);
-  background-image: linear-gradient(var(--yellow), var(--yellow));
-}
-.dif-card--purple .dif-cta:hover,
-.dif-card--deep .dif-cta:hover { color: var(--ink); }
-
-/* FAQ */
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
 .faq-section { padding: clamp(4rem, 8vw, 7rem) 0; }
 .faq-grid {
   max-width: var(--max);
@@ -868,8 +950,7 @@ main { display: block; }
   flex-shrink: 0;
   font-size: 1.3rem;
   font-weight: 300;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1),
-              background 250ms ease;
+  transition: transform 350ms var(--fill-ease), background 250ms ease;
 }
 .faq-item.is-open .faq-trigger__icon {
   background: var(--purple);
@@ -878,7 +959,7 @@ main { display: block; }
 .faq-body {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 400ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: grid-template-rows 400ms var(--fill-ease);
 }
 .faq-item.is-open .faq-body { grid-template-rows: 1fr; }
 .faq-body__inner { overflow: hidden; }
@@ -893,7 +974,9 @@ main { display: block; }
 .faq-body__content p:last-child { margin-bottom: 0; }
 .faq-body__content strong { color: var(--ink); }
 
-/* PODCAST */
+/* ==========================================================================
+   PODCAST
+   ========================================================================== */
 .podcast-section { padding: clamp(3rem, 6vw, 5rem) 0; }
 .podcast-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .podcast-block {
@@ -950,7 +1033,9 @@ main { display: block; }
   opacity: 0.8; margin-bottom: 1.75rem; max-width: 46ch;
 }
 
-/* LOGO TICKER */
+/* ==========================================================================
+   LOGO TICKER
+   ========================================================================== */
 .logos-section { padding: clamp(3rem, 6vw, 5rem) 0; overflow: hidden; }
 .logos-label {
   text-align: center;
@@ -983,7 +1068,7 @@ main { display: block; }
   font-size: 0.85rem; letter-spacing: -0.02em;
   text-align: center; padding: 1rem;
   flex-shrink: 0;
-  transition: transform 350ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 350ms var(--fill-ease);
 }
 .logo-tile:hover { transform: scale(1.06) rotate(-2deg); }
 .logo-tile:nth-child(5n+1) { background: var(--gray); color: var(--ink); }
@@ -992,7 +1077,9 @@ main { display: block; }
 .logo-tile:nth-child(5n+4) { background: var(--lightblue); color: var(--purple-deep); }
 .logo-tile:nth-child(5n+5) { background: var(--papaya); color: var(--ink); }
 
-/* BIG HEADINGS */
+/* ==========================================================================
+   BIG HEADINGS
+   ========================================================================== */
 .big-headings {
   padding: clamp(3rem, 6vw, 6rem) 0;
   max-width: var(--max);
@@ -1008,7 +1095,7 @@ main { display: block; }
   line-height: 0.95;
   letter-spacing: -0.045em;
   color: var(--ink);
-  transition: transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 800ms var(--fill-ease);
 }
 .big-heading em { font-style: normal; color: var(--purple); }
 .big-heading--outline {
@@ -1021,7 +1108,9 @@ main { display: block; }
   color: transparent;
 }
 
-/* TESTIMONIOS */
+/* ==========================================================================
+   TESTIMONIOS
+   ========================================================================== */
 .testi-section { padding: clamp(3rem, 6vw, 5rem) 0; overflow: hidden; }
 .testi-head {
   max-width: var(--max);
@@ -1060,7 +1149,7 @@ main { display: block; }
   flex-direction: column;
   gap: 1.25rem;
   min-height: 220px;
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 400ms var(--fill-ease);
 }
 .testi-card:hover { transform: translateY(-4px); }
 .testi-card:nth-child(6n+1) { background: var(--paper-warm); color: var(--ink); }
@@ -1099,7 +1188,9 @@ main { display: block; }
 .testi-card__name { font-size: 0.85rem; font-weight: 700; }
 .testi-card__role { font-size: 0.72rem; opacity: 0.7; }
 
-/* BLOG */
+/* ==========================================================================
+   BLOG
+   ========================================================================== */
 .blog-section { padding: clamp(3rem, 6vw, 5rem) 0; }
 .blog-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .blog-title {
@@ -1121,7 +1212,7 @@ main { display: block; }
   overflow: hidden;
   background: var(--paper-warm);
   cursor: pointer;
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1), box-shadow 400ms ease;
+  transition: transform 400ms var(--fill-ease), box-shadow 400ms ease;
   display: flex;
   flex-direction: column;
 }
@@ -1135,7 +1226,7 @@ main { display: block; }
 .blog-card:nth-child(2) .blog-card__image { background: var(--papaya); color: var(--ink); }
 .blog-card:nth-child(3) .blog-card__image { background: var(--yellow); color: var(--ink); }
 .blog-card:nth-child(4) .blog-card__image { background: var(--lightblue); color: var(--purple-deep); }
-.blog-card__image svg { width: 56px; height: 56px; position: relative; transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1); }
+.blog-card__image svg { width: 56px; height: 56px; position: relative; transition: transform 500ms var(--fill-ease); }
 .blog-card:hover .blog-card__image svg { transform: scale(1.15) rotate(-6deg); }
 .blog-card__body { padding: 1.5rem; }
 .blog-card__tag {
@@ -1156,7 +1247,9 @@ main { display: block; }
   color: var(--ink);
 }
 
-/* CTA FINAL */
+/* ==========================================================================
+   CTA FINAL
+   ========================================================================== */
 .final-cta { padding: clamp(3rem, 6vw, 5rem) 0; }
 .final-cta__inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
 .final-cta__block {
@@ -1194,7 +1287,9 @@ main { display: block; }
   opacity: 0.85;
 }
 
-/* FOOTER */
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 .footer {
   background: var(--ink);
   color: var(--paper);
@@ -1241,7 +1336,7 @@ main { display: block; }
   font-size: 0.9rem;
   color: rgba(250,247,240,0.75);
   cursor: pointer;
-  transition: color 200ms ease, padding 250ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: color 200ms ease, padding 250ms var(--fill-ease);
 }
 .footer__col button:hover,
 .footer__col a:hover { color: var(--yellow); padding-left: 0.35rem; }
@@ -1252,7 +1347,7 @@ main { display: block; }
   background: rgba(250,247,240,0.08);
   display: flex; align-items: center; justify-content: center;
   color: var(--paper);
-  transition: background 250ms ease, transform 400ms cubic-bezier(0.65, 0, 0.2, 1), color 250ms ease;
+  transition: background 250ms ease, transform 400ms var(--fill-ease), color 250ms ease;
   cursor: pointer;
   border: none;
 }
@@ -1271,7 +1366,9 @@ main { display: block; }
   letter-spacing: 0.05em;
 }
 
-/* WHATSAPP */
+/* ==========================================================================
+   WHATSAPP FLOAT
+   ========================================================================== */
 .float-contact {
   position: fixed;
   bottom: 1.5rem; right: 1.5rem;
@@ -1284,7 +1381,7 @@ main { display: block; }
   border: none;
   cursor: pointer;
   box-shadow: 0 12px 32px rgba(43,20,97,0.18);
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1), box-shadow 400ms ease;
+  transition: transform 400ms var(--fill-ease), box-shadow 400ms ease;
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -1299,7 +1396,7 @@ main { display: block; }
   display: flex; align-items: center; justify-content: center;
   color: white;
   flex-shrink: 0;
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 400ms var(--fill-ease);
 }
 .float-contact:hover .float-contact__icon { transform: rotate(-10deg) scale(1.08); }
 .float-contact__icon svg { width: 20px; height: 20px; }
@@ -1308,12 +1405,14 @@ main { display: block; }
   .float-contact { padding: 0.6rem; }
 }
 
-/* REVEAL */
+/* ==========================================================================
+   REVEAL
+   ========================================================================== */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
-              transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: opacity 700ms var(--fill-ease),
+              transform 700ms var(--fill-ease);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
@@ -1327,10 +1426,9 @@ main { display: block; }
 }
 
 /* ==========================================================================
-   SECCIONES INTERNAS · mismo lenguaje de bloques
+   PÁGINAS INTERNAS
    ========================================================================== */
 .page-hero { padding: clamp(2rem, 4vw, 3rem) 0 0; }
-
 .page-hero__inner {
   border-radius: 40px;
   padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
@@ -1360,10 +1458,7 @@ main { display: block; }
   background: radial-gradient(circle, rgba(107,45,142,0.1), transparent 60%);
 }
 
-.page-hero__content {
-  position: relative;
-  max-width: 780px;
-}
+.page-hero__content { position: relative; max-width: 780px; }
 
 .page-hero__tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -1417,7 +1512,7 @@ main { display: block; }
 }
 .page-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
-/* Oferta · grid de carreras */
+/* Carreras */
 .carreras-grid {
   max-width: var(--max);
   margin: 0 auto;
@@ -1436,7 +1531,7 @@ main { display: block; }
   flex-direction: column;
   gap: 1.25rem;
   min-height: 320px;
-  transition: transform 400ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 400ms var(--fill-ease);
 }
 .carrera-card:hover { transform: translateY(-6px); }
 .carrera-card--papaya { background: var(--papaya); color: var(--ink); }
@@ -1479,7 +1574,7 @@ main { display: block; }
   display: flex; align-items: center; justify-content: center;
   background: rgba(0,0,0,0.08);
   flex-shrink: 0;
-  transition: transform 500ms cubic-bezier(0.65, 0, 0.2, 1);
+  transition: transform 500ms var(--fill-ease);
 }
 .carrera-card:hover .carrera-card__icon { transform: rotate(-10deg) scale(1.08); }
 .carrera-card--purple .carrera-card__icon,
@@ -1498,10 +1593,7 @@ main { display: block; }
   color: var(--purple-deep);
   padding: clamp(2.5rem, 5vw, 4rem);
 }
-.form-card__head {
-  margin-bottom: 2rem;
-  max-width: 52ch;
-}
+.form-card__head { margin-bottom: 2rem; max-width: 52ch; }
 .form-card__head h3 {
   font-family: var(--ui);
   font-weight: 800;
@@ -1591,55 +1683,19 @@ main { display: block; }
     <line x1="18" y1="22" x2="30" y2="22" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
     <line x1="18" y1="30" x2="30" y2="30" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
   </symbol>
-
-  <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/>
-    <path d="M8 7h8M8 11h8M8 15h5"/>
-  </symbol>
-  <symbol id="ic-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 21c0-5 4-9 8-9-2 5-5 8-8 9z"/>
-    <path d="M12 21c0-5-4-9-8-9 2 5 5 8 8 9z"/>
-    <path d="M12 21V8"/><circle cx="12" cy="4" r="2"/>
-  </symbol>
-  <symbol id="ic-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 016-6h0a6 6 0 016 6v1"/>
-    <circle cx="17" cy="9" r="2"/><path d="M15 21v-1a5 5 0 015-5h0a5 5 0 013 4"/>
-  </symbol>
-  <symbol id="ic-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/>
-    <circle cx="12" cy="12" r="2.5"/>
-  </symbol>
-  <symbol id="ic-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>
-  </symbol>
-  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/>
-  </symbol>
-  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="9"/>
-    <path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/>
-  </symbol>
-  <symbol id="ic-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="9" y="3" width="6" height="12" rx="3"/>
-    <path d="M5 11a7 7 0 0014 0M12 18v3"/>
-  </symbol>
-  <symbol id="ic-wa" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.127 1.529 5.86L0 24l6.31-1.657A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
-  </symbol>
-  <symbol id="ic-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>
-    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
-  </symbol>
-  <symbol id="ic-fb" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M22 12a10 10 0 10-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.9h-2.33v6.98A10 10 0 0022 12z"/>
-  </symbol>
-  <symbol id="ic-li" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
-  </symbol>
-  <symbol id="ic-x" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-  </symbol>
+  <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14"/><path d="M8 7h8M8 11h8M8 15h5"/></symbol>
+  <symbol id="ic-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-5 4-9 8-9-2 5-5 8-8 9z"/><path d="M12 21c0-5-4-9-8-9 2 5 5 8 8 9z"/><path d="M12 21V8"/><circle cx="12" cy="4" r="2"/></symbol>
+  <symbol id="ic-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 016-6h0a6 6 0 016 6v1"/><circle cx="17" cy="9" r="2"/><path d="M15 21v-1a5 5 0 015-5h0a5 5 0 013 4"/></symbol>
+  <symbol id="ic-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="ic-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/></symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18"/></symbol>
+  <symbol id="ic-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></symbol>
+  <symbol id="ic-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.557 4.127 1.529 5.86L0 24l6.31-1.657A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></symbol>
+  <symbol id="ic-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></symbol>
+  <symbol id="ic-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.56 9.88V14.9H7.9V12h2.54V9.8c0-2.51 1.49-3.9 3.77-3.9 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.9h-2.33v6.98A10 10 0 0022 12z"/></symbol>
+  <symbol id="ic-li" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
 </svg>
 
 <!-- NAV -->
@@ -1664,8 +1720,8 @@ main { display: block; }
 
     <div class="nav__actions">
       <button class="nav__official" data-nav="admisiones">
-        Sitio oficial
-        <span class="arr" aria-hidden="true">↗</span>
+        <span class="nav__official__label">Sitio oficial</span>
+        <span class="nav__official__arrow" aria-hidden="true">↗</span>
       </button>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav">
         <span class="menu-toggle__icon" aria-hidden="true"></span>
@@ -1695,7 +1751,6 @@ main { display: block; }
        ============================================================ -->
   <section class="page" id="inicio" data-active="true">
 
-    <!-- HERO -->
     <div class="hero">
       <div class="hero__inner">
         <div class="hero__spread">
@@ -1749,7 +1804,12 @@ main { display: block; }
               <button class="cta-circle" data-nav="admisiones" aria-label="Solicitar admisión">
                 <span class="cta-circle__arrow">→</span>
               </button>
-              <button class="cta-link" data-nav="oferta">Conoce la oferta académica</button>
+              <button class="btn-big btn-big--light" data-nav="oferta">
+                <span class="btn-big__label">
+                  Conoce la oferta
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
 
@@ -1767,7 +1827,12 @@ main { display: block; }
               El proceso de admisión está abierto. Completa el formulario y el equipo de
               admisiones se pondrá en contacto para acompañarte en cada paso.
             </p>
-            <button class="btn-big" data-nav="admisiones">Reservar ahora</button>
+            <button class="btn-big" data-nav="admisiones">
+              <span class="btn-big__label">
+                Reservar ahora
+                <span class="btn-big__arrow" aria-hidden="true">→</span>
+              </span>
+            </button>
           </div>
           <div style="text-align:right;">
             <svg viewBox="0 0 200 200" style="width:min(100%,240px);height:auto;color:var(--purple);margin-left:auto;" fill="none" stroke="currentColor" stroke-width="1.3">
@@ -1792,7 +1857,12 @@ main { display: block; }
               Cada estudiante es atendido por un asesor académico que acompaña el proceso
               de ingreso desde la primera consulta hasta la matrícula.
             </p>
-            <button class="btn-big btn-big--light" data-nav="admisiones">Haz clic aquí</button>
+            <button class="btn-big btn-big--light" data-nav="admisiones">
+              <span class="btn-big__label">
+                Haz clic aquí
+                <span class="btn-big__arrow" aria-hidden="true">→</span>
+              </span>
+            </button>
           </div>
           <div style="text-align:right;">
             <svg viewBox="0 0 200 200" style="width:min(100%,220px);height:auto;color:var(--yellow);margin-left:auto;" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -1820,7 +1890,10 @@ main { display: block; }
               <p class="dif-card__desc">Tomamos el nombre de Claudia Lars porque su obra representa una relación profunda entre lenguaje, tierra y pensamiento.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="universidad">Conoce más</button>
+              <button class="dif-cta" data-nav="universidad">
+                <span class="dif-cta__label">Conoce más</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
             </div>
           </article>
@@ -1831,7 +1904,10 @@ main { display: block; }
               <p class="dif-card__desc">Yamabal, Morazán. Una ubicación pensada para estudiantes del oriente del país, sin viajes largos.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="universidad">Ver ubicación</button>
+              <button class="dif-cta" data-nav="universidad">
+                <span class="dif-cta__label">Ver ubicación</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-leaf"/></svg></div>
             </div>
           </article>
@@ -1845,7 +1921,10 @@ main { display: block; }
               <p class="dif-card__desc">Tres ejes que se articulan en una misma formación. Letras, agronegocios, salud y software.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="oferta">Ver carreras</button>
+              <button class="dif-cta" data-nav="oferta">
+                <span class="dif-cta__label">Ver carreras</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-spark"/></svg></div>
             </div>
           </article>
@@ -1856,7 +1935,10 @@ main { display: block; }
               <p class="dif-card__desc">La vida universitaria se entiende como parte de la formación. Cultura, deporte y proyección social.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="vida">Conoce más</button>
+              <button class="dif-cta" data-nav="vida">
+                <span class="dif-cta__label">Conoce más</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-people"/></svg></div>
             </div>
           </article>
@@ -1870,7 +1952,10 @@ main { display: block; }
               <p class="dif-card__desc">Plataforma académica propia, materiales de curso, evaluaciones y foros de discusión.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="aula">Ver aula</button>
+              <button class="dif-cta" data-nav="aula">
+                <span class="dif-cta__label">Ver aula</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-compass"/></svg></div>
             </div>
           </article>
@@ -1881,7 +1966,10 @@ main { display: block; }
               <p class="dif-card__desc">Cada estudiante es atendido por un asesor académico que lo acompaña desde la primera consulta hasta la matrícula.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+              <button class="dif-cta" data-nav="admisiones">
+                <span class="dif-cta__label">Solicitar info</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-heart"/></svg></div>
             </div>
           </article>
@@ -1909,7 +1997,7 @@ main { display: block; }
             </button>
             <div class="faq-body" id="faq-1"><div class="faq-body__inner"><div class="faq-body__content">
               <p>Los requisitos específicos se encuentran en proceso de definición institucional. <strong>Consulta directamente con la oficina de Admisiones</strong> para conocer la documentación vigente.</p>
-              <p>Como referencia general, todo proceso de ingreso a educación superior en El Salvador suele solicitar título de bachillerato, documentos de identidad y fotografías. La lista exacta se comunicará oportunamente.</p>
+              <p>Como referencia general, todo proceso de ingreso a educación superior en El Salvador suele solicitar título de bachillerato, documentos de identidad y fotografías.</p>
             </div></div></div>
           </div>
           <div class="faq-item">
@@ -1918,7 +2006,7 @@ main { display: block; }
               <span class="faq-trigger__icon">+</span>
             </button>
             <div class="faq-body" id="faq-2"><div class="faq-body__inner"><div class="faq-body__content">
-              <p>La universidad contempla un curso propedéutico de nivelación para estudiantes de nuevo ingreso. Su objetivo es reforzar los conocimientos adquiridos en bachillerato.</p>
+              <p>La universidad contempla un curso propedéutico de nivelación para estudiantes de nuevo ingreso.</p>
               <p><em>Información específica por confirmar. Consultar con Admisiones.</em></p>
             </div></div></div>
           </div>
@@ -1929,7 +2017,7 @@ main { display: block; }
             </button>
             <div class="faq-body" id="faq-3"><div class="faq-body__inner"><div class="faq-body__content">
               <p>La universidad trabaja en un esquema de cuotas diferenciadas y programas de apoyo económico que permitan el acceso a estudiantes de la región oriental.</p>
-              <p><em>Los aranceles definitivos y las condiciones de beca se encuentran en proceso de confirmación institucional.</em></p>
+              <p><em>Los aranceles definitivos se encuentran en proceso de confirmación institucional.</em></p>
             </div></div></div>
           </div>
           <div class="faq-item">
@@ -1938,7 +2026,7 @@ main { display: block; }
               <span class="faq-trigger__icon">+</span>
             </button>
             <div class="faq-body" id="faq-4"><div class="faq-body__inner"><div class="faq-body__content">
-              <p>Las fechas del ciclo 2026, incluyendo períodos de inscripción, inicio de clases y evaluaciones, se publicarán una vez confirmadas institucionalmente.</p>
+              <p>Las fechas del ciclo 2026 se publicarán una vez confirmadas institucionalmente.</p>
               <p><em>Información por confirmar. Consultar con Admisiones.</em></p>
             </div></div></div>
           </div>
@@ -1965,7 +2053,12 @@ main { display: block; }
             <span class="podcast-tag">Ahora disponible</span>
             <h2 class="podcast-title">Podcast: <em>Mi carrera ideal</em></h2>
             <p class="podcast-desc">Tips y conversaciones para elegir tu carrera universitaria con criterio. Escúchalo donde quieras.</p>
-            <button class="btn-big">Escúchalo</button>
+            <button class="btn-big">
+              <span class="btn-big__label">
+                Escúchalo
+                <span class="btn-big__arrow" aria-hidden="true">→</span>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -2156,7 +2249,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Tu lugar en <em>Morazán</em><br>te está esperando</h2>
           <p class="final-cta__text">Si estás pensando en estudiar una carrera universitaria, conversemos. El equipo de admisiones puede orientarte sobre programas, requisitos y acompañamiento.</p>
-          <button class="btn-big btn-big--light" data-nav="admisiones">Solicitar información</button>
+          <button class="btn-big btn-big--light" data-nav="admisiones">
+            <span class="btn-big__label">
+              Solicitar información
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -2179,8 +2277,18 @@ main { display: block; }
               científica y formación tecnológica.
             </p>
             <div class="page-hero__actions">
-              <button class="btn-big" data-nav="admisiones">Solicitar admisión</button>
-              <button class="btn-big btn-big--light" data-nav="oferta">Ver carreras</button>
+              <button class="btn-big" data-nav="admisiones">
+                <span class="btn-big__label">
+                  Solicitar admisión
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
+              <button class="btn-big btn-big--light" data-nav="oferta">
+                <span class="btn-big__label">
+                  Ver carreras
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -2274,7 +2382,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Conoce la <em>universidad</em></h2>
           <p class="final-cta__text">Agenda una conversación con el equipo de admisiones para conocer el proyecto en detalle.</p>
-          <button class="btn-big btn-big--light" data-nav="admisiones">Agendar conversación</button>
+          <button class="btn-big btn-big--light" data-nav="admisiones">
+            <span class="btn-big__label">
+              Agendar conversación
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -2292,12 +2405,21 @@ main { display: block; }
             <h1 class="page-hero__title">Seis programas <em>profesionales</em></h1>
             <p class="page-hero__lead">
               Articulados en torno a una base humanística común y una formación tecnológica
-              transversal. Ocho ciclos por programa, modalidad presencial con apoyo del aula
-              virtual.
+              transversal. Modalidad presencial con apoyo del aula virtual.
             </p>
             <div class="page-hero__actions">
-              <button class="btn-big" data-nav="admisiones">Solicitar info</button>
-              <button class="btn-big btn-big--light" data-nav="aula">Ver aula virtual</button>
+              <button class="btn-big" data-nav="admisiones">
+                <span class="btn-big__label">
+                  Solicitar info
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
+              <button class="btn-big btn-big--light" data-nav="aula">
+                <span class="btn-big__label">
+                  Ver aula virtual
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -2311,7 +2433,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Licenciatura en Desarrollo de Software</h3>
           <p class="carrera-card__desc">Programación, bases de datos, desarrollo web y soluciones digitales aplicadas al contexto regional.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-spark"/></svg></div>
           </div>
         </article>
@@ -2321,7 +2446,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Ingeniería en Agronegocios</h3>
           <p class="carrera-card__desc">Gestión sostenible de la producción agrícola y pecuaria, con énfasis en mercados locales.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-leaf"/></svg></div>
           </div>
         </article>
@@ -2331,7 +2459,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Licenciatura en Letras y Comunicación</h3>
           <p class="carrera-card__desc">Lenguaje, literatura, escritura y comunicación institucional. Formación vinculada al legado de Claudia Lars.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-book"/></svg></div>
           </div>
         </article>
@@ -2341,7 +2472,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Licenciatura en Enfermería</h3>
           <p class="carrera-card__desc">Formación de profesionales de la salud para la atención de comunidades del oriente del país.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-heart"/></svg></div>
           </div>
         </article>
@@ -2351,7 +2485,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Licenciatura en Administración de Empresas</h3>
           <p class="carrera-card__desc">Gestión, emprendimiento y dirección de organizaciones. Enfoque en la región oriental.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-globe"/></svg></div>
           </div>
         </article>
@@ -2361,7 +2498,10 @@ main { display: block; }
           <h3 class="carrera-card__title">Técnico Superior en Turismo Rural</h3>
           <p class="carrera-card__desc">Aprovechamiento sostenible del patrimonio natural y cultural de Morazán y la región oriental.</p>
           <div class="carrera-card__bottom">
-            <button class="dif-cta" data-nav="admisiones">Solicitar info</button>
+            <button class="dif-cta" data-nav="admisiones">
+              <span class="dif-cta__label">Solicitar info</span>
+              <span class="dif-cta__arrow" aria-hidden="true">→</span>
+            </button>
             <div class="carrera-card__icon"><svg><use href="#ic-compass"/></svg></div>
           </div>
         </article>
@@ -2373,7 +2513,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Encuentra tu <em>carrera ideal</em></h2>
           <p class="final-cta__text">Nuestro equipo puede orientarte sobre cuál programa se ajusta mejor a tus intereses y expectativas.</p>
-          <button class="btn-big btn-big--light" data-nav="admisiones">Solicitar orientación</button>
+          <button class="btn-big btn-big--light" data-nav="admisiones">
+            <span class="btn-big__label">
+              Solicitar orientación
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -2394,8 +2539,12 @@ main { display: block; }
               Comunidad, cultura, deporte y proyección social son parte del proyecto académico.
             </p>
             <div class="page-hero__actions">
-              <button class="btn-big" data-nav="admisiones">Ser parte</button>
-              <button class="btn-big btn-big--light" data-nav="universidad">Conocer más</button>
+              <button class="btn-big" data-nav="admisiones">
+                <span class="btn-big__label">
+                  Ser parte
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -2412,7 +2561,10 @@ main { display: block; }
               <p class="dif-card__desc">Convivir, dialogar y trabajar en colectivo. La comunidad universitaria es parte central del proyecto formativo.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Ser parte</button>
+              <button class="dif-cta" data-nav="admisiones">
+                <span class="dif-cta__label">Ser parte</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-people"/></svg></div>
             </div>
           </article>
@@ -2423,7 +2575,10 @@ main { display: block; }
               <p class="dif-card__desc">Una vida cultural activa, en diálogo con la tradición literaria del país.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Ser parte</button>
+              <button class="dif-cta" data-nav="admisiones">
+                <span class="dif-cta__label">Ser parte</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-book"/></svg></div>
             </div>
           </article>
@@ -2437,7 +2592,10 @@ main { display: block; }
               <p class="dif-card__desc">El deporte y la actividad física son parte de la formación integral. Instalaciones y programas por confirmar.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Ser parte</button>
+              <button class="dif-cta" data-nav="admisiones">
+                <span class="dif-cta__label">Ser parte</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-heart"/></svg></div>
             </div>
           </article>
@@ -2448,7 +2606,10 @@ main { display: block; }
               <p class="dif-card__desc">Trabajo con comunidades del oriente del país, entendido como parte de la formación universitaria.</p>
             </div>
             <div class="dif-card__bottom">
-              <button class="dif-cta" data-nav="admisiones">Ser parte</button>
+              <button class="dif-cta" data-nav="admisiones">
+                <span class="dif-cta__label">Ser parte</span>
+                <span class="dif-cta__arrow" aria-hidden="true">→</span>
+              </button>
               <div class="dif-card__icon"><svg><use href="#ic-leaf"/></svg></div>
             </div>
           </article>
@@ -2461,7 +2622,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Vive la <em>universidad</em></h2>
           <p class="final-cta__text">Conoce las actividades culturales, deportivas y de proyección social de la comunidad universitaria.</p>
-          <button class="btn-big btn-big--light" data-nav="admisiones">Ser parte</button>
+          <button class="btn-big btn-big--light" data-nav="admisiones">
+            <span class="btn-big__label">
+              Ser parte
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -2483,7 +2649,12 @@ main { display: block; }
               institucional.
             </p>
             <div class="page-hero__actions">
-              <button class="btn-big" data-nav="admisiones">Colaborar</button>
+              <button class="btn-big" data-nav="admisiones">
+                <span class="btn-big__label">
+                  Colaborar
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -2545,7 +2716,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Investigar desde el <em>oriente</em></h2>
           <p class="final-cta__text">Producir conocimiento situado, sin renunciar al diálogo con la comunidad académica nacional e internacional.</p>
-          <button class="btn-big btn-big--light" data-nav="admisiones">Colaborar</button>
+          <button class="btn-big btn-big--light" data-nav="admisiones">
+            <span class="btn-big__label">
+              Colaborar
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
@@ -2590,8 +2766,18 @@ main { display: block; }
             poética y las tradiciones literarias centroamericanas del siglo XX.
           </p>
           <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-            <button class="btn-big">Iniciar evaluación</button>
-            <button class="btn-big btn-big--light">Ir al foro</button>
+            <button class="btn-big">
+              <span class="btn-big__label">
+                Iniciar evaluación
+                <span class="btn-big__arrow" aria-hidden="true">→</span>
+              </span>
+            </button>
+            <button class="btn-big btn-big--light">
+              <span class="btn-big__label">
+                Ir al foro
+                <span class="btn-big__arrow" aria-hidden="true">→</span>
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -2607,7 +2793,7 @@ main { display: block; }
           <article class="dif-card dif-card--purple reveal">
             <div class="dif-card__head">
               <span class="dif-card__eyebrow">Materiales</span>
-              <h3 class="dif-card__title">Contenido de curso organizado por módulos</h3>
+              <h3 class="dif-card__title">Contenido organizado por módulos</h3>
               <p class="dif-card__desc">Cada asignatura se estructura en módulos con materiales descargables y recursos complementarios.</p>
             </div>
             <div class="dif-card__bottom">
@@ -2667,7 +2853,12 @@ main { display: block; }
               para acompañarte en cada paso del proceso.
             </p>
             <div class="page-hero__actions">
-              <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus()">Rellenar formulario</button>
+              <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus()">
+                <span class="btn-big__label">
+                  Rellenar formulario
+                  <span class="btn-big__arrow" aria-hidden="true">→</span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -2718,7 +2909,12 @@ main { display: block; }
             </div>
           </div>
 
-          <button type="submit" class="btn-big" style="margin-top:1.5rem;">Enviar solicitud</button>
+          <button type="submit" class="btn-big" style="margin-top:1.5rem;">
+            <span class="btn-big__label">
+              Enviar solicitud
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
 
           <div class="form-notice" id="formNotice" role="status" aria-live="polite">
             <h4>Solicitud recibida</h4>
@@ -2787,7 +2983,12 @@ main { display: block; }
         <div class="final-cta__block reveal">
           <h2 class="final-cta__title">Tu futuro empieza <em>hoy</em></h2>
           <p class="final-cta__text">Conversemos. El equipo de admisiones puede orientarte sobre programas, requisitos y acompañamiento.</p>
-          <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus(); window.scrollTo({top: document.getElementById('admissionForm').getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth'})">Solicitar información</button>
+          <button class="btn-big btn-big--light" onclick="document.getElementById('nombre')?.focus(); window.scrollTo({top: document.getElementById('admissionForm').getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth'})">
+            <span class="btn-big__label">
+              Solicitar información
+              <span class="btn-big__arrow" aria-hidden="true">→</span>
+            </span>
+          </button>
         </div>
       </div>
     </section>
