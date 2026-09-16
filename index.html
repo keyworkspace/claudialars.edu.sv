@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universidad Claudia Lars</title>
+  <title>Claudia Lars</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
     body { background: #f7f5f2; color: #2b2b2b; line-height: 1.6; }
@@ -14,12 +14,12 @@
       position: sticky; top: 0; z-index: 10;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    .logo { font-weight: bold; font-size: 1.3rem; display: flex; align-items: center; gap: 0.6rem; }
-    .logo-icon {
-      width: 38px; height: 38px; border-radius: 50%;
-      background: #d4a5c9; display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; color: #4a2c5e; font-weight: bold;
+    .logo {
+      font-weight: 700; font-size: 1.45rem; letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 0.5rem;
     }
+    .logo .dot { color: #d4a5c9; }
+
     nav button {
       background: none; border: none; color: #d9c8e0; margin-left: 0.8rem;
       cursor: pointer; font-size: 0.95rem; padding: 0.5rem 0.8rem;
@@ -34,18 +34,28 @@
     @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
     .hero {
-      background: linear-gradient(135deg, #4a2c5e, #8b5a9e);
-      color: white; padding: 3.5rem 2rem; border-radius: 20px;
+      background: linear-gradient(135deg, #4a2c5e 0%, #6b3d85 60%, #8b5a9e 100%);
+      color: white; padding: 4rem 2rem 3.5rem; border-radius: 22px;
       text-align: center; margin-bottom: 2rem;
       position: relative; overflow: hidden;
     }
     .hero::after {
-      content: '❦'; position: absolute; font-size: 14rem; opacity: 0.06;
-      right: -1rem; top: -3rem; color: white;
+      content: '❦'; position: absolute; font-size: 16rem; opacity: 0.05;
+      right: -2rem; top: -4rem; color: white; pointer-events: none;
     }
-    .hero h1 { font-size: 2.4rem; margin-bottom: 1rem; line-height: 1.2; }
-    .hero .sub { font-size: 1.05rem; opacity: 0.92; margin-bottom: 0.5rem; }
-    .hero .loc { font-size: 0.95rem; opacity: 0.75; margin-bottom: 1.8rem; }
+    .hero .eyebrow {
+      font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+      opacity: 0.65; margin-bottom: 1.2rem;
+    }
+    .hero .brandmark {
+      font-size: 3.4rem; font-weight: 800; letter-spacing: -2px;
+      line-height: 1; margin-bottom: 0.4rem;
+    }
+    .hero .brandmark .dot { color: #d4a5c9; }
+    .hero .tagline {
+      font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem;
+      font-style: italic;
+    }
     .btn {
       background: #d4a5c9; color: #4a2c5e; border: none; padding: 0.85rem 2rem;
       border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: bold;
@@ -53,11 +63,11 @@
     }
     .btn:hover { background: #e6c2dd; transform: translateY(-2px); }
     .btn-outline {
-      background: transparent; color: white; border: 2px solid white;
+      background: transparent; color: white; border: 2px solid rgba(255,255,255,0.7);
       padding: 0.75rem 1.8rem; border-radius: 30px; cursor: pointer;
       font-weight: bold; margin-left: 0.8rem; transition: all 0.2s;
     }
-    .btn-outline:hover { background: rgba(255,255,255,0.15); }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
     .card {
@@ -75,7 +85,10 @@
       border-radius: 12px; margin-bottom: 2rem; font-style: italic; color: #4a4a4a;
       box-shadow: 0 4px 14px rgba(74,44,94,0.06);
     }
-    .quote .author { display: block; margin-top: 0.8rem; font-style: normal; font-weight: bold; color: #4a2c5e; font-size: 0.9rem; }
+    .quote .author {
+      display: block; margin-top: 0.8rem; font-style: normal;
+      font-weight: bold; color: #4a2c5e; font-size: 0.9rem;
+    }
 
     .aula { background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 14px rgba(74,44,94,0.07); }
     .video-placeholder {
@@ -87,11 +100,11 @@
     .progress-bar { background: #8b5a9e; height: 100%; width: 35%; }
 
     form { display: flex; flex-direction: column; gap: 1rem; max-width: 420px; }
-    input, select, textarea {
+    input, select {
       padding: 0.85rem; border: 1px solid #d5c9dc; border-radius: 10px;
       font-size: 1rem; font-family: inherit; background: white;
     }
-    input:focus, select:focus, textarea:focus { outline: 2px solid #8b5a9e; border-color: transparent; }
+    input:focus, select:focus { outline: 2px solid #8b5a9e; border-color: transparent; }
 
     .info-box {
       background: #f0e9f4; border-radius: 12px; padding: 1.2rem 1.5rem;
@@ -101,14 +114,15 @@
 
     footer {
       text-align: center; padding: 2.5rem 1rem; color: #888;
-      font-size: 0.88rem; border-top: 1px solid #e5dfe8; margin-top: 3rem;
+      font-size: 0.85rem; border-top: 1px solid #e5dfe8; margin-top: 3rem;
     }
-    footer .brand { color: #4a2c5e; font-weight: bold; }
+    footer .brand { color: #4a2c5e; font-weight: 700; font-size: 0.95rem; }
+    footer .legal { font-size: 0.78rem; color: #aaa; margin-top: 0.5rem; }
 
     @media (max-width: 640px) {
       header { flex-direction: column; gap: 0.8rem; padding: 1rem; }
       nav button { margin-left: 0; margin: 0 0.2rem; font-size: 0.85rem; }
-      .hero h1 { font-size: 1.8rem; }
+      .hero .brandmark { font-size: 2.4rem; }
       .btn-outline { margin-left: 0; margin-top: 0.8rem; }
     }
   </style>
@@ -116,13 +130,10 @@
 <body>
 
   <header>
-    <div class="logo">
-      <div class="logo-icon">CL</div>
-      <span>Universidad Claudia Lars</span>
-    </div>
+    <div class="logo">Claudia Lars<span class="dot">.</span></div>
     <nav>
       <button onclick="show(event,'inicio')" class="active">Inicio</button>
-      <button onclick="show(event,'oferta')">Oferta</button>
+      <button onclick="show(event,'oferta')">Carreras</button>
       <button onclick="show(event,'aula')">Aula</button>
       <button onclick="show(event,'admision')">Admisión</button>
     </nav>
@@ -133,51 +144,60 @@
     <!-- INICIO -->
     <section id="inicio" class="active">
       <div class="hero">
-        <h1>La universidad de Morazán</h1>
-        <p class="sub">Educación superior de calidad, sin tener que migrar a San Miguel.</p>
-        <p class="loc">📍 Yamabal, Morazán · El Salvador</p>
+        <div class="eyebrow">Educación superior</div>
+        <div class="brandmark">Claudia Lars<span class="dot">.</span></div>
+        <p class="tagline">La universidad de Morazán.</p>
         <button class="btn" onclick="show(event,'admision')">Solicitar admisión</button>
         <button class="btn-outline" onclick="show(event,'oferta')">Ver carreras</button>
       </div>
 
       <div class="quote">
         "La poesía es el testimonio más puro de la dignidad humana."
-        <span class="author">— Claudia Lars, poetisa salvadoreña (1899–1974)</span>
+        <span class="author">Claudia Lars · poetisa salvadoreña (1899-1974)</span>
       </div>
 
       <div class="grid">
-        <div class="card"><h3>🏠 Cerca de casa</h3><p>Estudia en Yamabal. Sin viajes de más de una hora, sin gastos de alquiler fuera del departamento.</p></div>
-        <div class="card"><h3>📚 Formación integral</h3><p>Programas académicos con enfoque humanístico, científico y técnico al servicio de la región.</p></div>
-        <div class="card"><h3>🌱 Compromiso local</h3><p>Proyectos de proyección social vinculados al desarrollo de Morazán y la zona oriental.</p></div>
+        <div class="card">
+          <h3>🏠 Cerca de casa</h3>
+          <p>Estudia en Morazán. Sin viajes de más de una hora, sin gastos de alquiler fuera del departamento.</p>
+        </div>
+        <div class="card">
+          <h3>📚 Formación integral</h3>
+          <p>Programas académicos con enfoque humanístico, científico y técnico al servicio de la región.</p>
+        </div>
+        <div class="card">
+          <h3>🌱 Compromiso local</h3>
+          <p>Proyectos de proyección social vinculados al desarrollo de Morazán y la zona oriental.</p>
+        </div>
       </div>
     </section>
 
     <!-- OFERTA -->
     <section id="oferta">
-      <h2 class="section-title">Oferta académica inicial</h2>
+      <h2 class="section-title">Carreras</h2>
       <div class="grid">
         <div class="card">
-          <h3>💻 Lic. en Desarrollo de Software</h3>
-          <p>Formación en programación, bases de datos, desarrollo web y soluciones digitales para la región.</p>
+          <h3>💻 Desarrollo de Software</h3>
+          <p>Programación, bases de datos, desarrollo web y soluciones digitales para la región.</p>
         </div>
         <div class="card">
-          <h3>🌾 Ing. en Agronegocios</h3>
-          <p>Gestión sostenible de la producción agrícola y pecuaria, con enfoque en mercados locales y exportación.</p>
+          <h3>🌾 Agronegocios</h3>
+          <p>Gestión sostenible de la producción agrícola y pecuaria, con enfoque en mercados locales.</p>
         </div>
         <div class="card">
-          <h3>📖 Lic. en Letras y Comunicación</h3>
-          <p>Formación humanística en lenguaje, literatura y comunicación, honrando el legado de Claudia Lars.</p>
+          <h3>📖 Letras y Comunicación</h3>
+          <p>Lenguaje, literatura y comunicación, honrando el legado de Claudia Lars.</p>
         </div>
         <div class="card">
-          <h3>🏥 Lic. en Enfermería</h3>
-          <p>Formación de profesionales de la salud para atender las necesidades de Morazán y la zona oriental.</p>
+          <h3>🏥 Enfermería</h3>
+          <p>Profesionales de la salud para atender las necesidades de Morazán y la zona oriental.</p>
         </div>
         <div class="card">
-          <h3>📈 Lic. en Administración de Empresas</h3>
-          <p>Formación de líderes para el emprendimiento y la gestión de organizaciones locales.</p>
+          <h3>📈 Administración de Empresas</h3>
+          <p>Líderes para el emprendimiento y la gestión de organizaciones locales.</p>
         </div>
         <div class="card">
-          <h3>🎓 Técnico en Turismo Rural</h3>
+          <h3>🎓 Turismo Rural</h3>
           <p>Aprovechamiento sostenible del patrimonio natural y cultural de la región.</p>
         </div>
       </div>
@@ -185,7 +205,7 @@
 
     <!-- AULA -->
     <section id="aula">
-      <h2 class="section-title">Aula virtual — Demo</h2>
+      <h2 class="section-title">Aula virtual · Demo</h2>
       <div class="aula">
         <h3>Literatura Centroamericana I</h3>
         <p style="color:#666; font-size:0.9rem; margin-bottom:1rem;">Docente: Dra. María Elena Portillo · Semana 1</p>
@@ -234,18 +254,18 @@
       </form>
 
       <div class="info-box">
-        <strong>📌 Sede:</strong>
-        Yamabal, departamento de Morazán, El Salvador.<br>
-        <strong>📧 Contacto:</strong> admision@ucl.edu.sv (demo)<br>
-        <strong>🕐 Atención:</strong> Lunes a viernes, 8:00 a.m. – 4:00 p.m.
+        <strong>📧 Contacto:</strong> admision@claudialars.edu.sv (demo)<br>
+        <strong>🕐 Atención:</strong> Lunes a viernes, 8:00 a.m. · 4:00 p.m.
       </div>
     </section>
 
   </main>
 
   <footer>
-    <span class="brand">Universidad Claudia Lars</span> — Yamabal, Morazán, El Salvador<br>
-    Prototipo educativo · Sin fines de lucro · 2026
+    <div class="brand">Claudia Lars<span style="color:#d4a5c9;">.</span></div>
+    <div class="legal">
+      Nombre legal: Universidad Claudia Lars · Prototipo educativo · 2026
+    </div>
   </footer>
 
   <script>
