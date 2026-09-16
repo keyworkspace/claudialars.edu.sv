@@ -12,7 +12,7 @@
 
 <style>
 /* ==========================================================================
-   UNIVERSIDAD CLAUDIA LARS · sistema UEES · relleno circular · 2s
+   UNIVERSIDAD CLAUDIA LARS · sistema UEES · relleno circular · 1s sin delay
    ========================================================================== */
 :root {
   --purple:       #6B2D8E;
@@ -43,13 +43,13 @@
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --max: 1440px;
 
-  /* Curva característica UEES */
   --fill-ease: cubic-bezier(0.65, 0, 0.2, 1);
 
-  /* Duración unificada de todas las animaciones de botones */
-  --fill-duration: 2000ms;         /* relleno circular */
-  --fill-duration-color: 1600ms;   /* cambio de color del texto */
-  --fill-duration-arrow: 1400ms;   /* movimiento de flechas */
+  /* === CONTROL DE ANIMACIÓN === */
+  --fill-duration: 1000ms;         /* cuánto DURA el relleno circular */
+  --fill-duration-color: 800ms;    /* cuánto DURA el cambio de color del texto */
+  --fill-duration-arrow: 700ms;    /* cuánto DURA el movimiento de flechas */
+  --fill-delay: 0ms;               /* NO hay espera antes de animar */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -106,7 +106,7 @@ ul, ol { list-style: none; }
 @keyframes loadFill { to { width: 100%; } }
 
 /* ==========================================================================
-   BOTONES · relleno circular · 2000ms
+   BOTONES · relleno circular · 1000ms · delay 0
    ========================================================================== */
 
 /* Botón grande */
@@ -127,7 +127,7 @@ ul, ol { list-style: none; }
   border: none;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-color) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease) var(--fill-delay);
   z-index: 0;
 }
 
@@ -142,9 +142,10 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform var(--fill-duration) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease) var(--fill-delay);
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .btn-big:hover::before { transform: translate(-50%, 60%) scale(2.6); }
@@ -162,7 +163,7 @@ ul, ol { list-style: none; }
   position: relative;
   z-index: 1;
   display: inline-block;
-  transition: transform var(--fill-duration-arrow) var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease) var(--fill-delay);
 }
 .btn-big:hover .btn-big__arrow { transform: translateX(5px); }
 
@@ -187,7 +188,7 @@ ul, ol { list-style: none; }
   flex-shrink: 0;
   overflow: hidden;
   isolation: isolate;
-  transition: transform var(--fill-duration) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease) var(--fill-delay);
   z-index: 0;
 }
 
@@ -199,9 +200,10 @@ ul, ol { list-style: none; }
   background: var(--purple);
   transform: scale(0);
   transform-origin: center center;
-  transition: transform var(--fill-duration) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease) var(--fill-delay);
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .cta-circle:hover::before { transform: scale(1); }
@@ -211,8 +213,8 @@ ul, ol { list-style: none; }
   z-index: 1;
   font-size: 1.5rem;
   color: var(--ink);
-  transition: transform var(--fill-duration-arrow) var(--fill-ease),
-              color var(--fill-duration-color) var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease) var(--fill-delay),
+              color var(--fill-duration-color) var(--fill-ease) var(--fill-delay);
 }
 
 .cta-circle:hover .cta-circle__arrow {
@@ -221,7 +223,7 @@ ul, ol { list-style: none; }
 }
 .cta-circle:hover { transform: scale(1.06); }
 
-/* Botón nav · sitio oficial */
+/* Botón nav */
 .nav__official {
   position: relative;
   display: inline-flex;
@@ -238,8 +240,8 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-color) var(--fill-ease),
-              border-color var(--fill-duration-color) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease) var(--fill-delay),
+              border-color var(--fill-duration-color) var(--fill-ease) var(--fill-delay);
   z-index: 0;
 }
 
@@ -254,9 +256,10 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform var(--fill-duration) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease) var(--fill-delay);
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .nav__official:hover::before { transform: translate(-50%, 60%) scale(2.6); }
@@ -267,11 +270,11 @@ ul, ol { list-style: none; }
   position: relative;
   z-index: 1;
   display: inline-block;
-  transition: transform var(--fill-duration-arrow) var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease) var(--fill-delay);
 }
 .nav__official:hover .nav__official__arrow { transform: translate(3px, -3px); }
 
-/* Botón de card */
+/* Botón card */
 .dif-cta {
   position: relative;
   display: inline-flex;
@@ -289,7 +292,7 @@ ul, ol { list-style: none; }
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
-  transition: color var(--fill-duration-color) var(--fill-ease);
+  transition: color var(--fill-duration-color) var(--fill-ease) var(--fill-delay);
   z-index: 0;
 }
 
@@ -304,9 +307,10 @@ ul, ol { list-style: none; }
   border-radius: 50%;
   transform: translate(-50%, 60%) scale(0);
   transform-origin: center bottom;
-  transition: transform var(--fill-duration) var(--fill-ease);
+  transition: transform var(--fill-duration) var(--fill-ease) var(--fill-delay);
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .dif-cta:hover::before { transform: translate(-50%, 60%) scale(2.4); }
@@ -316,7 +320,7 @@ ul, ol { list-style: none; }
 .dif-cta__arrow {
   position: relative;
   z-index: 1;
-  transition: transform var(--fill-duration-arrow) var(--fill-ease);
+  transition: transform var(--fill-duration-arrow) var(--fill-ease) var(--fill-delay);
 }
 .dif-cta:hover .dif-cta__arrow { transform: translateX(4px); }
 
@@ -1648,7 +1652,6 @@ main { display: block; }
 </head>
 <body>
 
-<!-- LOADER -->
 <div class="loader" id="loader" data-hidden="false" aria-hidden="true">
   <div class="loader__inner">
     <svg class="loader__mark" viewBox="0 0 48 48" fill="none">
@@ -1659,7 +1662,6 @@ main { display: block; }
   </div>
 </div>
 
-<!-- SVG SYMBOLS -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="cl-mark" viewBox="0 0 48 48">
     <path d="M24 4 C 13.5 15, 11 28, 24 44 C 37 28, 34.5 15, 24 4 Z"
@@ -1683,7 +1685,6 @@ main { display: block; }
   <symbol id="ic-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
 </svg>
 
-<!-- NAV -->
 <nav class="nav" id="nav" aria-label="Principal">
   <div class="nav__inner">
     <a href="#" class="brand" data-nav="inicio">
@@ -1716,7 +1717,6 @@ main { display: block; }
   </div>
 </nav>
 
-<!-- MOBILE NAV -->
 <div class="nav-overlay" id="navOverlay" data-open="false"></div>
 <aside class="mobile-nav" id="mobileNav" data-open="false">
   <button class="mobile-nav__close" id="mobileClose" aria-label="Cerrar">✕</button>
@@ -1731,7 +1731,6 @@ main { display: block; }
 
 <main>
 
-  <!-- INICIO -->
   <section class="page" id="inicio" data-active="true">
 
     <div class="hero">
@@ -2234,7 +2233,6 @@ main { display: block; }
 
   </section>
 
-  <!-- UNIVERSIDAD -->
   <section class="page" id="universidad">
     <div class="page-hero">
       <div class="wrap">
@@ -2364,7 +2362,6 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- OFERTA -->
   <section class="page" id="oferta">
     <div class="page-hero">
       <div class="wrap">
@@ -2493,7 +2490,6 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- VIDA -->
   <section class="page" id="vida">
     <div class="page-hero">
       <div class="wrap">
@@ -2600,7 +2596,6 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- INVESTIGACIÓN -->
   <section class="page" id="investigacion">
     <div class="page-hero">
       <div class="wrap">
@@ -2692,7 +2687,6 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- AULA -->
   <section class="page" id="aula">
     <div class="page-hero">
       <div class="wrap">
@@ -2801,7 +2795,6 @@ main { display: block; }
     </section>
   </section>
 
-  <!-- ADMISIONES -->
   <section class="page" id="admisiones">
     <div class="page-hero">
       <div class="wrap">
@@ -2957,7 +2950,6 @@ main { display: block; }
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__grid">
@@ -3018,7 +3010,6 @@ main { display: block; }
   </div>
 </footer>
 
-<!-- WHATSAPP -->
 <button class="float-contact" aria-label="Contactar a un asesor académico">
   <span class="float-contact__icon" aria-hidden="true"><svg><use href="#ic-wa"/></svg></span>
   <span class="float-contact__text">Contactar a un asesor</span>
